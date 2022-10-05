@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <h2>Nuevo proyecto</h2>
+    <form class="example-form">
+        <h4>mat-select</h4>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+    </form>
+</div>

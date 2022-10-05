@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/km-app/",
             "outputPath": "dist/km-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,6 +24,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -50,6 +53,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "baseHref": "/km-app-desa/",
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -90,6 +94,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "0f2c7d89-c263-46a0-bf5e-79c37da34987"
   }
 }
