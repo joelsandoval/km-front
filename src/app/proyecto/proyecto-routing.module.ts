@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EquipoComponent } from './equipo/equipo.component';
 import { GeneralesComponent } from './generales/generales.component';
+import { HistorialComponent } from './historial/historial.component';
 import { ProyectoComponent } from './proyecto.component';
+import { ServiciosComponent } from './servicios/servicios.component';
 
 
 const routes: Routes = [
@@ -12,7 +15,18 @@ const routes: Routes = [
       {
         path: 'generales/:proyecto',
         component: GeneralesComponent,
-        //canDeactivate: [CanDeactivateGuard],
+      },
+      {
+        path: 'servicios/:proyecto',
+        component: ServiciosComponent,
+      },
+      {
+        path: 'equipo/:proyecto',
+        component: EquipoComponent,
+      },
+      {
+        path: 'historial/:proyecto',
+        component: HistorialComponent,
       },
       {
         path: '',

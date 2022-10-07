@@ -14,6 +14,7 @@ import { ProyectosModule } from './proyectos/proyectos.module';
 import { ServiciosModule } from './servicios/servicios.module';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ServicioModule } from './servicio/servicio.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './home/home.component';
     MatGridListModule,
     NgbModule,
     ProyectosModule,
-    ServiciosModule
+    ServiciosModule,
+    ServicioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

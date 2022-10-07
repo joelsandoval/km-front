@@ -14,7 +14,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NuevoComponent } from './nuevo/nuevo.component';
-import { GeneralesComponent } from './generales/generales.component';
 import { FormsModule } from '@angular/forms';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -24,7 +23,6 @@ import { MatTabsModule } from '@angular/material/tabs';
     ProyectosComponent,
     ListadoComponent,
     NuevoComponent,
-    GeneralesComponent,
     ProyectoComponent
   ],
   imports: [

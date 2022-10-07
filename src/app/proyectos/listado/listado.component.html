@@ -1,17 +1,25 @@
-<mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
-
 <div class="container-fluid">
-    <table mat-table [dataSource]="dataSource" title="Proyectos"
-        matSort aria-label="Listado de proyectos" class="table table-striped">
+    <h2>Listado de proyectos</h2>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+
+    <table mat-table [dataSource]="dataSource" title="Proyectos" matSort aria-label="Listado de proyectos"
+        class="table table-striped table-hover">
         <!-- ID Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let row"> 
-                <a [routerLink]="['../../proyecto', row.id]">{{row.numero}}</a>  
+            <td mat-cell *matCellDef="let row">
+                <a [routerLink]="['../proyecto', row.id]">{{row.numero}}</a>
             </td>
+        </ng-container>
+        
+        <!-- Progress Column -->
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+            <td mat-cell *matCellDef="let row"> {{row.nombre}}% </td>
         </ng-container>
 
         <!-- Progress Column -->
@@ -30,6 +38,15 @@
         <ng-container matColumnDef="sector">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Sector </th>
             <td mat-cell *matCellDef="let row"> {{row.sector}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+            <td mat-cell *matCellDef="let row"> 
+                <button mat-icon-button aria-label="Editar">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

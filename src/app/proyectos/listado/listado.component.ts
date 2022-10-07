@@ -46,7 +46,7 @@ const NAMES: string[] = [
 export class ListadoComponent implements AfterViewInit {
 
   
-  displayedColumns: string[] = ['id', 'nombre', 'cliente', 'sector'];
+  displayedColumns: string[] = ['id', 'fecha', 'nombre', 'cliente', 'sector', 'acciones'];
   dataSource: MatTableDataSource<Proyecto>;
   pageSize = 10;
   

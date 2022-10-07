@@ -10,8 +10,18 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
+    path: 'proyecto/:id',
+    loadChildren: () => import('./proyecto/proyecto.module').then(mod => mod.ProyectoModule),
+    data: { preload: true },
+  },
+  {
     path: 'servicios',
     loadChildren: () => import('./servicios/servicios.module').then(mod => mod.ServiciosModule),
+    data: { preload: true },
+  },
+  {
+    path: 'servicio',
+    loadChildren: () => import('./servicio/servicio.module').then(mod => mod.ServicioModule),
     data: { preload: true },
   },
   { path: 'home', component: HomeComponent },

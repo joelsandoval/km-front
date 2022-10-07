@@ -1,12 +1,39 @@
-<mat-tab-group dynamicHeight>
-    <mat-tab label="Short tab">
-      <div class="example-small-box mat-elevation-z4">
-        Small content
-      </div>
-    </mat-tab>
-    <mat-tab label="Long tab">
-      <div class="example-large-box mat-elevation-z4">
-        Large content
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+<mat-drawer-container class="report-container">
+  <mat-drawer #drawer mode="side" [opened]="true">
+    <mat-list>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', 1]"
+          matTooltip="Datos generales">
+          <mat-icon>article</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Trámties/Servicios" [routerLink]="['servicios', 1]"
+          matTooltip="Trámites/Servicios">
+          <mat-icon>menu_book</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['equipo', 1]"
+          matTooltip="Equipo de trabajo">
+          <mat-icon>people_alt</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['historial', 1]"
+          matTooltip="Historial de eventos">
+          <mat-icon>history</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['../../proyectos']"
+          matTooltip="Regresar">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

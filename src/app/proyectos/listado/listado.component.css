@@ -9,4 +9,5 @@ table {
 
 td, th {
     width: 25%;
+    vertical-align: middle;
 }
