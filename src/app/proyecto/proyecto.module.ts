@@ -12,6 +12,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { HistorialComponent } from './historial/historial.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ServiciosNuevoComponent } from './servicios-nuevo/servicios-nuevo.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { DocumentosComponent } from './documentos/documentos.component';
 
 
 @NgModule({
@@ -20,7 +28,9 @@ import { HistorialComponent } from './historial/historial.component';
     GeneralesComponent,
     ServiciosComponent,
     EquipoComponent,
-    HistorialComponent
+    HistorialComponent,
+    ServiciosNuevoComponent,
+    DocumentosComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +40,13 @@ import { HistorialComponent } from './historial/historial.component';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatSelectModule,
+    NgbModule,
+    FormsModule,
+    MatInputModule,
   ]
 })
 export class ProyectoModule { }

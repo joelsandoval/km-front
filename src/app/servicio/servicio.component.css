@@ -1,0 +1,9 @@
+.report-container {
+    width: 98%;
+    height: 100%;
+    margin: 2px;
+  }
+  
+  mat-drawer-content {
+    padding: 3px;
+  }
