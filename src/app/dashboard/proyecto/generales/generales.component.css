@@ -16,3 +16,8 @@ h2 {
     background-color: white;
     min-height: 600px;;
 }
+
+mat-card {
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif !important;
+}

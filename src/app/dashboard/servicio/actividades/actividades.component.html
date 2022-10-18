@@ -1,1 +1,38 @@
-<p>actividades works!</p>
+
+<mat-card class="fondo-blanco">
+    <div class="row">
+        <div class="col col-md-11">
+            <h3>
+                <mat-icon>fact_check</mat-icon> Actividades
+            </h3>
+        </div>
+        <div class="col col-md-1">
+            <button mat-icon-button aria-label="Trámties/Servicios" matTooltip="Trámites/Servicios">
+                <mat-icon>add_circle_outline</mat-icon>
+            </button>
+        </div>
+    </div>
+    <table title="Servicios" matSort aria-label="Listado de servicios" class="table table-striped"
+        id="tblServicios" name="tblServicios" style="width: 100%">
+        <tr>
+            <th>No.</th>
+            <th style="width: 25%;">Actividad</th>
+            <th>Resposnable</th>
+            <th style="width: 15%;">Fecha Programada</th>
+            <th style="width: 15%;">Fecha Realizada</th>
+            <th>Estatus</th>
+        </tr>
+        <tr *ngFor="let actividad of calendario">
+            <td>{{ actividad.id }}</td>
+            <td>{{ actividad.actividad }}</td>
+            <td>{{ actividad.responsable }}</td>
+            <td>{{ actividad.fechaProgramado | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ actividad.fechaRealizado | date: 'dd/MM/yyyy' }}</td>
+            <td>
+                <span class="{{ actividad.clase }}" >
+                    {{ actividad.estatus }}
+                </span>
+            </td>
+        </tr>
+    </table>
+</mat-card>

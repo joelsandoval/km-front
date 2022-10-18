@@ -12,7 +12,9 @@
     color: white;
 }
 
-mat-card { 
-    margin: 0; 
+mat-card {
+    margin: 0;
     font-family: 'Roboto Condensed', sans-serif !important;
 }
+
+

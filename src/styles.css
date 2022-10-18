@@ -1,6 +1,41 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
-body { margin: 0; font-family: 'Roboto Condensed', sans-serif;}
+body { margin: 0; font-family: 'Roboto Condensed', sans-serif  !important;}
 html, body { height: 100%; }
 
+.badge-rojo {
+    background-color: darkred !important;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.85em !important;
+}
+
+.badge-verde {
+    background-color: darkgreen !important;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.85em !important;
+}
+
+.badge-amarillo {
+    background-color:goldenrod !important;
+    color: black;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.85em !important;
+}
+
+.badge-azul {
+    background-color: darkslateblue !important;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.85em !important;
+}

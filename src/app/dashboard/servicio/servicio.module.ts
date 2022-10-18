@@ -10,6 +10,7 @@ import { GeneralesComponent } from './generales/generales.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -27,7 +28,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ]
 })
 export class ServicioModule { }

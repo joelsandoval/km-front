@@ -6,6 +6,7 @@ export class Proyecto {
     sector!: string;
     observaciones!: string;
     fecha!: Date;
+    ubicacion!: string;
 }
 
 export class Servicio {
@@ -14,6 +15,8 @@ export class Servicio {
     institucion!: string;
     fecha!: Date;
     responsable!: string;
+    estatus!: string;
+    clase!: string;
 }
 
 export class Actividad {
@@ -22,15 +25,28 @@ export class Actividad {
     fecha!: Date;
     fechaPres!: Date;
     responsable!: string;
+    servicio!: string;
+    proyecto!: string;
+}
+
+export class Calendario {
+    id!: number;
+    actividad!: string;
+    responsable!: string;
+    fechaProgramado!: Date;
+    fechaRealizado!: Date;
+    estatus!: string;
+    clase!: string;
+    servicio!: number;
 }
 
 export class TimeLine {
     anio!: number;
     actividades!: Evento[];
     tipo!: number;
-  }
-  
-  export class Evento {
+}
+
+export class Evento {
     id!: number;
     anio!: number;
     mes!: string;
@@ -39,4 +55,4 @@ export class TimeLine {
     evento!: string;
     tipo!: number;
     clase!: string;
-  }
+}

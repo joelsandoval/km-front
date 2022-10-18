@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Proyecto } from 'src/app/model/proyecto';
+import { environment } from 'src/environments/environment';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
 
 @Component({
@@ -9,7 +11,11 @@ import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.comp
   styleUrls: ['./generales.component.css']
 })
 export class GeneralesComponent implements OnInit {
-  proyecto: number = 0;
+  
+  id!: number;
+  proyectos: Proyecto[] = [];
+  proyecto!: Proyecto;
+
 
   constructor(
     public dialog: MatDialog,
@@ -19,7 +25,9 @@ export class GeneralesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       param => {
-        this.proyecto = +param.get('id')!;
+        this.id = +param.get('id')!;
+        this.proyectos = environment.proyectos;
+        this.proyecto = this.proyectos.filter((proy) => proy.id == this.id)[0];
         console.log('generales');
         console.log(this.proyecto);
       }
