@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <h2>Listado de proyectos</h2>
+    <mat-form-field>
+        <mat-label>Filtrar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" title="Proyectos" matSort aria-label="Listado de proyectos"
+        class="table table-striped table-hover" id="tblProyectos" name="tblProyectos">
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 5%;"> </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button aria-label="Editar" [routerLink]="['../proyecto', row.id]">
+                    <mat-icon class="icon-km">edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 5%;"> ID </th>
+            <td mat-cell *matCellDef="let row">
+                <a>{{ row.id }}</a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10% !important;"> Fecha </th>
+            <td mat-cell *matCellDef="let row"> {{ row.fecha | date: 'dd/MM/yyyy' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 25%;"> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 25%;"> Cliente </th>
+            <td mat-cell *matCellDef="let row"> {{row.cliente}} </td>
+        </ng-container>
+        <ng-container matColumnDef="sector">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> Sector </th>
+            <td mat-cell *matCellDef="let row"> {{row.sector}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" aria-label="Select page of users"></mat-paginator>
+</div>

@@ -1,0 +1,25 @@
+.report-container {
+  width: 98%;
+  height: 100%;
+  margin: 2px;
+}
+
+.mat-drawer-content {
+  padding: 3px;
+  height: 100%;
+}
+
+.fondo {
+  background-color: slategray;
+  color: white;
+}
+
+.fondo-blanco {
+  background-color: white;
+  color:darkslategrey;
+}
+
+.blanco {
+  color: white;
+}
+

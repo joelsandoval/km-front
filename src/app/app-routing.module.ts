@@ -6,22 +6,22 @@ const routes: Routes = [
   
   {
     path: 'proyectos',
-    loadChildren: () => import('./proyectos/proyectos.module').then(mod => mod.ProyectosModule),
+    loadChildren: () => import('./dashboard/proyectos/proyectos.module').then(mod => mod.ProyectosModule),
     data: { preload: true },
-  },
+  }, 
   {
     path: 'proyecto/:id',
-    loadChildren: () => import('./proyecto/proyecto.module').then(mod => mod.ProyectoModule),
+    loadChildren: () => import('./dashboard/proyecto/proyecto.module').then(mod => mod.ProyectoModule),
     data: { preload: true },
   },
   {
     path: 'servicios',
-    loadChildren: () => import('./servicios/servicios.module').then(mod => mod.ServiciosModule),
+    loadChildren: () => import('./dashboard/servicios/servicios.module').then(mod => mod.ServiciosModule),
     data: { preload: true },
   },
   {
     path: 'servicio/:id',
-    loadChildren: () => import('./servicio/servicio.module').then(mod => mod.ServicioModule),
+    loadChildren: () => import('./dashboard/servicio/servicio.module').then(mod => mod.ServicioModule),
     data: { preload: true },
   },
   { path: 'home', component: HomeComponent },
@@ -30,7 +30,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

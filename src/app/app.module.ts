@@ -10,11 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProyectosModule } from './proyectos/proyectos.module';
-import { ServiciosModule } from './servicios/servicios.module';
+import { ProyectosModule } from './dashboard/proyectos/proyectos.module';
+import { ServiciosModule } from './dashboard/servicios/servicios.module';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { ServicioModule } from './servicio/servicio.module';
+import { ServicioModule } from './dashboard/servicio/servicio.module';
 
 @NgModule({
   declarations: [

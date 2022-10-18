@@ -1,0 +1,33 @@
+<mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;">
+  <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
+    <mat-list>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', proyecto]"
+          matTooltip="Datos generales" [matTooltipPosition]="'right'">
+          <mat-icon>article</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['historial', proyecto]"
+          matTooltip="Historial de eventos" [matTooltipPosition]="'right'">
+          <mat-icon>history</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['documentos', proyecto]"
+          matTooltip="Historial de eventos" [matTooltipPosition]="'right'">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="regresar" [routerLink]="['../../proyectos']"
+          matTooltip="Regresar" [matTooltipPosition]="'right'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="fondo-blanco">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

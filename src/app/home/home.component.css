@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+html { margin: 0; font-family: 'Roboto Condensed', sans-serif;}
+
+.example-card {
+  max-width: 400px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.example-header-image {
+  background-image: url('https://media.ambito.com/p/86577f2cd56624e85dbdac0fd9b477e6/adjuntos/239/imagenes/037/557/0037557128/medioambientejpeg.jpeg');
+  background-size: cover;
+}
+
+.header-image-servicios {
+  background-image: url('https://treehouse.wpenginepowered.com/wp-content/uploads/2013/12/files-and-folders.jpg');
+  background-size: cover;
+}
+

@@ -1,0 +1,18 @@
+h2 {
+    padding-top: 12pt;
+    padding-bottom: 12pt;
+}
+
+.etiqueta {
+    font-size: 10pt;
+    color: dimgray;
+}
+
+.texto {
+    font-size: 14pt;
+}
+
+.blanco {
+    background-color: white;
+    min-height: 600px;;
+}

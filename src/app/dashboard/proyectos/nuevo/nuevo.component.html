@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <h2>Nuevo proyecto</h2>
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Categoría</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="catego">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cliente</mat-label>
+            <mat-select [(ngModel)]="proyecto.cliente" name="cliente">
+              <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+                {{ cliente.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Proyecto</mat-label>
+            <input matInput [(ngModel)]="proyecto.nombre" name="nombre" placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput  [(ngModel)]="proyecto.observaciones" name="observa" placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+    </form>
+</div>

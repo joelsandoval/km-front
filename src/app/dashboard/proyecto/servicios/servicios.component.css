@@ -1,0 +1,18 @@
+.fondo {
+    background-color: slategray;
+    color: white;
+}
+
+.fondo-blanco {
+    background-color: white;
+    color: darkslategrey;
+}
+
+.blanco {
+    color: white;
+}
+
+mat-card { 
+    margin: 0; 
+    font-family: 'Roboto Condensed', sans-serif !important;
+}

@@ -1,0 +1,32 @@
+<mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;">
+  <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
+    <mat-list>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', 1]"
+          matTooltip="Datos generales">
+          <mat-icon>article</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Compromisos/Obligaciones" [routerLink]="['actividades', 1]"
+          matTooltip="Compromisos">
+          <mat-icon>fact_check</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['equipo', 1]"
+          matTooltip="Equipo de trabajo">
+          <mat-icon>people_alt</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['../../proyecto', 1]" matTooltip="Regresar">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content  style="background-color:white ;">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
