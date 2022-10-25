@@ -11,6 +11,7 @@ export class Proyecto {
 
 export class Servicio {
     id!: number;
+    proyecto!: number;
     nombre!: string;
     institucion!: string;
     fecha!: Date;

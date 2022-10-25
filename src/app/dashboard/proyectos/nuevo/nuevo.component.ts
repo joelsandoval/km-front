@@ -16,13 +16,28 @@ export class NuevoComponent implements OnInit {
 
   selectedValue: string = '';
   foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+    {value: '1', viewValue: 'Ambiental'},
+    {value: '2', viewValue: 'Energia y social'},
+    {value: '3', viewValue: 'Auditoría legal (Due Diligence)'},
+    {value: '4', viewValue: 'Gestión Administrativa'},
+    {value: '5', viewValue: 'Litigio Administrativo'},
   ];
 
   proyecto: Proyecto = new Proyecto();
-  clientes: Moral[] = [];
+  clientes: Moral[] = [
+    {
+      id: 1,
+      nombre: 'Caminos del Norte S.A. de C.V.',
+      rfc: 'jjjj',
+      telefono: '444'
+    },
+    {
+      id: 1,
+      nombre: 'Caminos del Norte S.A. de C.V.',
+      rfc: 'jjjj',
+      telefono: '444'
+    },
+  ];
   
 
   constructor() { }

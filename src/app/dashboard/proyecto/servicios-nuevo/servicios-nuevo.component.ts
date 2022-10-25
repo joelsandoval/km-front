@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Categoria, CatServicio, SubCategoria } from 'src/app/model/catalogos';
+import * as global from '../../../model/global'
 
 interface Food {
   value: string;
@@ -12,16 +14,23 @@ interface Food {
 })
 export class ServiciosNuevoComponent implements OnInit {
 
+  categorias: Categoria[] = [];
+  categoria: Categoria = new Categoria();
+  subcategoria: SubCategoria = new SubCategoria();
+  servicio: CatServicio = new CatServicio();
+
+
   selectedValue: string = '';
   foods: Food[] = [
-    {value: 'steak-0', viewValue: 'MIA-Particular'},
-    {value: 'pizza-1', viewValue: 'MIA-Regional'},
-    {value: 'tacos-2', viewValue: 'Informe Preventivo'},
+    {value: '1', viewValue: 'MIA-Particular'},
+    {value: '2', viewValue: 'MIA-Regional'},
+    {value: '3', viewValue: 'Informe Preventivo'},
   ];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.categorias = global.CAT_SERVICIOS;
   }
 
 }

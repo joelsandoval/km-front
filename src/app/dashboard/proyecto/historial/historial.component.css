@@ -45,7 +45,7 @@ DEPENDENCES
   
   .time{
     display: var(--timeDisplay, inline-flex);
-    background-color: #222 !important;
+    background-color: rgb(77, 77, 237) !important;
     color: white !important;
   }
   
@@ -163,7 +163,7 @@ DEPENDENCES
   .timeline__card_p{
     position: relative;
     margin-left: var(--timelineCardLineGap, 1rem);
-    background-color:darkslategrey;
+    background-color:rgb(132, 188, 253);
     color: aliceblue;
     border-left: var(--timelineCardBorderLeftWidth, 3px) solid var(--timelineCardBorderLeftColor, white);
   }

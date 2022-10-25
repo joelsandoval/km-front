@@ -2,20 +2,33 @@
 <mat-dialog-content class="mat-typography">
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Servicio</mat-label>
-      <mat-select [(ngModel)]="selectedValue" name="food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+      <mat-label>Categoria</mat-label>
+      <mat-select [(ngModel)]="categoria" name="categoria">
+        <mat-option *ngFor="let catego of categorias" [value]="catego">
+          {{catego.categoria}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Subcategoria</mat-label>
+      <mat-select [(ngModel)]="subcategoria" name="subcat">
+        <mat-option *ngFor="let sub of categoria.subcategorias" [value]="sub">
+          {{sub.subcategoria}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Servicio</mat-label>
-      <input matInput placeholder="Elige un servicio" value="Sushi">
+      <mat-select [(ngModel)]="servicio" name="servicio">
+        <mat-option *ngFor="let servis of subcategoria.servicios" [value]="servis">
+          {{servis.servicio}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+    
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
