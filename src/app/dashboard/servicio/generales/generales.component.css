@@ -1,19 +1,18 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
 .fondo {
-    background-color: cadetblue;
-    color: white;
-  }
+  background-color: cadetblue;
+  color: white;
+}
 
-  .fondo-blanco {
-    background-color: white;
-    color:darkslategrey;
-    min-height: 600px;
-  }
-  
-  .blanco {
-    color: white;
-  }
+.fondo-blanco {
+  background-color: white;
+  color: darkslategrey;
+  min-height: 600px;
+}
 
-  mat-card {
-    margin: 0;
-    font-family: 'Roboto Condensed', sans-serif !important;
+.blanco {
+  color: white;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Servicio } from 'src/app/model/proyecto';
+import { Calendario, Servicio } from 'src/app/model/proyecto';
 import { environment } from 'src/environments/environment';
+import * as global from 'src/app/model/global';
 
 @Component({
   selector: 'app-generales',
@@ -13,6 +14,11 @@ export class GeneralesComponent implements OnInit {
   servicios: Servicio[] = [];
   servicio!: Servicio;
   id!: number;
+  seleccionado: Calendario = new Calendario();
+  folders = global.folders;
+  notes = global.notes;
+
+
 
   constructor(
     private route: ActivatedRoute
@@ -28,6 +34,12 @@ export class GeneralesComponent implements OnInit {
         console.log(this.servicio);
       }
     )
+  }
+
+  seleccionaActividad(dato: Calendario) {
+    this.seleccionado = dato;
+    console.log('del hijo al padre');
+    console.log(dato);
   }
 
 }

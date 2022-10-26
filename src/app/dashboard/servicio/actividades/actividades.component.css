@@ -2,3 +2,13 @@ mat-card {
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif !important;
 }
+
+.rojo {
+    background-color: palevioletred;
+    color: darkred;
+}
+
+.verde {
+    background-color:#c6fcc6;
+    color: darkgreen;
+}

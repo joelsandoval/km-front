@@ -1,6 +1,6 @@
 'use strict';
 
-import { Categoria } from "./catalogos";
+import { Categoria, Section } from "./catalogos";
 import { Fisica } from "./personas";
 import { Calendario, Proyecto, Servicio } from "./proyecto";
 
@@ -144,21 +144,23 @@ export const calendario: Calendario[] = [
         id: 1,
         actividad: 'Presentacion en ventanilla',
         responsable: 'Juan Rodriguez',
-        fechaProgramado: new Date('2022-09-10'),
-        fechaRealizado: new Date('2022-10-10'),
+        fechaProgramado: new Date('2022-10-10'),
+        fechaRealizado: new Date('2022-10-15'),
         estatus: 'En tiempo',
         clase: 'badge-verde',
         servicio: 1,
+        realizado: true
     },
     {
         id: 2,
         actividad: 'Presentacion del extracto',
         responsable: 'Juan Rodriguez',
-        fechaProgramado: new Date('2022-10-20'),
+        fechaProgramado: new Date('2022-10-30'),
         fechaRealizado: new Date(),
         estatus: 'Por vencer',
         clase: 'badge-amarillo',
-        servicio: 1
+        servicio: 1,
+        realizado: false
     }
 ];
 
@@ -283,7 +285,7 @@ export const eventos = [
         ],
         tipo: 1
     },
-]
+];
 
 export const CAT_SERVICIOS: Categoria[] = [
     {
@@ -406,4 +408,27 @@ export const CAT_SERVICIOS: Categoria[] = [
             }
         ]
     }
-]
+];
+
+
+export const folders: Section[] = [
+    {
+        name: 'Borrador del documento',
+        updated: new Date('1/1/22'),
+    },
+    {
+        name: 'Versión definitiva para entrega.docx',
+        updated: new Date('1/17/22'),
+    },
+];
+
+export const notes: Section[] = [
+    {
+        name: 'Imagen de ejemplo 1',
+        updated: new Date('2/20/22'),
+    },
+    {
+        name: 'Imagen de ejemplo 2',
+        updated: new Date('1/18/22'),
+    },
+];

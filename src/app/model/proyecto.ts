@@ -39,6 +39,7 @@ export class Calendario {
     estatus!: string;
     clase!: string;
     servicio!: number;
+    realizado!: boolean;
 }
 
 export class TimeLine {

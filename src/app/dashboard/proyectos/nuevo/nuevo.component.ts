@@ -33,7 +33,7 @@ export class NuevoComponent implements OnInit {
     },
     {
       id: 1,
-      nombre: 'Caminos del Norte S.A. de C.V.',
+      nombre: 'Minera Santa María, S.A.',
       rfc: 'jjjj',
       telefono: '444'
     },

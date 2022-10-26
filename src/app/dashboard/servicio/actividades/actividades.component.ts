@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Calendario } from 'src/app/model/proyecto';
-import { environment } from 'src/environments/environment';
+import { Output, EventEmitter } from '@angular/core';
+import * as global from 'src/app/model/global'
+import { MatDialog } from '@angular/material/dialog';
+import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 
 @Component({
   selector: 'app-actividades',
@@ -9,14 +12,27 @@ import { environment } from 'src/environments/environment';
 })
 export class ActividadesComponent implements OnInit {
   @Input() servicio!: number;
+  @Output() actividadCambia = new EventEmitter<Calendario>();
 
   calendario: Calendario[] = [];
 
   
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(ActividadesNuevoComponent, {
+      data: 1,
+    });
+  }
 
   ngOnInit(): void {
-    this.calendario = environment.calendario;
+    this.calendario = global.calendario;
   }
+
+  selectActividad(value: Calendario) {
+    this.actividadCambia.emit(value);
+  }
+
+
 
 }

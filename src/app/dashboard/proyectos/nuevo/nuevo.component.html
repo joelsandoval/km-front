@@ -3,7 +3,7 @@
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Categoría</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="catego">
+            <mat-select [(ngModel)]="selectedValue" name="catego" multiple>
               <mat-option *ngFor="let food of foods" [value]="food.value">
                 {{food.viewValue}}
               </mat-option>
@@ -19,12 +19,16 @@
           </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Proyecto</mat-label>
-            <input matInput [(ngModel)]="proyecto.nombre" name="nombre" placeholder="Ex. Pizza" value="Sushi">
+            <input matInput [(ngModel)]="proyecto.nombre" name="nombre" placeholder="Mina Mariana" value="Sushi">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput  [(ngModel)]="proyecto.observaciones" name="observa" placeholder="Ex. It makes me feel..."></textarea>
+            <mat-label>Descripción breve del proyecto</mat-label>
+            <textarea matInput  [(ngModel)]="proyecto.observaciones" name="observa" placeholder="Consiste en la puesta en marcha de un ..."></textarea>
         </mat-form-field>
+        
+          <button mat-button color="warn">Cancelar</button>
+          <button mat-button color="primary" cdkFocusInitial>Guardar</button>
+        
     </form>
 </div>

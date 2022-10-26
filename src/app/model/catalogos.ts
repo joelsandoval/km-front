@@ -14,3 +14,8 @@ export class Categoria {
     categoria!: string;
     subcategorias!: SubCategoria[];
 }
+
+export interface Section {
+    name: string;
+    updated: Date;
+  }

@@ -11,7 +11,14 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { ActividadesNuevoComponent } from './actividades-nuevo/actividades-nuevo.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -19,17 +26,25 @@ import { MatCardModule } from '@angular/material/card';
     ServicioComponent,
     GeneralesComponent,
     ActividadesComponent,
-    EquipoComponent
+    EquipoComponent,
+    ActividadesNuevoComponent
   ],
   imports: [
     CommonModule,
     ServicioRoutingModule,
+    FormsModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatInputModule,
   ]
 })
 export class ServicioModule { }

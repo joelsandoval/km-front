@@ -1,3 +1,8 @@
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    height: 50px;
+  }
+
 .fondo {
     background-color: slategray;
     color: white;
