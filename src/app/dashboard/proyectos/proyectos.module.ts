@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     ProyectosRoutingModule,
     MatSidenavModule,
     MatFormFieldModule,

@@ -1,13 +1,32 @@
 export class Proyecto {
     id!: number;
+    //numero!: string;
+    proyecto!: string;
+    proyectoCorto!: string;
+    cliente!: number;
+    sector!: number;
+    registro!: Date;
+    observaciones!: string;
+    ubicacion!: string;
+    categoria!: number;
+    estatus!: number;
+}
+
+export class ProyectoF {
+    id!: number;
     numero!: string;
-    nombre!: string;
+    proyecto!: string;
+    proyectoCorto!: string;
     cliente!: string;
+    clienteId!: number;
     sector!: string;
     observaciones!: string;
-    fecha!: Date;
+    registro!: Date;
     ubicacion!: string;
+    estatusId!: number;
+    categoria!: number;
 }
+
 
 export class Servicio {
     id!: number;
@@ -17,6 +36,21 @@ export class Servicio {
     fecha!: Date;
     responsable!: string;
     estatus!: string;
+    clase!: string;
+}
+
+export class ServicioF {
+    id!: number;
+    proyecto!: number;
+    servicioId!: number;
+    servicio!: string;
+    registro!: Date;
+    estatusId!: number;
+    estatus!: string;
+    responsableId!: number;
+    responsable!: string;
+    institucionId!: number;
+    institucion!: string;
     clase!: string;
 }
 

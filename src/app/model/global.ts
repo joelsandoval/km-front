@@ -55,23 +55,27 @@ export const personas: Fisica[] =
 export const proyectos: Proyecto[] = [
     {
         id: 1,
-        numero: '4394232309',
-        nombre: 'Presa San José de la Paz',
-        cliente: 'Caminos del Norte S.A. de C.V.',
-        sector: 'Hidroeléctricas',
+        proyecto: 'Presa San José de la Paz',
+        proyectoCorto: '',
+        cliente: 2,
+        sector: 12,
         observaciones: 'Ninguna',
-        fecha: new Date('2022-10-02 00:00:00'),
-        ubicacion: 'San Jose de la Paz, Guanajuato'
+        registro: new Date('2022-10-02 00:00:00'),
+        ubicacion: 'San Jose de la Paz, Guanajuato',
+        categoria: 1,
+        estatus: 1,
     },
     {
         id: 2,
-        numero: '4394232310',
-        nombre: 'Carretera San Juan - San Francisco',
-        cliente: 'SCT Residencia Occidente',
-        sector: 'Carreteras',
+        proyecto: 'Carretera San Juan - San Francisco',
+        proyectoCorto: '',
+        cliente: 3,
+        sector: 12,
         observaciones: 'Ninguna tampoco',
-        fecha: new Date('2022-10-02 00:00:00'),
+        registro: new Date('2022-10-02 00:00:00'),
         ubicacion: 'Guadalupe, Zacatecas',
+        categoria: 1,
+        estatus: 1
     },
 ];
 

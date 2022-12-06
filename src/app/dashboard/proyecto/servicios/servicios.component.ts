@@ -2,9 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Servicio } from 'src/app/model/proyecto';
-import { environment } from 'src/environments/environment';
-import { ControlContainer } from '@angular/forms';
+import { Servicio, ServicioF } from 'src/app/model/proyecto';
+import { ProyectosService } from 'src/app/services/proyectos.service';
 
 @Component({
   selector: 'app-servicios',
@@ -14,25 +13,31 @@ import { ControlContainer } from '@angular/forms';
 export class ServiciosComponent implements OnInit {
   @Input() proyecto!: number;
 
-  servicios: Servicio[] = [];
+  servicios: ServicioF[] = [];
   ruta: string = '../../servicio';
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private servicioP: ProyectosService
   ) {
-    
+
   }
 
   ngOnInit(): void {
     let origen = this.router.url;
     let num = origen.split("/").length - 1;
 
-    console.log('servicios entra');
-    console.log(this.proyecto);
-    this.servicios = environment.servicios.filter((ser) => ser.proyecto == this.proyecto);
-    console.log(this.servicios);
+    this.servicioP.getProyectoServicios(this.proyecto).subscribe(
+      servs => {
+        console.log('servicios entra');
+        console.log(this.proyecto);
+        this.servicios = servs;
+        console.log(this.servicios);
+      }
+    )
+
 
     switch (num) {
       case 4:

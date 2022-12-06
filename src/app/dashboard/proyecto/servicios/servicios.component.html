@@ -22,9 +22,9 @@
     </tr>
     <tr *ngFor="let servicio of servicios">
         <td>{{ servicio.id }}</td>
-        <td><a [routerLink]="[ruta, servicio.id]" style="padding: 0%;">{{ servicio.nombre }}</a></td>
+        <td><a [routerLink]="[ruta, servicio.id]" style="padding: 0%;">{{ servicio.servicio }}</a></td>
         <td>{{ servicio.institucion }}</td>
-        <td>{{ servicio.fecha | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
         <td>{{ servicio.responsable }}</td>
         <td>
             <span class="{{ servicio.clase }}">

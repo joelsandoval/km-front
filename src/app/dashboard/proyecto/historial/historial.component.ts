@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento, TimeLine } from 'src/app/model/proyecto';
 import { environment } from 'src/environments/environment';
-
+import * as global from '../../../model/global';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class HistorialComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.eventos = environment.eventos;
+    this.eventos = global.eventos;
     console.log(this.eventos);
   }
 

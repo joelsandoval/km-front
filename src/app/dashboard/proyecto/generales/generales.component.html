@@ -1,12 +1,12 @@
-<div class="container-fluid blanco">
+<div class="container-fluid blanco" *ngIf="proyecto">
     <div class="row">
         <h2>
-            <mat-icon>article</mat-icon> Datos del proyecto
+            <mat-icon>article</mat-icon> {{ proyecto.proyecto }}
         </h2>
         <div class="row">
             <div class="col col-md-4">
                 <mat-label class="etiqueta">Nombre del proyecto </mat-label><br />
-                <span class="texto">{{ proyecto.nombre }}</span><br />
+                <span class="texto">{{ proyecto.proyecto }}</span><br />
             </div>
             <div class="col col-md-4">
                 <mat-label class="etiqueta">Cliente </mat-label><br />
@@ -21,7 +21,7 @@
                 <span class="texto">{{ proyecto.ubicacion }}</span><br />
             </div>
             <div class="col col-md-4">
-                <mat-label class="etiqueta">Categoria </mat-label><br />
+                <mat-label class="etiqueta">Sector </mat-label><br />
                 <span class="texto">{{ proyecto.sector }}</span><br />
             </div>
             <div class="col col-md-4">
@@ -38,5 +38,4 @@
             <app-equipo [proyecto]="proyecto.id"></app-equipo>
         </div>
     </div>
-
 </div>

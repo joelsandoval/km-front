@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Calendario, Servicio } from 'src/app/model/proyecto';
+import { Calendario, Servicio, ServicioF } from 'src/app/model/proyecto';
 import { environment } from 'src/environments/environment';
 import * as global from 'src/app/model/global';
+import { ProyectosService } from 'src/app/services/proyectos.service';
 
 @Component({
   selector: 'app-generales',
@@ -12,7 +13,7 @@ import * as global from 'src/app/model/global';
 export class GeneralesComponent implements OnInit {
 
   servicios: Servicio[] = [];
-  servicio!: Servicio;
+  servicio!: ServicioF;
   id!: number;
   seleccionado: Calendario = new Calendario();
   folders = global.folders;
@@ -21,17 +22,22 @@ export class GeneralesComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private servicioP: ProyectosService
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       param => {
         this.id = +param.get('servicio')!;
-        this.servicios = environment.servicios;
-        this.servicio = this.servicios.filter((serv) => serv.id == this.id)[0];
-        console.log('servicio individual');
-        console.log(this.servicio);
+        this.servicioP.getProyectoServicio(this.id).subscribe(
+          servicio => {
+            this.servicio = servicio;
+            console.log('servicio individual');
+            console.log(this.servicio);
+          }
+        )
+
       }
     )
   }

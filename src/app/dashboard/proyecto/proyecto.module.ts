@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { MatCardModule } from '@angular/material/card';
 import { EquipoNuevoComponent } from './equipo-nuevo/equipo-nuevo.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { EquipoNuevoComponent } from './equipo-nuevo/equipo-nuevo.component';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     ProyectoRoutingModule,
     MatTabsModule,
     MatSidenavModule,

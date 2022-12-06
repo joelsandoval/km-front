@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Asignacion, AsignacionF, Fisica, Roles } from 'src/app/model/personas';
-import { environment } from 'src/environments/environment';
+import * as global from '../../../model/global';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EquipoNuevoComponent implements OnInit {
 
-  personas: Fisica[] = environment.personas;
+  personas: Fisica[] = global.personas;
   persona: Fisica = new Fisica();
 
   constructor(
