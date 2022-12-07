@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
-import { Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
+import { ActividadF, Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +55,13 @@ export class ProyectosService {
     return this.http.get<ServicioF>(proyUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<ServicioF>('No se pudieron recuperar los documentos')));
+  }
+
+  getProyectoActividades(servicio: number): Observable<ActividadF[]> {
+    const proyUrl = `${this.proyectosUrl}actividades/${servicio}`;
+    return this.http.get<ActividadF[]>(proyUrl)
+      .pipe(tap(_ => this.log('se recuperaron las actividades')),
+        catchError(this.handleError<ActividadF[]>('No se pudieron recuperar los actividades')));
   }
 
   /** Log a HeroService message with the MessageService */

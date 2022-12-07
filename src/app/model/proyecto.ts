@@ -37,6 +37,8 @@ export class Servicio {
     responsable!: string;
     estatus!: string;
     clase!: string;
+    servicioCorto!: string;
+    referencia!: string;
 }
 
 export class ServicioF {
@@ -52,6 +54,8 @@ export class ServicioF {
     institucionId!: number;
     institucion!: string;
     clase!: string;
+    servicioCorto!: string;
+    referencia!: string;
 }
 
 export class Actividad {
@@ -63,6 +67,24 @@ export class Actividad {
     servicio!: string;
     proyecto!: string;
 }
+
+
+export class ActividadF {
+    id!: number;  
+    servicio!: number;
+    actividadId!: number;
+    actividad!: string;
+    descripcion!: string;
+    tipoId!: number;
+    tipo!: string;
+    fecha!: Date;
+    estatusId!: number;
+    estatus!: string;
+    responsableId!: number;
+    responsable!: string;
+    clase!: string;
+}
+
 
 export class Calendario {
     id!: number;

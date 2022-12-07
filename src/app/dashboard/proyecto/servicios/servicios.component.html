@@ -15,15 +15,15 @@
     <tr>
         <th>No.</th>
         <th style="width: 25%;">Servicio</th>
-        <th>Institución</th>
+        <th>Referencia</th>
         <th>Fecha</th>
         <th>Responsable</th>
         <th>Estatus</th>
     </tr>
     <tr *ngFor="let servicio of servicios">
         <td>{{ servicio.id }}</td>
-        <td><a [routerLink]="[ruta, servicio.id]" style="padding: 0%;">{{ servicio.servicio }}</a></td>
-        <td>{{ servicio.institucion }}</td>
+        <td><a [routerLink]="[ruta, servicio.id]" style="padding: 0%;">{{ servicio.servicioCorto }}</a></td>
+        <td>{{ servicio.referencia }}</td>
         <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
         <td>{{ servicio.responsable }}</td>
         <td>

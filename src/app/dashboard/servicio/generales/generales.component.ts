@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Calendario, Servicio, ServicioF } from 'src/app/model/proyecto';
-import { environment } from 'src/environments/environment';
+import { ActividadF, Calendario, Servicio, ServicioF } from 'src/app/model/proyecto';
 import * as global from 'src/app/model/global';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
@@ -15,7 +14,7 @@ export class GeneralesComponent implements OnInit {
   servicios: Servicio[] = [];
   servicio!: ServicioF;
   id!: number;
-  seleccionado: Calendario = new Calendario();
+  seleccionado: ActividadF = new ActividadF();
   folders = global.folders;
   notes = global.notes;
 
@@ -42,7 +41,7 @@ export class GeneralesComponent implements OnInit {
     )
   }
 
-  seleccionaActividad(dato: Calendario) {
+  seleccionaActividad(dato: ActividadF) {
     this.seleccionado = dato;
     console.log('del hijo al padre');
     console.log(dato);

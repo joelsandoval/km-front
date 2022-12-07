@@ -1,4 +1,4 @@
-<div class="container-fluid fondo-blanco">
+<div class="container-fluid fondo-blanco" *ngIf="servicio">
         <h2>
             <mat-icon>article</mat-icon> {{ servicio.servicio }}
         </h2>
@@ -45,7 +45,7 @@
                         <h4> {{ seleccionado.actividad }} </h4>
                         <div class="row">
                             <mat-label>Fecha programada</mat-label>
-                            <p>{{ seleccionado.fechaProgramado | date: 'dd/MM/yyyy' }}</p>
+                            <p>{{ seleccionado.fecha | date: 'dd/MM/yyyy' }}</p>
                         </div>
                         
                     </div>

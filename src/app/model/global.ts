@@ -79,48 +79,7 @@ export const proyectos: Proyecto[] = [
     },
 ];
 
-export const servicios: Servicio[] = [
-    {
-        id: 1,
-        nombre: 'MIA-Particular',
-        institucion: 'Semarnat DGIRA',
-        fecha: new Date('2022-10-31 00:00:00'),
-        responsable: 'Miguel Mancera',
-        proyecto: 1,
-        estatus: 'En proceso',
-        clase: 'badge-azul'
-    },
-    {
-        id: 2,
-        nombre: 'Concesión ZFMT',
-        institucion: 'Semarnat DGZFMTAC',
-        fecha: new Date('2022-11-30 00:00:00'),
-        responsable: 'Miguel Mancera',
-        proyecto: 1,
-        estatus: 'Rezagado',
-        clase: 'badge-rojo'
-    },
-    {
-        id: 3,
-        nombre: 'MIA-Regional',
-        institucion: 'Semarnat DGIRA',
-        fecha: new Date('2022-10-31 00:00:00'),
-        responsable: 'Miguel Mancera',
-        proyecto: 2,
-        estatus: 'En proceso',
-        clase: 'badge-azul'
-    },
-    {
-        id: 4,
-        nombre: 'Concesión aguas nacionales superficiales',
-        institucion: 'CONAGUA',
-        fecha: new Date('2022-11-30 00:00:00'),
-        responsable: 'Jorge Romero',
-        proyecto: 2,
-        estatus: 'Autorizado',
-        clase: 'badge-verde'
-    }
-]
+
 
 export const actividades = [
     {

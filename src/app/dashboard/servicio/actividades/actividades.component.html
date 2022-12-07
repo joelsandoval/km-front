@@ -19,17 +19,15 @@
             <th>No.</th>
             <th style="width: 25%;">Actividad</th>
             <th>Responsable</th>
-            <th style="width: 15%;">Fecha Programada</th>
-            <th style="width: 15%;">Fecha Realizada</th>
+            <th style="width: 15%;">Fecha </th>
             <th>Estatus</th>
         </tr>
-        <ng-container *ngFor="let actividad of calendario">
+        <ng-container *ngFor="let actividad of actividades">
             <tr>
                 <td>{{ actividad.id }}</td>
                 <td>{{ actividad.actividad }}</td>
                 <td>{{ actividad.responsable }}</td>
-                <td>{{ actividad.fechaProgramado | date: 'dd/MM/yyyy' }}</td>
-                <td><div *ngIf="actividad.realizado">{{ actividad.fechaRealizado | date: 'dd/MM/yyyy' }}</div> </td>
+                <td>{{ actividad.fecha | date: 'dd/MM/yyyy' }}</td>
                 <td>
                     <span class="{{ actividad.clase }}" >
                         {{ actividad.estatus }}
