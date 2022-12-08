@@ -20,7 +20,7 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
-    path: 'servicio/:servicio',
+    path: 'servicio/:servicio/:proyecto',
     loadChildren: () => import('./dashboard/servicio/servicio.module').then(mod => mod.ServicioModule),
     data: { preload: true },
   },

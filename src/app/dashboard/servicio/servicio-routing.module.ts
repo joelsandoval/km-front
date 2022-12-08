@@ -12,7 +12,7 @@ const routes: Routes = [
     component: ServicioComponent, 
     children: [
       {
-        path: 'generales/:servicio',
+        path: 'generales/:servicio/:proyecto',
         component: GeneralesComponent,
       },
       {

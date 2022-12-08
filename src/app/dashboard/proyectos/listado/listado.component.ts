@@ -15,7 +15,7 @@ export class ListadoComponent implements OnInit {
   proyectos: ProyectoF[] = [];
   displayedColumns: string[] = ['acciones', 'id', 'fecha', 'nombre', 'cliente', 'sector'];
   dataSource!: MatTableDataSource<ProyectoF>;
-  pageSize = 10;
+  pageSize = 50;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
