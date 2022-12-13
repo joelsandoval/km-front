@@ -3,16 +3,17 @@ export class CatServicio {
     servicio!: string;   
 }
 
-export class SubCategoria {
+export class Servicios {
     id!: number;
-    subcategoria!: string;
-    servicios!: CatServicio[];
+    categoria!: number;
+    servicio!: string;
+    servicioCorto!: string;
 }
 
 export class Categoria {
     id!: number;
     categoria!: string;
-    subcategorias!: SubCategoria[];
+    servicios!: Servicios[];
 }
 
 export interface Section {

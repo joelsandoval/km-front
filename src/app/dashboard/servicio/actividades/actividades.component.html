@@ -1,20 +1,19 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col col-md-11">
             <h3>
-                <mat-icon>fact_check</mat-icon> Actividades
+                <mat-icon>fact_check</mat-icon> Compromisos
             </h3>
         </div>
         <div class="col col-md-1">
-            <button mat-icon-button aria-label="Trámties/Servicios" matTooltip="Trámites/Servicios"
-            (click)="openDialog()">
+            <button mat-icon-button aria-label="Tramites/Servicios" matTooltip="Trámites/Servicios"
+                (click)="openDialog()">
                 <mat-icon>add_circle_outline</mat-icon>
             </button>
         </div>
     </div>
-    <table title="Servicios" matSort aria-label="Listado de servicios"
-        id="tblServicios" name="tblServicios" style="width: 100%">
+    <table title="Servicios" matSort aria-label="Listado de servicios" id="tblServicios" name="tblServicios"
+        style="width: 100%">
         <tr>
             <th>No.</th>
             <th style="width: 25%;">Actividad</th>
@@ -22,24 +21,39 @@
             <th style="width: 15%;">Fecha </th>
             <th>Estatus</th>
         </tr>
-        <ng-container *ngFor="let actividad of actividades">
-            <tr>
-                <td>{{ actividad.id }}</td>
-                <td>{{ actividad.actividad }}</td>
-                <td>{{ actividad.responsable }}</td>
-                <td>{{ actividad.fecha | date: 'dd/MM/yyyy' }}</td>
-                <td>
-                    <span class="{{ actividad.clase }}" >
-                        {{ actividad.estatus }}
-                    </span>
-                </td>
-                <td>
-                    <button mat-icon-button type="button" (click)="selectActividad(actividad)">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </ng-container>
-        
+        <tbody>
+            <ng-container *ngFor="let actividad of actividades">
+                <tr (click)="selectActividad(actividad)">
+                    <td>{{ actividad.id }}</td>
+                    <td>{{ actividad.actividad }}</td>
+                    <td>{{ actividad.responsable }}</td>
+                    <td>{{ actividad.fecha | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <span class="{{ actividad.clase }}">
+                            {{ actividad.estatus }}
+                        </span>
+                    </td>
+                    <td>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>dialpad</mat-icon>
+                                <span>Redial</span>
+                            </button>
+                            <button mat-menu-item disabled>
+                                <mat-icon>voicemail</mat-icon>
+                                <span>Check voice mail</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>notifications_off</mat-icon>
+                                <span>Disable alerts</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
     </table>
 </div>

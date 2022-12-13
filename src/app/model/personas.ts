@@ -9,14 +9,26 @@ export class Moral {
 export class Fisica {
     id!: number;
     nombre!: string;
+    apellido1!: string;
+    apellido2!: string;
+    rfc!: string;
+    correo!: string;
+    telefono!: string;
+    iniciales!: string;
+    alias!: string;
+}
+
+export class FisicaF {
+    id!: number;
+    nombre!: string;
     primer!: string;
     segundo!: string;
     rfc!: string;
-    telefono!: string;
     correo!: string;
+    telefono!: string;
+    iniciales!: string;
     usuario!: string;
     password!: string;
-    roles!: Roles[];
 }
 
 export class PersonasRelacion {
@@ -47,7 +59,7 @@ export class Asignacion {
 
 export class AsignacionF {
     id!: number;
-    persona!: Fisica;
+    persona!: FisicaF;
     rol!: Roles;
     servicio: number;
     constructor(

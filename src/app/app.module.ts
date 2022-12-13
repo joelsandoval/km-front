@@ -15,6 +15,7 @@ import { ServiciosModule } from './dashboard/servicios/servicios.module';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ServicioModule } from './dashboard/servicio/servicio.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ServicioModule } from './dashboard/servicio/servicio.module';
     ServiciosModule,
     ServicioModule
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

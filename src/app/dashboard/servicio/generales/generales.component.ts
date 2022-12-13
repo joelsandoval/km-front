@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ActividadF, Calendario, Servicio, ServicioF } from 'src/app/model/proyecto';
 import * as global from 'src/app/model/global';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+import { Fisica } from 'src/app/model/personas';
 
 @Component({
   selector: 'app-generales',
@@ -17,7 +18,7 @@ export class GeneralesComponent implements OnInit {
   seleccionado: ActividadF = new ActividadF();
   folders = global.folders;
   notes = global.notes;
-
+  personas: Fisica[] = [];
 
 
   constructor(
@@ -32,8 +33,6 @@ export class GeneralesComponent implements OnInit {
         this.servicioP.getProyectoServicio(this.id).subscribe(
           servicio => {
             this.servicio = servicio;
-            console.log('servicio individual');
-            console.log(this.servicio);
           }
         )
 

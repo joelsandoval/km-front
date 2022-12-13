@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria, CatServicio, SubCategoria } from 'src/app/model/catalogos';
-import * as global from '../../../model/global'
+import { Categoria, CatServicio, Servicios } from 'src/app/model/catalogos';
+import { CatalogosService } from 'src/app/services/catalogos.service';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-servicios-nuevo',
@@ -16,21 +12,22 @@ export class ServiciosNuevoComponent implements OnInit {
 
   categorias: Categoria[] = [];
   categoria: Categoria = new Categoria();
-  subcategoria: SubCategoria = new SubCategoria();
+  servicios: Servicios = new Servicios();
   servicio: CatServicio = new CatServicio();
 
 
   selectedValue: string = '';
-  foods: Food[] = [
-    {value: '1', viewValue: 'MIA-Particular'},
-    {value: '2', viewValue: 'MIA-Regional'},
-    {value: '3', viewValue: 'Informe Preventivo'},
-  ];
+  
 
-  constructor() { }
+  constructor(
+    private serviceCatalogo: CatalogosService
+  ) { }
 
   ngOnInit(): void {
-    this.categorias = global.CAT_SERVICIOS;
+    this.serviceCatalogo.getServiciosCategorias().subscribe(
+      categos => this.categorias = categos
+    )
+
   }
 
 }

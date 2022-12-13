@@ -17,8 +17,6 @@ export class ServicioComponent implements OnInit {
     this.route.paramMap.subscribe(
       par => {
         this.proyecto = +par.get('proyecto')!;
-        console.log('bababa');
-        console.log(this.proyecto);
       }
     )
   }

@@ -1,13 +1,13 @@
 'use strict';
 
 import { Categoria, Section } from "./catalogos";
-import { Fisica } from "./personas";
+import { Fisica, FisicaF } from "./personas";
 import { Calendario, Proyecto, Servicio } from "./proyecto";
 
 export const sep = '/';
 export const version: string = "22.2.2";
 
-export const personas: Fisica[] =
+export const personas: FisicaF[] =
     [
         {
             id: 1,
@@ -19,18 +19,7 @@ export const personas: Fisica[] =
             correo: 'mamf@k-m.com.mx',
             usuario: 'mamf',
             password: 'bwejwiejwewojewojcneucn',
-            roles: [
-                {
-                    id: 1,
-                    rol: 'ROL_TEC',
-                    descripcion: 'Tecnico'
-                },
-                {
-                    id: 2,
-                    rol: 'ROL_JUR',
-                    descripcion: 'Juridico'
-                }
-            ]
+            iniciales: 'MAMF'
         },
         {
             id: 2,
@@ -42,13 +31,7 @@ export const personas: Fisica[] =
             correo: 'fc@k-m.com.mx',
             usuario: 'mamf',
             password: 'bwejwiejwewojewojcneucn',
-            roles: [
-                {
-                    id: 3,
-                    rol: 'ROL_ADM',
-                    descripcion: 'Administrador'
-                }
-            ]
+            iniciales: 'MAMF'
         }
     ];
 
@@ -250,7 +233,7 @@ export const eventos = [
     },
 ];
 
-export const CAT_SERVICIOS: Categoria[] = [
+/* export const CAT_SERVICIOS: Categoria[] = [
     {
         id: 1,
         categoria: 'Ambiental',
@@ -372,7 +355,7 @@ export const CAT_SERVICIOS: Categoria[] = [
         ]
     }
 ];
-
+ */
 
 export const folders: Section[] = [
     {

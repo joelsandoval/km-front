@@ -10,17 +10,9 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Subcategoria</mat-label>
-      <mat-select [(ngModel)]="subcategoria" name="subcat">
-        <mat-option *ngFor="let sub of categoria.subcategorias" [value]="sub">
-          {{sub.subcategoria}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Servicio</mat-label>
       <mat-select [(ngModel)]="servicio" name="servicio">
-        <mat-option *ngFor="let servis of subcategoria.servicios" [value]="servis">
+        <mat-option *ngFor="let servis of categoria.servicios" [value]="servis">
           {{servis.servicio}}
         </mat-option>
       </mat-select>

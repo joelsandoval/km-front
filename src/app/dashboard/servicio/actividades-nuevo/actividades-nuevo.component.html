@@ -1,11 +1,19 @@
-<h2 mat-dialog-title>Registro de actividades</h2>
+<h2 mat-dialog-title>Registro de Actividades/Compromisos</h2>
 <mat-dialog-content class="mat-typography">
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Actividad</mat-label>
+            <mat-label>Responsable</mat-label>
+            <mat-select name="categoria">
+                <mat-option value="1">
+                    Juan Alberto Jiménez
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Compromisos</mat-label>
             <input matInput name="nombre" placeholder="Describa la actividad">
         </mat-form-field>
-        <mat-form-field appearance="fill"  style="width: 48%;">
+        <mat-form-field appearance="fill" style="width: 48%;">
             <mat-label>Fecha programada</mat-label>
             <input matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
