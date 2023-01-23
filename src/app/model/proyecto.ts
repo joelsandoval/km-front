@@ -1,3 +1,5 @@
+import { Fisica } from "./personas";
+
 export class Proyecto {
     id!: number;
     //numero!: string;
@@ -31,13 +33,11 @@ export class ProyectoF {
 export class Servicio {
     id!: number;
     proyecto!: number;
-    nombre!: string;
-    institucion!: string;
-    fecha!: Date;
-    responsable!: string;
-    estatus!: string;
-    clase!: string;
-    servicioCorto!: string;
+    servicio!: number;
+    registro!: Date;
+    estatus!: number;
+    responsable!: number;
+    institucion!: number;
     referencia!: string;
 }
 
@@ -60,12 +60,14 @@ export class ServicioF {
 
 export class Actividad {
     id!: number;
-    nombre!: string;
+    servicio!: number;
+    actividad!: number;
+    descripcion!: string;
+    tipo!: number;
     fecha!: Date;
-    fechaPres!: Date;
-    responsable!: string;
-    servicio!: string;
-    proyecto!: string;
+    estatus!: number;
+    responsable!: number;
+    observaciones!: string;
 }
 
 
@@ -114,3 +116,11 @@ export class Evento {
     tipo!: number;
     clase!: string;
 }
+
+export class DataServicio {
+    cliente!: number;
+    proyecto!: number;
+    servicio!: number;
+    personas!: Fisica[];
+  }
+  

@@ -12,3 +12,6 @@ mat-card {
     background-color:#c6fcc6;
     color: darkgreen;
 }
+.seleccionado {
+    font-weight: bold;
+}

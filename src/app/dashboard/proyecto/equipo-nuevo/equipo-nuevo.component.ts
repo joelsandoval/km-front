@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Asignacion, AsignacionF, Fisica, FisicaF, Roles } from 'src/app/model/personas';
-import * as global from '../../../model/global';
+import {AsignacionF, FisicaF, Roles } from 'src/app/model/personas';
 
 
 @Component({
@@ -12,7 +11,7 @@ import * as global from '../../../model/global';
 })
 export class EquipoNuevoComponent implements OnInit {
 
-  personas: FisicaF[] = global.personas;
+  personas: FisicaF[] = [];
   persona: FisicaF = new FisicaF();
 
   constructor(

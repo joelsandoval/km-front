@@ -1,0 +1,177 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-6">
+            <br />
+            <mat-card class="contenedor">
+                <mat-card-title>
+                    <div class="row">
+                        <div class="col col-md-9">
+                            Categorías
+                        </div>
+                        <div class="col col-md-2">
+                            <button mat-icon-button aria-label="Nueva" class="float-right"
+                            matTooltip="Nueva categoría" [disabled]="nuevaBool" (click)="nuevaCatego();">
+                                <mat-icon>add_circle_outline</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-title>
+                <div class="row" *ngIf="nuevaBool">
+                    <div class="col col-md-7 offset-md-2">
+                        <mat-form-field style="display: block;" class="roboto">
+                            <mat-label>Categoría nueva</mat-label>
+                            <input matInput name="categoria" id="categoria" [(ngModel)]="nueva.categoria">
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-md-2">
+                        <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
+                        matTooltip="Guardar servicio" (click)="guardaCatego();">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
+                        matTooltip="Cancelar servicio" (click)="cancelCatego();">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <table aria-label="Categorias de servicios" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let catego of categorias"
+                            [ngClass]="{seleccionado: seleccionada == catego}" style="cursor: pointer;">
+                            <td  (click)="selectCatego(catego)">{{ catego.categoria }}</td>
+                            <td></td>
+                            <td>
+                                <button mat-icon-button aria-label="Servicios" class="float-left"
+                                matTooltip="Eliminar categoria" (click)="borraCatego(catego);" color="warn">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+            <br />
+            <mat-card style="width: 100%;" *ngIf="seleccionada.id > 0">
+                <mat-card-title>
+                    <div class="row">
+                        <div class="col col-md-9">
+                            Servicios ({{ seleccionada.categoria }})
+                        </div>
+                        <div class="col col-md-2">
+                            <button mat-icon-button aria-label="Tramites/Servicios" class="float-right"
+                            matTooltip="Trámites/Servicios" [disabled]="nuevoBool" (click)="nuevoServicio();">
+                                <mat-icon>add_circle_outline</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-title>
+                <div class="row" *ngIf="nuevoBool">
+                    <div class="col col-md-7 offset-md-2">
+                        <mat-form-field style="display: block;" class="roboto">
+                            <mat-label>Nuevo servicio</mat-label>
+                            <input matInput name="servicio" id="servicio" [(ngModel)]="nuevo.servicio">
+                        </mat-form-field>
+                        <mat-form-field style="display: block;" class="roboto">
+                            <mat-label>Nombre corto</mat-label>
+                            <input matInput name="corto" id="corto" [(ngModel)]="nuevo.servicioCorto">
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-md-2">
+                        <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
+                        matTooltip="Guardar servicio" (click)="guardarServicio(nuevo, 1);">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
+                        matTooltip="Cancelar servicio" (click)="cancelServicio();">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <table aria-label="Servicios" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Nombre corto</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let servi of seleccionada.servicios" (click)="selectServicio(servi)"
+                            [ngClass]="{seleccionado: seleccionado == servi}" style="cursor: pointer;">
+                            <td>{{ servi.servicio }}</td>
+                            <td>{{ servi.servicioCorto }}</td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+            <br />
+        </div>
+        <div class="col col-md-6">
+            <br />
+            <mat-card style="width: 100%;" *ngIf="seleccionado.id > 0">
+                <mat-card-title>{{ seleccionado.servicioCorto }}</mat-card-title>
+                <mat-tab-group>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">source</mat-icon>
+                            Generales
+                        </ng-template>
+                        <br />
+                        <div class="row">
+                            <mat-form-field style="display: block;" class="roboto">
+                                <mat-label>Servicio</mat-label>
+                                <input matInput name="servicio" id="servicio" [(ngModel)]="seleccionado.servicio">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field style="display: block; width: 48%;" class="roboto">
+                                <mat-label>Nombre corto</mat-label>
+                                <input matInput name="Corto" id="Corto" [(ngModel)]="seleccionado.servicioCorto">
+                            </mat-form-field>
+                            <mat-form-field style="display: block; width: 50%;">
+                                <mat-label>Categoria</mat-label>
+                                <mat-select [(ngModel)]="seleccionado.categoria" name="categoria">
+                                    <mat-option *ngFor="let catego of categorias" [value]="catego.id">
+                                        {{catego.categoria}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <button mat-raised-button color="warn" class="float-left" (click)="borraServicio(seleccionado)">Eliminar servicio</button>
+                                <button mat-button cdkFocusInitial color="primary" class="float-right"
+                                    (click)="guardarServicio(seleccionado, 2);">Guardar</button>
+                            </div>
+                        </div>
+                        <br />
+
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">event</mat-icon>
+                            Compromisos/Actividades
+                        </ng-template>
+                        <app-servicios-actividades></app-servicios-actividades>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">file_copy</mat-icon>
+                            Documentación
+                        </ng-template>
+                        <app-servicios-documentos [documentos]="documentos"></app-servicios-documentos>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+        </div>
+    </div>
+</div>

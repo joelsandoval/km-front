@@ -20,6 +20,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { DocumentosComponent } from './documentos/documentos.component';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+import { DocumentosActualizaComponent } from './documentos/documentos-actualiza/documentos-actualiza.component';
+import { DocumentosAgregaComponent } from './documentos/documentos-agrega/documentos-agrega.component';
+import { DocumentosVerComponent } from './documentos/documentos-ver/documentos-ver.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,11 @@ import { MatMenuModule } from '@angular/material/menu';
     GeneralesComponent,
     ActividadesComponent,
     EquipoComponent,
-    ActividadesNuevoComponent
+    ActividadesNuevoComponent,
+    DocumentosComponent,
+    DocumentosActualizaComponent,
+    DocumentosAgregaComponent,
+    DocumentosVerComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +57,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    NgHttpLoaderModule,
+    MatBottomSheetModule,
+    MatExpansionModule,
+    PipesModule
   ]
 })
 export class ServicioModule { }

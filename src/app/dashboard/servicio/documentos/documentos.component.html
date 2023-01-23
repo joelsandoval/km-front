@@ -1,0 +1,152 @@
+<div class="container-fluid" *ngIf="expedienteCat" style="background-color: white;">
+    <div class="row">
+        <div class="col col-md-7">
+            <div class="row">
+                <div class="col col-md-12">
+                    <button mat-icon-button color="primary" class="float-right" (click)="nuevoExpediente();"
+                        matTooltip="Agregar docuento al expediente">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" class="float-right" (click)="descargaTodos()"
+                        *ngIf="filesNumber > 0">
+                        <mat-icon>cloud_download</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" class="float-right"
+                        (click)="creaExpediente(data.servicio, servicioF.servicioId, 1);"
+                        *ngIf="expedienteCat.length == 0" matTooltip="Generar expediente del trámite">
+                        <mat-icon>create_new_folder</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel *ngFor="let catego of expedienteCat" expanded>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="roboto seleccionado" style="font-size: large;">
+                                {{ catego.categoria }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <table aria-label="Expediente" class="table table-striped table-hover">
+                            <tr>
+                                <th style="width: 35%;"></th>
+                                <th style="width: 60%;"></th>
+                                <th style="width: 5%; text-align: center;"></th>
+                            </tr>
+                            <tr *ngFor="let documento of catego.documentos" (click)="selectExpediente(documento)"
+                                [ngClass]="{seleccionado: seleccionado == documento}" style="cursor: pointer;">
+                                <td>
+                                    <span>{{documento.documento}} </span>
+                                </td>
+                                <td>
+                                    <span style="font-size: 0.85rem;">{{documento.descripcion}} </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+        <div class="col col-md-5">
+            <mat-tab-group color="primary">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">event</mat-icon>
+                        Detalles del documento
+                    </ng-template>
+                    <br />
+                    <div class="roboto">
+                        <div class="row">
+                            <h4> {{ seleccionado.documento }} </h4>
+                            <br />
+                            <p>{{ seleccionado.descripcion }}</p>
+                        </div>
+                        <div class="row">
+                            <mat-form-field appearance="fill" style="width: 40%;">
+                                <mat-label>Fecha programada</mat-label>
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="seleccionado.fechaP">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" style="width: 40%;">
+                                <mat-label>Fecha realizada</mat-label>
+                                <input matInput [matDatepicker]="picker2" [(ngModel)]="seleccionado.fechaR">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <mat-form-field appearance="fill" style="width: 40%;">
+                                <mat-label>Responsable</mat-label>
+                                <mat-select name="categoria" [(ngModel)]="seleccionado.responsable">
+                                    <mat-option *ngFor="let persona of data.personas" value="persona.id">{{ persona.nombre
+                                        }}</mat-option>
+                                    <mat-option value="seleccionado.responsableId">{{ seleccionado.responsable
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field style="width: 90%;">
+                                <textarea placeholder="Observaciones" matInput
+                                    [(ngModel)]="seleccionado.comentarios"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">attach_file</mat-icon>
+                        Archivos relacionados
+                    </ng-template>
+                    <br />
+                    <div class="row roboto">
+                        <div class="col col-md-9">
+                            <h4> {{ seleccionado.documento }} </h4>
+                        </div>
+                        <div class="col col-md-3">
+                            <button mat-icon-button matTooltip="Carga archivos al docomento" class="float-right"
+                                matTooltipPosition="right" (click)="nuevoDocumento(seleccionado)">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Descarga los archivos de este documento"
+                                class="float-right" matTooltipPosition="right" (click)="descargaArchivos(seleccionado)"
+                                *ngIf="seleccionado.archivos > 0">
+                                <mat-icon>cloud_download</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <table class="table table-striped" style="width: 100%;" aria-label="Archivos Expediente">
+                                <thead>
+                                    <th>Archivo</th>
+                                    <th>Descripción</th>
+                                    <th>Tamaño</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let archivo of archivos">
+                                        <td>{{archivo.archivo}}</td>
+                                        <td>{{archivo.descripcion}}</td>
+                                        <td>{{archivo.size | fileSize }}</td>
+                                        <td>
+                                            <button mat-icon-button matTooltip="Descarga este archivo"
+                                                matTooltipPosition="right"
+                                                (click)="descargaArchivo(archivo.ruta, archivo.archivo)">
+                                                <mat-icon>download</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
+<ng-http-loader></ng-http-loader>

@@ -24,11 +24,14 @@ export class FisicaF {
     primer!: string;
     segundo!: string;
     rfc!: string;
-    correo!: string;
     telefono!: string;
-    iniciales!: string;
+    correo!: string;
+    usuarioId!: number;
     usuario!: string;
     password!: string;
+    moral!: number;
+    alias!: string;
+    iniciales!: string;
 }
 
 export class PersonasRelacion {

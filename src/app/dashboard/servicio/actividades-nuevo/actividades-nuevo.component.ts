@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CatActividades, CatActividadesTipo, Categoria } from 'src/app/model/catalogos';
+import { Fisica, FisicaF } from 'src/app/model/personas';
+import { Actividad, ActividadF } from 'src/app/model/proyecto';
+import { CatalogosService } from 'src/app/services/catalogos.service';
+import { ProyectosService } from 'src/app/services/proyectos.service';
 
 @Component({
   selector: 'app-actividades-nuevo',
@@ -8,13 +13,54 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ActividadesNuevoComponent implements OnInit {
 
-  
+  tipos: CatActividadesTipo[] = [];
+  tipo: CatActividadesTipo = new CatActividadesTipo();
+  activida: CatActividades = new CatActividades();
+  fisicas: FisicaF[] = [];
+  responsable: FisicaF = new FisicaF();
+  fecha: Date = new Date();
+  actividad: Actividad = new Actividad();
+  actividadF: ActividadF = new ActividadF();
+
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: number
+    public dialogRef: MatDialogRef<ActividadesNuevoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number,
+    private serviceCat: CatalogosService,
+    private serviceProy: ProyectosService
     ) { }
 
   ngOnInit(): void {
+    this.serviceCat.getActividadesTipo().subscribe(
+      categos => {
+        this.tipos = categos;
+        console.log(this.tipos);
+        this.serviceCat.getPersonasMoral(1).subscribe(
+          fisicas => this.fisicas = fisicas
+        )
+      }
+    )
     console.log(this.data);
   }
+
+  guardaActividad(){
+    this.actividad.servicio = this.data;
+    this.actividad.actividad = this.activida.id;
+    this.actividad.descripcion = this.activida.actividad;
+    this.actividad.tipo = this.tipo.id;
+    this.actividad.fecha = this.fecha;
+    this.actividad.estatus = 1;
+    this.actividad.responsable = this.responsable.usuarioId;
+    console.log(this.actividad);
+
+    this.serviceProy.saveActividadServicio(this.actividad).subscribe(
+      acti => {
+        //this.actividadF = acti;
+        this.dialogRef.close(acti);
+        //console.log(this.actividadF);
+      }
+    );
+    
+  }
+
 
 }

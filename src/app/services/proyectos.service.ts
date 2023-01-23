@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
-import { ActividadF, Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
+import { Actividad, ActividadF, Proyecto, ProyectoF, Servicio, ServicioF } from '../model/proyecto';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,14 @@ export class ProyectosService {
         catchError(this.handleError<ServicioF[]>('No se pudieron recuperar los documentos')));
   }
 
+  public saveProyectoServicio(servicio: Servicio): Observable<ServicioF> {
+    const ruta = `${this.proyectosUrl}servicio`;
+    return this.http.post<ServicioF>(ruta, servicio, this.httpOptions).pipe(
+      tap(_ => this.log(`servicio `)),
+      catchError(this.handleError<ServicioF>('No se pudo guardar el servicio'))
+    );
+  }
+
   getProyectoServicio(servicio: number): Observable<ServicioF> {
     const proyUrl = `${this.proyectosUrl}servicio/${servicio}`;
     return this.http.get<ServicioF>(proyUrl)
@@ -62,6 +70,21 @@ export class ProyectosService {
     return this.http.get<ActividadF[]>(proyUrl)
       .pipe(tap(_ => this.log('se recuperaron las actividades')),
         catchError(this.handleError<ActividadF[]>('No se pudieron recuperar los actividades')));
+  }
+
+  public saveActividadServicio(actividad: Actividad): Observable<any> {
+    const ruta = `${this.proyectosUrl}actividades`;
+    return this.http.post(ruta, actividad, this.httpOptions).pipe(
+      tap(_ => this.log(`archivo `)),
+      catchError(this.handleError<any>('No se pudo actualizar el archivo'))
+    );
+  }
+
+  public delActividadServicio(actividad: number): Observable<any> {
+    const ruta = `${this.proyectosUrl}actividad/borra/${actividad}`;
+    return this.http.get<any[]>(ruta)
+    .pipe(tap(_ => this.log('se recuperaron las actividades')),
+      catchError(this.handleError<any[]>('No se pudieron recuperar los actividades')));
   }
 
   /** Log a HeroService message with the MessageService */

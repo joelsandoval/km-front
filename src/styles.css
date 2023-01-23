@@ -1,8 +1,10 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
-body { margin: 0; font-family: 'Roboto Condensed', sans-serif  !important;}
-html, body { height: 100%; }
+
+html, body { height: 100%; 
+    font-family: 'Roboto Condensed', sans-serif  !important;
+}
 
 .badge-rojo {
     background-color: darkred !important;

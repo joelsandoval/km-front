@@ -1,9 +1,10 @@
 <div class="container-fluid fondo-blanco" *ngIf="servicio">
-    <h2>
-        <mat-icon>article</mat-icon> {{ servicio.servicio }}
-    </h2>
-
     <div class="row">
+        <h2>
+            <mat-icon>article</mat-icon> {{ servicio.servicio }}
+        </h2>
+    </div>
+    <!-- <div class="row">
         <div class="col col-md-4">
             <mat-label class="etiqueta">Institucion</mat-label><br />
             <span class="texto">{{ servicio.institucion }}</span><br />
@@ -27,63 +28,26 @@
         <div class="col col-md-4">
 
         </div>
-    </div>
+    </div> -->
     <hr />
     <div class="row">
-        <div class="col col-md-7">
-            <app-actividades [servicio]="id" (actividadCambia)="seleccionaActividad($event)"></app-actividades>
-        </div>
-        <div class="col col-md-5">
+        <div class="col col-md-12">
             <mat-tab-group color="primary">
                 <mat-tab>
                     <ng-template mat-tab-label>
                         <mat-icon class="example-tab-icon">event</mat-icon>
-                        Detalles de la actividad
+                        &nbsp;Actividades/Compromisos
                     </ng-template>
                     <br />
-                    <div class="contenedor">
-                        <h4> {{ seleccionado.actividad }} </h4>
-                        <mat-form-field appearance="fill" style="width: 40%;">
-                            <mat-label>Fecha programada</mat-label>
-                            <input matInput [matDatepicker]="picker" [(ngModel)]="seleccionado.fecha">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                        <br/>
-                        <mat-form-field appearance="fill" style="width: 40%;">
-                            <mat-label>Responsable</mat-label>
-                            <mat-select name="categoria" [(ngModel)]="seleccionado.responsableId">
-                                <mat-option *ngFor="let persona of personas" value="persona.id">{{ persona.nombre }}</mat-option>
-                                <mat-option value="seleccionado.responsableId">{{ seleccionado.responsable }}</mat-option> 
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                    <app-actividades [servicio]="data.servicio" (actividadCambia)="seleccionaActividad($event)"></app-actividades>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">attach_file</mat-icon>
-                        Archivos relacionados
+                        <mat-icon class="example-tab-icon">folder_copy</mat-icon>
+                        &nbsp;Expediente
                     </ng-template>
                     <br />
-                    <div class="contenedor">
-                        <h4> {{ seleccionado.actividad }} </h4>
-                        <mat-list>
-                            <div mat-subheader>Documentos</div>
-                            <mat-list-item *ngFor="let folder of folders">
-                                <mat-icon mat-list-icon>note</mat-icon>
-                                <div mat-line>{{folder.name}}</div>
-                                <div mat-line> {{folder.updated | date}} </div>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <div mat-subheader>Imágenes/Videos</div>
-                            <mat-list-item *ngFor="let note of notes">
-                                <mat-icon mat-list-icon>image</mat-icon>
-                                <div mat-line>{{note.name}} <mat-icon style="font-size: .90em;">download</mat-icon>
-                                </div>
-                                <div mat-line> {{note.updated | date}} </div>
-                            </mat-list-item>
-                        </mat-list>
-                    </div>
+                    <app-documentos [data]="data" (documentoCambia)="seleccionaExpediente($event)"></app-documentos>
                 </mat-tab>
             </mat-tab-group>
         </div>

@@ -1,0 +1,16 @@
+<table aria-label="Servicios" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Categoría</th>
+            <th>Documento</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let doc of documentos"  style="cursor: pointer;"> <!-- (click)="selectServicio(servi)" [ngClass]="{seleccionado: seleccionado == servi}" -->
+            <td>{{ doc.categoria }}</td>
+            <td>{{ doc.documento }}</td>
+            <td>{{ doc.descripcion }}</td>
+        </tr>
+    </tbody>
+</table>

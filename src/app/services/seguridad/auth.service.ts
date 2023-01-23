@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 //import { Token } from '../model/auth/token';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 //import { MessageService } from '../messages/message.service';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';

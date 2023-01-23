@@ -11,8 +11,8 @@
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Servicio</mat-label>
-      <mat-select [(ngModel)]="servicio" name="servicio">
-        <mat-option *ngFor="let servis of categoria.servicios" [value]="servis">
+      <mat-select [(ngModel)]="servicio.servicio" name="servicio">
+        <mat-option *ngFor="let servis of categoria.servicios" [value]="servis.id" [matTooltip]="servis.servicio">
           {{servis.servicio}}
         </mat-option>
       </mat-select>
@@ -20,11 +20,11 @@
     
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Observaciones</mat-label>
-      <textarea matInput placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
+      <textarea [(ngModel)]="servicio.referencia" name="observa" matInput placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="guardaServicio();" color="primary">Guardar</button>
 </mat-dialog-actions>

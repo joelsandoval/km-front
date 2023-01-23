@@ -1,0 +1,25 @@
+<h3>{{ data.documento }}</h3>
+<table class="table table-striped" aria-label="Archivos Expediente">
+    <thead>
+        <th>Archivo</th>
+        <th>Tamaño</th>
+        <th><button mat-icon-button color="primary" class="float-right" (click)="descargaArchivos()"  matTooltip="Descargar todos los archivos">
+            <mat-icon>cloud_download</mat-icon>
+        </button></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let archivo of archivos">
+            <td>{{archivo.archivo}}</td>
+            <td>{{archivo.size}}</td>
+            <td>
+                <button mat-menu-item matTooltip="Descarga este archivo"
+                            matTooltipPosition="right" (click)="descargaArchivo(archivo.ruta, archivo.archivo)">
+                            <mat-icon>download</mat-icon>
+                        </button>
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>
+<p></p>

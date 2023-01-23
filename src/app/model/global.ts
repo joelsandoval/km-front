@@ -7,33 +7,6 @@ import { Calendario, Proyecto, Servicio } from "./proyecto";
 export const sep = '/';
 export const version: string = "22.2.2";
 
-export const personas: FisicaF[] =
-    [
-        {
-            id: 1,
-            nombre: 'Miguel Angel',
-            primer: 'Mancera',
-            segundo: 'Frias',
-            rfc: 'MAFM',
-            telefono: '554445555',
-            correo: 'mamf@k-m.com.mx',
-            usuario: 'mamf',
-            password: 'bwejwiejwewojewojcneucn',
-            iniciales: 'MAMF'
-        },
-        {
-            id: 2,
-            nombre: 'Fiorella',
-            primer: 'Corona',
-            segundo: '',
-            rfc: 'FC',
-            telefono: '554445555',
-            correo: 'fc@k-m.com.mx',
-            usuario: 'mamf',
-            password: 'bwejwiejwewojewojcneucn',
-            iniciales: 'MAMF'
-        }
-    ];
 
 export const proyectos: Proyecto[] = [
     {
@@ -61,8 +34,6 @@ export const proyectos: Proyecto[] = [
         estatus: 1
     },
 ];
-
-
 
 export const actividades = [
     {
@@ -232,130 +203,6 @@ export const eventos = [
         tipo: 1
     },
 ];
-
-/* export const CAT_SERVICIOS: Categoria[] = [
-    {
-        id: 1,
-        categoria: 'Ambiental',
-        subcategorias: [
-            {
-                id: 1,
-                subcategoria: 'Agua',
-                servicios: [
-                    {
-                        id: 1,
-                        servicio: 'Estudios de factibilidad en materia de agua'
-                    },
-                    {
-                        id: 2,
-                        servicio: 'Aprovechamiento y uso eficiente del agua'
-                    },
-                    {
-                        id: 3,
-                        servicio: 'Permisos para descarga de aguas residuales'
-                    },
-                ]
-            },
-            {
-                id: 2,
-                subcategoria: 'Atmosfera',
-                servicios: [
-                    {
-                        id: 4,
-                        servicio: 'Actividades por las que se emitan a la atmósfera olores, gases o partículas sólidas'
-                    },
-                    {
-                        id: 5,
-                        servicio: 'Licencia Ambiental Única'
-                    },
-                    {
-                        id: 6,
-                        servicio: 'Licencia de Funcionamiento'
-                    },
-                ]
-            },
-            {
-                id: 3,
-                subcategoria: 'Cambio de uso de suelo',
-                servicios: [
-                    {
-                        id: 7,
-                        servicio: 'Factibilidades en materia de cambio de uso de suelo forestal'
-                    },
-                    {
-                        id: 8,
-                        servicio: 'Estudios Técnico Justificativos '
-                    },
-                    {
-                        id: 9,
-                        servicio: 'Autorizaciones de cambio de uso de suelo en terrenos forestales '
-                    },
-                ]
-            }
-        ]
-    },
-    {
-        id: 2,
-        categoria: 'Ambiental',
-        subcategorias: [
-            {
-                id: 1,
-                subcategoria: 'Agua',
-                servicios: [
-                    {
-                        id: 1,
-                        servicio: 'Estudios de factibilidad en materia de agua'
-                    },
-                    {
-                        id: 2,
-                        servicio: 'Aprovechamiento y uso eficiente del agua'
-                    },
-                    {
-                        id: 3,
-                        servicio: 'Permisos para descarga de aguas residuales'
-                    },
-                ]
-            },
-            {
-                id: 2,
-                subcategoria: 'Atmosfera',
-                servicios: [
-                    {
-                        id: 4,
-                        servicio: 'Actividades por las que se emitan a la atmósfera olores, gases o partículas sólidas'
-                    },
-                    {
-                        id: 5,
-                        servicio: 'Licencia Ambiental Única'
-                    },
-                    {
-                        id: 6,
-                        servicio: 'Licencia de Funcionamiento'
-                    },
-                ]
-            },
-            {
-                id: 3,
-                subcategoria: 'Cambio de uso de suelo',
-                servicios: [
-                    {
-                        id: 7,
-                        servicio: 'Factibilidades en materia de cambio de uso de suelo forestal'
-                    },
-                    {
-                        id: 8,
-                        servicio: 'Estudios Técnico Justificativos '
-                    },
-                    {
-                        id: 9,
-                        servicio: 'Autorizaciones de cambio de uso de suelo en terrenos forestales '
-                    },
-                ]
-            }
-        ]
-    }
-];
- */
 
 export const folders: Section[] = [
     {

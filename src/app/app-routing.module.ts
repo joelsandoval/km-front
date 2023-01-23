@@ -24,6 +24,11 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/servicio/servicio.module').then(mod => mod.ServicioModule),
     data: { preload: true },
   },
+  {
+    path: 'catalogos',
+    loadChildren: () => import('./dashboard/catalogos/catalogos.module').then(mod => mod.CatalogosModule),
+    data: { preload: true },
+  },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   //{ path: '**', component: NotFoundComponent},

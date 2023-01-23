@@ -1,59 +1,114 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col col-md-11">
-            <h3>
-                <mat-icon>fact_check</mat-icon> Compromisos
-            </h3>
+        <div class="col col-md-7">
+            <table title="Servicios" matSort aria-label="Listado de servicios" id="tblServicios" name="tblServicios"
+                style="width: 100%">
+                <tr>
+                    <th>No.</th>
+                    <th style="width: 25%;">Actividad</th>
+                    <th>Responsable</th>
+                    <th style="width: 15%;">Fecha </th>
+                    <th>Estatus</th>
+                    <th>
+                        <button mat-icon-button color="primary" aria-label="Tramites/Servicios" matTooltip="Trámites/Servicios"
+                            (click)="openDialog()">
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                    </th>
+                </tr>
+                <tbody>
+                    <ng-container *ngFor="let actividad of actividades">
+                        <tr (click)="selectActividad(actividad)" [ngClass]="{seleccionado: seleccionado == actividad}"
+                        style="cursor: pointer;">
+                            <td>{{ actividad.id }}</td>
+                            <td>{{ actividad.descripcion }}</td>
+                            <td>{{ actividad.responsable }}</td>
+                            <td>{{ actividad.fecha | date: 'dd/MM/yyyy' }}</td>
+                            <td>
+                                <span class="{{ actividad.clase }}">
+                                    {{ actividad.estatus }}
+                                </span>
+                            </td>
+                            <td>
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="delete(actividad, $event)">
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Borrar</span>
+                                    </button>
+                                    <button mat-menu-item disabled>
+                                        <mat-icon>voicemail</mat-icon>
+                                        <span>Check voice mail</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>notifications_off</mat-icon>
+                                        <span>Disable alerts</span>
+                                    </button>
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
         </div>
-        <div class="col col-md-1">
-            <button mat-icon-button aria-label="Tramites/Servicios" matTooltip="Trámites/Servicios"
-                (click)="openDialog()">
-                <mat-icon>add_circle_outline</mat-icon>
-            </button>
+        <div class="col col-md-5">
+            <mat-tab-group color="primary">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">event</mat-icon>
+                        Detalles de la actividad
+                    </ng-template>
+                    <br />
+                    <div class="contenedor">
+                        <h4> {{ seleccionado.actividad }} </h4>
+                        <mat-form-field appearance="fill" style="width: 40%;">
+                            <mat-label>Fecha programada</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="seleccionado.fecha">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field appearance="fill" style="width: 40%;">
+                            <mat-label>Responsable</mat-label>
+                            <mat-select name="categoria" [(ngModel)]="seleccionado.responsableId">
+                                <mat-option *ngFor="let persona of personas" value="persona.id">{{ persona.nombre
+                                    }}</mat-option>
+                                <mat-option value="seleccionado.responsableId">{{ seleccionado.responsable
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">attach_file</mat-icon>
+                        Archivos relacionados
+                    </ng-template>
+                    <br />
+                    <div class="contenedor">
+                        <h4> {{ seleccionado.actividad }} </h4>
+                        <mat-list>
+                            <div mat-subheader>Documentos</div>
+                            <mat-list-item *ngFor="let folder of folders">
+                                <mat-icon mat-list-icon>note</mat-icon>
+                                <div mat-line>{{folder.name}}</div>
+                                <div mat-line> {{folder.updated | date}} </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <div mat-subheader>Imágenes/Videos</div>
+                            <mat-list-item *ngFor="let note of notes">
+                                <mat-icon mat-list-icon>image</mat-icon>
+                                <div mat-line>{{note.name}} <mat-icon style="font-size: .90em;">download</mat-icon>
+                                </div>
+                                <div mat-line> {{note.updated | date}} </div>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
         </div>
     </div>
-    <table title="Servicios" matSort aria-label="Listado de servicios" id="tblServicios" name="tblServicios"
-        style="width: 100%">
-        <tr>
-            <th>No.</th>
-            <th style="width: 25%;">Actividad</th>
-            <th>Responsable</th>
-            <th style="width: 15%;">Fecha </th>
-            <th>Estatus</th>
-        </tr>
-        <tbody>
-            <ng-container *ngFor="let actividad of actividades">
-                <tr (click)="selectActividad(actividad)">
-                    <td>{{ actividad.id }}</td>
-                    <td>{{ actividad.actividad }}</td>
-                    <td>{{ actividad.responsable }}</td>
-                    <td>{{ actividad.fecha | date: 'dd/MM/yyyy' }}</td>
-                    <td>
-                        <span class="{{ actividad.clase }}">
-                            {{ actividad.estatus }}
-                        </span>
-                    </td>
-                    <td>
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>dialpad</mat-icon>
-                                <span>Redial</span>
-                            </button>
-                            <button mat-menu-item disabled>
-                                <mat-icon>voicemail</mat-icon>
-                                <span>Check voice mail</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>notifications_off</mat-icon>
-                                <span>Disable alerts</span>
-                            </button>
-                        </mat-menu>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
 </div>

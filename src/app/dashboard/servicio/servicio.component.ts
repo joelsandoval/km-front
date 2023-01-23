@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataServicio } from 'src/app/model/proyecto';
 
 @Component({
   selector: 'app-servicio',
@@ -8,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServicioComponent implements OnInit {
 
-  proyecto: number = 1;
+  cliente: number = 1;
+  data: DataServicio = new DataServicio();
+
   constructor(
     private route: ActivatedRoute
   ) { }
@@ -16,7 +19,9 @@ export class ServicioComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       par => {
-        this.proyecto = +par.get('proyecto')!;
+        this.data.cliente = this.cliente;
+        this.data.servicio = +par.get('servicio')!;
+        this.data.proyecto = +par.get('proyecto')!;
       }
     )
   }

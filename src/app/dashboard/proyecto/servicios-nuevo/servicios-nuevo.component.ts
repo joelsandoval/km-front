@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Categoria, CatServicio, Servicios } from 'src/app/model/catalogos';
+import { Servicio, ServicioF } from 'src/app/model/proyecto';
 import { CatalogosService } from 'src/app/services/catalogos.service';
+import { ProyectosService } from 'src/app/services/proyectos.service';
+import { ProySer } from '../servicios/servicios.component';
 
 
 @Component({
@@ -12,22 +16,42 @@ export class ServiciosNuevoComponent implements OnInit {
 
   categorias: Categoria[] = [];
   categoria: Categoria = new Categoria();
-  servicios: Servicios = new Servicios();
-  servicio: CatServicio = new CatServicio();
-
+  catServicio: Servicios = new Servicios();
+  servicio: Servicio = new Servicio();
 
   selectedValue: string = '';
   
 
   constructor(
-    private serviceCatalogo: CatalogosService
+    public dialogRef: MatDialogRef<ServiciosNuevoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ProySer,
+    private serviceCatalogo: CatalogosService,
+    private service: ProyectosService
   ) { }
 
   ngOnInit(): void {
     this.serviceCatalogo.getServiciosCategorias().subscribe(
-      categos => this.categorias = categos
+      categos => {
+        this.categorias = categos;
+      }
     )
 
+  }
+
+  guardaServicio() {
+    this.servicio.proyecto = this.data.proyecto;
+    this.servicio.registro = new Date();
+    this.servicio.estatus = 1;
+    this.service.saveProyectoServicio(this.servicio).subscribe(
+      servi => {
+        this.dialogRef.close(servi);
+        console.log(servi);
+      }
+    )
+  }
+
+  cancelClick() {
+    this.dialogRef.close();
   }
 
 }

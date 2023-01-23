@@ -1,0 +1,41 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif  !important;
+}
+
+table {
+    width: 100%;
+    line-height: normal;
+    font-family: 'Roboto Condensed', sans-serif  !important;
+}
+
+.proyecto {
+    margin-top: -50px;
+}
+
+h3 {
+    margin-left: 40px;
+}
+
+
+.peque {
+   
+    color:dimgray;
+    padding: 0px !important;
+}
+
+td {
+    padding: 5px;
+}
+
+span {
+    padding: 0px;
+}
+
+.seleccionado {
+    font-weight: bold;
+    color: darkslateblue;
+}
+
+.roboto {
+    font-family: 'Roboto Condensed', sans-serif  !important;
+}

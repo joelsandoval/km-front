@@ -5,6 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Servicio, ServicioF } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
+
+export interface ProySer {
+  proyecto: number;
+}
+
 @Component({
   selector: 'app-servicios',
   templateUrl: './servicios.component.html',
@@ -31,10 +36,7 @@ export class ServiciosComponent implements OnInit {
 
     this.servicioP.getProyectoServicios(this.proyecto).subscribe(
       servs => {
-        console.log('servicios entra');
-        console.log(this.proyecto);
         this.servicios = servs;
-        console.log(this.servicios);
       }
     )
 
@@ -50,11 +52,20 @@ export class ServiciosComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ServiciosNuevoComponent);
+    const dialogRef = this.dialog.open(ServiciosNuevoComponent, {
+      width: '700px',
+      height: '400px',
+      data: {
+        proyecto: this.proyecto,
+      },
+    });
 
     dialogRef.afterClosed().subscribe(
       result => {
-        console.log(`Dialog result: ${result}`);
+        if(result) {
+          this.servicios.push(result);
+          console.log(`Dialog result: ${result}`);
+        }
       }
     );
   }

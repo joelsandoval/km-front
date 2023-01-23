@@ -4,6 +4,7 @@ import * as global from 'src/app/model/global'
 import { MatDialog } from '@angular/material/dialog';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+import { Fisica } from 'src/app/model/personas';
 
 @Component({
   selector: 'app-actividades',
@@ -16,7 +17,11 @@ export class ActividadesComponent implements OnInit {
 
   calendario: Calendario[] = [];
   actividades: ActividadF[] = [];
-
+  seleccionado: ActividadF = new ActividadF();
+  personas: Fisica[] = [];
+  folders = global.folders;
+  notes = global.notes;
+  
   constructor(
     public dialog: MatDialog,
     public service: ProyectosService
@@ -35,8 +40,14 @@ export class ActividadesComponent implements OnInit {
 
 
   openDialog() {
-    this.dialog.open(ActividadesNuevoComponent, {
-      data: 1,
+    const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
+      data: this.servicio,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.actividades.unshift(result);
+      console.log(`Dialog result:`);
+      console.log(result);
     });
   }
 
@@ -71,8 +82,14 @@ export class ActividadesComponent implements OnInit {
 
   selectActividad(value: ActividadF) {
     this.actividadCambia.emit(value);
+    this.seleccionado = value;
   }
 
-
+  delete(actividad: ActividadF, ev: any) {
+    this.service.delActividadServicio(actividad.id).subscribe(
+      nada => console.log('se borro')
+    )
+    
+  }
 
 }

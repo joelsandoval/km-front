@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActividadF, Calendario, Servicio, ServicioF } from 'src/app/model/proyecto';
-import * as global from 'src/app/model/global';
+import { ActividadF, DataServicio, Servicio, ServicioF } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
-import { Fisica } from 'src/app/model/personas';
+import { ExpedienteServicioF } from 'src/app/model/expediente';
+import { FisicaF } from 'src/app/model/personas';
 
 @Component({
   selector: 'app-generales',
@@ -11,15 +11,19 @@ import { Fisica } from 'src/app/model/personas';
   styleUrls: ['./generales.component.css']
 })
 export class GeneralesComponent implements OnInit {
-
+  
   servicios: Servicio[] = [];
-  servicio!: ServicioF;
+  servicio: ServicioF = new ServicioF();
+  expedienteSel: ExpedienteServicioF = new ExpedienteServicioF();
+
   id!: number;
   seleccionado: ActividadF = new ActividadF();
-  folders = global.folders;
-  notes = global.notes;
-  personas: Fisica[] = [];
+  
+  cliente: number = 1;
+  data: DataServicio = new DataServicio();
 
+  personas: FisicaF[] = [];
+  persona: FisicaF = new FisicaF();
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +33,11 @@ export class GeneralesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       param => {
-        this.id = +param.get('servicio')!;
-        this.servicioP.getProyectoServicio(this.id).subscribe(
+        this.data.servicio = +param.get('servicio')!;
+        this.data.proyecto = +param.get('proyecto')!;
+        this.data.cliente = this.cliente;
+        
+        this.servicioP.getProyectoServicio(this.data.servicio).subscribe(
           servicio => {
             this.servicio = servicio;
           }
@@ -42,8 +49,11 @@ export class GeneralesComponent implements OnInit {
 
   seleccionaActividad(dato: ActividadF) {
     this.seleccionado = dato;
-    console.log('del hijo al padre');
-    console.log(dato);
   }
+
+  seleccionaExpediente(dato: ExpedienteServicioF) {
+    this.expedienteSel = dato;
+  }
+
 
 }

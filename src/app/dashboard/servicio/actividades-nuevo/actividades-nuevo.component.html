@@ -2,45 +2,41 @@
 <mat-dialog-content class="mat-typography">
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Responsable</mat-label>
-            <mat-select name="categoria">
-                <mat-option value="1">
-                    Juan Alberto Jiménez
-                </mat-option>
+            <mat-label>Categoría</mat-label>
+            <mat-select name="categoria" [(ngModel)]="tipo">
+                <mat-option *ngFor="let categoria of tipos" [value]="categoria">{{ categoria.actividadTipo }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Compromisos</mat-label>
-            <input matInput name="nombre" placeholder="Describa la actividad">
+            <mat-label>{{ tipo.actividadTipo }}</mat-label>
+            <mat-select name="actividad" [(ngModel)]="activida">
+                <mat-option *ngFor="let actividad of tipo.actividades" [value]="actividad">{{ actividad.actividad }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" *ngIf="activida.actividad == 'Otros'">
+            <mat-label>Otros</mat-label>
+            <input matInput name="nombre" placeholder="Especifique">
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 48%;">
-            <mat-label>Fecha programada</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        &nbsp;&nbsp;
-        <mat-form-field appearance="fill" style="width: 48%;">
-            <mat-label>Fecha realizada</mat-label>
-            <input matInput [matDatepicker]="picker2">
+            <mat-label>Fecha <span *ngIf="tipo.id == 2">límite</span></mat-label>
+            <input matInput [matDatepicker]="picker2" name="fecha" [(ngModel)]="fecha">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
+        &nbsp;&nbsp;
+        <mat-form-field appearance="fill" style="width: 48%;">
             <mat-label>Responsable</mat-label>
-            <mat-select name="categoria">
-                <mat-option value="1">
-                    Juan Alberto Jiménez
-                </mat-option>
+            <mat-select name="responsable" [(ngModel)]="responsable" name="responsable">
+                <mat-option *ngFor="let fisica of fisicas" [value]="fisica">{{ fisica.alias }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Observaciones</mat-label>
-            <textarea matInput placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
+            <textarea matInput name="observ" [(ngModel)]="actividad.observaciones" placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+    <button mat-button cdkFocusInitial (click)="guardaActividad()">Guardar</button>
 </mat-dialog-actions>
