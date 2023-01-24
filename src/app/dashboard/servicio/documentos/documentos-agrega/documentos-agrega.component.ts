@@ -36,7 +36,6 @@ export class DocumentosAgregaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.serviceExp.getExpedienteCatDocsCatego().subscribe(
       cat => {
         this.categorias = cat;

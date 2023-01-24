@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ServiciosDocumentosComponent } from './servicios/servicios-documentos/servicios-documentos.component';
 import { ServiciosActividadesComponent } from './servicios/servicios-actividades/servicios-actividades.component';
 import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-nuevo.component';
+import { ServiciosDocumentosAddComponent } from './servicios/servicios-documentos-add/servicios-documentos-add.component';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 
 
@@ -30,7 +32,8 @@ import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-n
     ServiciosDelComponent,
     ServiciosDocumentosComponent,
     ServiciosActividadesComponent,
-    ServiciosNuevoComponent
+    ServiciosNuevoComponent,
+    ServiciosDocumentosAddComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +48,8 @@ import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-n
     MatFormFieldModule,
     FormsModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    NgHttpLoaderModule
   ]
 })
 export class CatalogosModule { }

@@ -28,13 +28,17 @@ export class ServiciosDelComponent implements OnInit {
   deleteCatego() {
     if(this.data.tipo == 1) {
       this.serviceCatalogo.delCategoria(this.data.id).subscribe(
-        _ => this.dialogRef.close()
+        _ => this.dialogRef.close(this.data)
       )
     } else {
       this.serviceCatalogo.delServicio(this.data.id).subscribe(
-        _ => this.dialogRef.close()
+        _ => this.dialogRef.close(this.data)
       )
     }
+  }
+
+  noClick() {
+    this.dialogRef.close();
   }
 
 }

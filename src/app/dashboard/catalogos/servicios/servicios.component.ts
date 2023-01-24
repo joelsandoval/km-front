@@ -105,10 +105,12 @@ export class ServiciosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => { 
+      if(result) {
       const index: number = this.categorias.indexOf(catego);
         if (index !== -1) {
           this.categorias.splice(index, 1);
         }
+      }
     });
   }
 

@@ -34,6 +34,13 @@ export class CatActividadesTipo {
     actividades!: CatActividades[];
 }
 
+export class ExpCatDocumentosServicios {
+    id!: number;
+    documento!: number;
+    servicio!: number;
+    estatus!: boolean;
+}
+
 export class VwExpCatDocumentosServicios {
     id!: number;
     categoId!: number;
