@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ExpCatDocumentosServicios, Servicios } from 'src/app/model/catalogos';
-import { Servicio } from 'src/app/model/proyecto';
+import { VwExpCatDocumentosServicios} from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { CatalogosService } from 'src/app/services/catalogos.service';
   styleUrls: ['./servicios-documentos.component.css']
 })
 export class ServiciosDocumentosComponent implements OnInit {
-  @Input() documentos: ExpCatDocumentosServicios[] = [];
+  @Input() documentos: VwExpCatDocumentosServicios[] = [];
     
   constructor(
     private service: CatalogosService
@@ -17,6 +16,14 @@ export class ServiciosDocumentosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
+  }
+
+  borraDocumento(doc: VwExpCatDocumentosServicios) {
+
+  }
+
+  nuevoDocumento() {
     
   }
 

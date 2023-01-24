@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Categoria, ExpCatDocumentosServicios, Servicios } from 'src/app/model/catalogos';
+import { Categoria, VwExpCatDocumentosServicios, Servicios } from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ServiciosDelComponent } from './servicios-del/servicios-del.component';
 
@@ -20,7 +20,7 @@ export class ServiciosComponent implements OnInit {
   seleccionado: Servicios = new Servicios();
   nuevoBool: boolean = false;
 
-  documentos: ExpCatDocumentosServicios[] = [];
+  documentos: VwExpCatDocumentosServicios[] = [];
   
   constructor(
     private serviceCatalogo: CatalogosService,

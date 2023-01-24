@@ -4,13 +4,26 @@
             <th>Categoría</th>
             <th>Documento</th>
             <th>Descripción</th>
+            <th>
+                <button mat-icon-button aria-label="Nueva" class="float-right"
+                matTooltip="Nueva categoría" (click)="nuevoDocumento();">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let doc of documentos"  style="cursor: pointer;"> <!-- (click)="selectServicio(servi)" [ngClass]="{seleccionado: seleccionado == servi}" -->
+        <tr *ngFor="let doc of documentos" style="cursor: pointer;">
+            <!-- (click)="selectServicio(servi)" [ngClass]="{seleccionado: seleccionado == servi}" -->
             <td>{{ doc.categoria }}</td>
             <td>{{ doc.documento }}</td>
             <td>{{ doc.descripcion }}</td>
+            <td>
+                <button mat-icon-button aria-label="Servicios" class="float-left" matTooltip="Eliminar documento"
+                    (click)="borraDocumento(doc);" color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -18,6 +18,7 @@ import { ServiciosDelComponent } from './servicios/servicios-del/servicios-del.c
 import { MatDialogModule } from '@angular/material/dialog';
 import { ServiciosDocumentosComponent } from './servicios/servicios-documentos/servicios-documentos.component';
 import { ServiciosActividadesComponent } from './servicios/servicios-actividades/servicios-actividades.component';
+import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-nuevo.component';
 
 
 
@@ -28,7 +29,8 @@ import { ServiciosActividadesComponent } from './servicios/servicios-actividades
     PersonasComponent,
     ServiciosDelComponent,
     ServiciosDocumentosComponent,
-    ServiciosActividadesComponent
+    ServiciosActividadesComponent,
+    ServiciosNuevoComponent
   ],
   imports: [
     CommonModule,

@@ -34,11 +34,12 @@ export class CatActividadesTipo {
     actividades!: CatActividades[];
 }
 
-export class ExpCatDocumentosServicios {
+export class VwExpCatDocumentosServicios {
     id!: number;
     categoId!: number;
     categoria!: string;
     documento!: string;
     descripcion!: string;
     servicio!: number;
+    documentoId!: number;
 }
