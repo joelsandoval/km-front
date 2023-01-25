@@ -6,6 +6,12 @@ export class Moral {
     telefono!: string;
 }
 
+export class PersonasMorales {
+    id!: number;
+    razon!: string;
+    rfc!: string;
+}
+
 export class Fisica {
     id!: number;
     nombre!: string;

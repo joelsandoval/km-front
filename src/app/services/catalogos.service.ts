@@ -6,7 +6,7 @@ import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { ActividadF, Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
 import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios } from '../model/catalogos';
-import { Fisica, FisicaF } from '../model/personas';
+import { Fisica, FisicaF, PersonasMorales } from '../model/personas';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,13 @@ export class CatalogosService {
     return this.http.get<FisicaF[]>(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<FisicaF[]>('No se pudieron recuperar los documentos', [])));
+  }
+
+  getListaClientes(tipo: number): Observable<PersonasMorales[]> {
+    const docsUrl =  `${this.personasUrl}morales/tipo/${tipo} `;
+    return this.http.get<PersonasMorales[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los clientes')),
+        catchError(this.handleError<PersonasMorales[]>('No se pudieron recuperar los clientes', [])));
   }
 
   public updCategoria(catego: Categoria): Observable<Categoria> {

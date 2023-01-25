@@ -11,9 +11,9 @@
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Cliente</mat-label>
-            <mat-select [(ngModel)]="proyecto.cliente" name="cliente">
-              <mat-option *ngFor="let cliente of clientes" [value]="cliente">
-                {{ cliente.nombre }}
+            <mat-select [(ngModel)]="selectedValue" name="razon">
+              <mat-option *ngFor="let personaMoral of personasMorales" [value]="personaMoral">
+                {{ personaMoral.razon }}
               </mat-option>
             </mat-select>
           </mat-form-field>
