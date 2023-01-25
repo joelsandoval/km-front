@@ -29,8 +29,8 @@ export class ServiciosDocumentosComponent implements OnInit {
 
   nuevoDocumento() {
     const dialogRef = this.dialog.open(ServiciosDocumentosAddComponent, {
-      height: '250px',
-      width: '400px',
+      height: '400px',
+      width: '700px',
       data: this.servicio
     });
 

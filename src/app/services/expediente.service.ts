@@ -6,6 +6,7 @@ import { MessageService } from '../services/message.service';
 
 import { environment } from '../../environments/environment';
 import { ExpCatDocumentos, ExpCatDocumentosCatego, ExpedienteServicio, ExpedienteServicioCatF, ExpedienteServicioF, ExpServicioArchivos } from '../model/expediente';
+import { ExpCatDocumentosServicios, VwExpCatDocumentosServicios } from '../model/catalogos';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,15 @@ export class ExpedienteService {
       .pipe(tap(_ => this.log('Se recuperó el expediente')),
         catchError(this.handleError<ExpCatDocumentosCatego[]>('No se pudo recuperar el expediente')));
   }
+
+  saveExpCatDocumentosServicios(expediente: ExpCatDocumentosServicios): Observable<VwExpCatDocumentosServicios> {
+    let url = `${this.expedienteUrl}documentos/servicios/guarda`;
+    return this.http.post<VwExpCatDocumentosServicios>(url, expediente, this.httpOptions).pipe(
+      tap(_ => this.log(`se insertó un nuevo documento al catálogo ${expediente.documento}`)),
+      catchError(this.handleError<VwExpCatDocumentosServicios>('updatePrioritario'))
+    );
+  }
+
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

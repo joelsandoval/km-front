@@ -21,7 +21,7 @@ import { ServiciosActividadesComponent } from './servicios/servicios-actividades
 import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-nuevo.component';
 import { ServiciosDocumentosAddComponent } from './servicios/servicios-documentos-add/servicios-documentos-add.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     FormsModule,
     MatSelectModule,
     MatDialogModule,
-    NgHttpLoaderModule
+    NgHttpLoaderModule,
+    MatSlideToggleModule 
   ]
 })
 export class CatalogosModule { }

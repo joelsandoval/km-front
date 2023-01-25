@@ -96,7 +96,7 @@ export class ServiciosComponent implements OnInit {
   borraCatego(catego: Categoria) {
     const dialogRef = this.dialog.open(ServiciosDelComponent, {
       height: '250px',
-      width: '400px',
+      width: '450px',
       data: {
         tipo: 1,
         id: catego.id,
@@ -117,7 +117,7 @@ export class ServiciosComponent implements OnInit {
   borraServicio(servi: Servicios) {
     const dialogRef = this.dialog.open(ServiciosDelComponent, {
       height: '250px',
-      width: '400px',
+      width: '450px',
       data: {
         tipo: 2,
         id: servi.id,
