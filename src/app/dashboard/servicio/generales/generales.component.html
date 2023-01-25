@@ -35,19 +35,19 @@
             <mat-tab-group color="primary">
                 <mat-tab>
                     <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">event</mat-icon>
-                        &nbsp;Actividades/Compromisos
-                    </ng-template>
-                    <br />
-                    <app-actividades [servicio]="data.servicio" (actividadCambia)="seleccionaActividad($event)"></app-actividades>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>
                         <mat-icon class="example-tab-icon">folder_copy</mat-icon>
                         &nbsp;Expediente
                     </ng-template>
                     <br />
                     <app-documentos [data]="data" (documentoCambia)="seleccionaExpediente($event)"></app-documentos>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">event</mat-icon>
+                        &nbsp;Actividades/Compromisos
+                    </ng-template>
+                    <br />
+                    <app-actividades [servicio]="data.servicio" (actividadCambia)="seleccionaActividad($event)"></app-actividades>
                 </mat-tab>
             </mat-tab-group>
         </div>

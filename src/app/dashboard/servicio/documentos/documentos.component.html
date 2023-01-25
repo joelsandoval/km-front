@@ -27,11 +27,11 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <table aria-label="Expediente" class="table table-striped table-hover">
-                            <tr>
+                            <!-- <tr>
                                 <th style="width: 35%;"></th>
                                 <th style="width: 60%;"></th>
                                 <th style="width: 5%; text-align: center;"></th>
-                            </tr>
+                            </tr> -->
                             <tr *ngFor="let documento of catego.documentos" (click)="selectExpediente(documento)"
                                 [ngClass]="{seleccionado: seleccionado == documento}" style="cursor: pointer;">
                                 <td>

@@ -6,7 +6,7 @@
                 <mat-card-title>
                     <div class="row">
                         <div class="col col-md-9">
-                            Categorías
+                            Categorías de servicios
                         </div>
                         <div class="col col-md-2">
                             <button mat-icon-button aria-label="Nueva" class="float-right"
@@ -168,7 +168,7 @@
                             <mat-icon class="example-tab-icon">file_copy</mat-icon>
                             Documentación
                         </ng-template>
-                        <app-servicios-documentos [documentos]="documentos"></app-servicios-documentos>
+                        <app-servicios-documentos [servicio]="seleccionado.id" [documentos]="documentos"></app-servicios-documentos>
                     </mat-tab>
                 </mat-tab-group>
             </mat-card>

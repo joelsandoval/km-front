@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { ActividadF, Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
-import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios } from '../model/catalogos';
+import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios, CatActividades } from '../model/catalogos';
 import { Fisica, FisicaF } from '../model/personas';
 
 @Injectable({
@@ -83,6 +83,42 @@ export class CatalogosService {
         catchError(this.handleError<VwExpCatDocumentosServicios[]>('No se pudieron recuperar los documentos', [])));
   }
 
+  delExpDocsServicio(doc: number): Observable<any> {
+    const docsUrl = `${this.catalogosUrl}servicio/documentos/delete/${doc}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
+
+  public updActividad(actividad: CatActividades): Observable<CatActividades> {
+    const ruta = `${this.catalogosUrl}actividad`;
+    return this.http.post<CatActividades>(ruta, actividad, this.httpOptions).pipe(
+      tap(_ => this.log(`actualizado servicio ${actividad.actividad}`)),
+      catchError(this.handleError<CatActividades>('No se pudo actualizar el archivo'))
+    );
+  }
+
+  delActividad(act: number): Observable<any> {
+    const docsUrl = `${this.catalogosUrl}actividad/delete/${act}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
+
+  public updActividadTipo(actividad: CatActividadesTipo): Observable<CatActividadesTipo> {
+    const ruta = `${this.catalogosUrl}actividad/tipo`;
+    return this.http.post<CatActividadesTipo>(ruta, actividad, this.httpOptions).pipe(
+      tap(_ => this.log(`actualizado servicio ${actividad.actividadTipo}`)),
+      catchError(this.handleError<CatActividadesTipo>('No se pudo actualizar el archivo'))
+    );
+  }
+
+  delActividadTipo(act: number): Observable<any> {
+    const docsUrl = `${this.catalogosUrl}actividad/tipo/delete/${act}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

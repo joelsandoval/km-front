@@ -3,13 +3,25 @@
       <mat-list>
         <mat-list-item>
           <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['servicios']"
-            matTooltip="Datos generales">
+            matTooltip="Datos generales" matTooltipPosition="right">
             <mat-icon>article</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
+          <button mat-icon-button aria-label="Documentos" [routerLink]="['documentos']"
+            matTooltip="Catálogo de Documentos" matTooltipPosition="right">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-icon-button aria-label="Actividades" [routerLink]="['actividades']"
+            matTooltip="Catálogo de Actividades/Compromisos" matTooltipPosition="right">
+            <mat-icon>calendar_month</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
           <button mat-icon-button aria-label="Compromisos/Obligaciones" [routerLink]="['personas']"
-            matTooltip="Compromisos">
+            matTooltip="Clientes y usuarios" matTooltipPosition="right">
             <mat-icon>people_alt</mat-icon>
           </button>
         </mat-list-item>

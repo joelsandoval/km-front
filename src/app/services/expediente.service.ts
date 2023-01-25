@@ -104,6 +104,27 @@ export class ExpedienteService {
     );
   }
 
+  saveExpCatDocumentosCatego(catego: ExpCatDocumentosCatego): Observable<ExpCatDocumentosCatego> {
+    let url = `${this.expedienteUrl}documentos/catego/guarda`;
+    return this.http.post<ExpCatDocumentosCatego>(url, catego, this.httpOptions).pipe(
+      tap(_ => this.log(`se insertó un nuevo documento al catálogo ${catego.categoria}`)),
+      catchError(this.handleError<ExpCatDocumentosCatego>('updatePrioritario'))
+    );
+  }
+
+  delExpDocsCatego(doc: number): Observable<any> {
+    const docsUrl = `${this.expedienteUrl}documentos/catego/delete/${doc}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
+
+  delExpDocumentos(doc: number): Observable<any> {
+    const docsUrl = `${this.expedienteUrl}documentos/delete/${doc}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
