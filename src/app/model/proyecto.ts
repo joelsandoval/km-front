@@ -68,6 +68,7 @@ export class Actividad {
     estatus!: number;
     responsable!: number;
     observaciones!: string;
+    documento!: number;
 }
 
 

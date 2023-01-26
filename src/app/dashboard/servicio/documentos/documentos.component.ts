@@ -10,6 +10,7 @@ import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { AuthService } from 'src/app/services/seguridad/auth.service';
+import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { DocumentosActualizaComponent } from './documentos-actualiza/documentos-actualiza.component';
 import { DocumentosAgregaComponent } from './documentos-agrega/documentos-agrega.component';
 import { DocumentosVerComponent } from './documentos-ver/documentos-ver.component';
@@ -153,8 +154,6 @@ export class DocumentosComponent implements OnInit {
     this.service.downloadFile(ruta, filename);
   }
 
-
-
   /* applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -212,6 +211,22 @@ export class DocumentosComponent implements OnInit {
     this.service.getPorExpediente(this.seleccionado.id).subscribe(
       archis => this.archivos = archis
     )
+  }
+
+  registraActividad(valor: ExpedienteServicioF) {
+    const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
+      data: {
+        origen: 2,
+        servicio: this.data.servicio,
+        documento: this.seleccionado.id
+      } 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      /* this.actividades.unshift(result);
+      console.log(`Dialog result:`);
+      console.log(result); */
+    });
   }
 
 }

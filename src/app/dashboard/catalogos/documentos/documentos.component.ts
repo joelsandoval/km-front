@@ -65,6 +65,8 @@ export class DocumentosComponent implements OnInit {
     this.seleccionada = value;
     this.seleccionado = new ExpCatDocumentos();
     this.nuevo.tipo = value.id;
+    this.nuevo.persona = 3;
+    this.nuevo.orden = 1;
   }
 
   borraCatego(catego: ExpCatDocumentosCatego) {

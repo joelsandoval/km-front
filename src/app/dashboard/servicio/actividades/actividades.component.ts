@@ -21,13 +21,13 @@ export class ActividadesComponent implements OnInit {
   personas: Fisica[] = [];
   folders = global.folders;
   notes = global.notes;
-  
+
   constructor(
     public dialog: MatDialog,
     public service: ProyectosService
   ) { }
 
-  
+
   ngOnInit(): void {
 
     this.service.getProyectoActividades(this.servicio).subscribe(
@@ -41,7 +41,10 @@ export class ActividadesComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
-      data: this.servicio,
+      data: {
+        origen: 1,
+        servicio: this.servicio,
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -56,7 +59,7 @@ export class ActividadesComponent implements OnInit {
     // get a reference to your table by id
     // cast this to HTMLTableElement in TypeScript
     const table: HTMLTableElement | null = document.querySelector('#tblServicios');
-    
+
     // get all rows in the first table body
     const rows = table!.tBodies[0].rows;
 
@@ -89,7 +92,7 @@ export class ActividadesComponent implements OnInit {
     this.service.delActividadServicio(actividad.id).subscribe(
       nada => console.log('se borro')
     )
-    
+
   }
 
 }
