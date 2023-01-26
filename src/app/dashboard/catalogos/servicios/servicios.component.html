@@ -6,7 +6,7 @@
                 <mat-card-title>
                     <div class="row">
                         <div class="col col-md-9">
-                            Categorías de servicios
+                            Catálogo de servicios
                         </div>
                         <div class="col col-md-2">
                             <button mat-icon-button aria-label="Nueva" class="float-right"
@@ -158,17 +158,17 @@
                     </mat-tab>
                     <mat-tab>
                         <ng-template mat-tab-label>
-                            <mat-icon class="example-tab-icon">event</mat-icon>
-                            Compromisos/Actividades
-                        </ng-template>
-                        <app-servicios-actividades></app-servicios-actividades>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label>
                             <mat-icon class="example-tab-icon">file_copy</mat-icon>
                             Documentación
                         </ng-template>
                         <app-servicios-documentos [servicio]="seleccionado.id" [documentos]="documentos"></app-servicios-documentos>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">event</mat-icon>
+                            Compromisos/Actividades
+                        </ng-template>
+                        <app-servicios-actividades [servicio]="seleccionado.id"></app-servicios-actividades>
                     </mat-tab>
                 </mat-tab-group>
             </mat-card>

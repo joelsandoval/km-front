@@ -50,3 +50,22 @@ export class VwExpCatDocumentosServicios {
     servicio!: number;
     documentoId!: number;
 }
+
+
+export class VwExpCatActividadesServicios {
+    id!: number;
+    servicio!: number;
+    actual_id!: number;
+    actual!: string;
+    futura_id!: number;
+    futura!: string;
+    dias!: number;
+}
+
+export class ExpCatActividadesServicios {
+    id!: number;
+    servicio!: number;
+    actual!: number;
+    futura!: number;
+    dias!: number;
+}

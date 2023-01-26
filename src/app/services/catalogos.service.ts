@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { ActividadF, Proyecto, ProyectoF, ServicioF } from '../model/proyecto';
-import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios, CatActividades } from '../model/catalogos';
+import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios, CatActividades, VwExpCatActividadesServicios } from '../model/catalogos';
 import { Fisica, FisicaF } from '../model/personas';
 
 @Injectable({
@@ -118,6 +118,13 @@ export class CatalogosService {
     return this.http.get(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
+
+  getCatActividadesServicio(servicio: number): Observable<VwExpCatActividadesServicios[]> {
+    const docsUrl = `${this.catalogosUrl}servicio/actividades/${servicio}`;
+    return this.http.get<VwExpCatActividadesServicios[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<VwExpCatActividadesServicios[]>('No se pudieron recuperar los documentos', [])));
   }
 
   /** Log a HeroService message with the MessageService */

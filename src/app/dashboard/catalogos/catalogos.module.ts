@@ -27,6 +27,7 @@ import { DocumentosDelComponent } from './documentos/documentos-del/documentos-d
 import { ActividadesComponent } from './actividades/actividades.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActividadesDelComponent } from './actividades/actividades-del/actividades-del.component';
+import { ServiciosActividadesAddComponent } from './servicios/servicios-actividades-add/servicios-actividades-add.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ActividadesDelComponent } from './actividades/actividades-del/actividad
     DocumentosComponent,
     DocumentosDelComponent,
     ActividadesComponent,
-    ActividadesDelComponent
+    ActividadesDelComponent,
+    ServiciosActividadesAddComponent
   ],
   imports: [
     CommonModule,

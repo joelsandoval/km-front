@@ -99,8 +99,10 @@ export class ActividadesComponent implements OnInit {
       doc => {
         this.seleccionado = doc;
         this.nuevoBool = false;
-        let catego: CatActividadesTipo = this.categorias.find(x => x.id == value.tipo)!;
-        catego.actividades.push(doc);
+        if (tipo == 1) {
+          let catego: CatActividadesTipo = this.categorias.find(x => x.id == value.tipo)!;
+          catego.actividades.push(doc);
+        }
       }
     )
   }
@@ -114,16 +116,16 @@ export class ActividadesComponent implements OnInit {
         id: doc.id,
         descripcion: doc.actividad
       },
-    }); 
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      let categ: CatActividadesTipo = this.categorias.find(x => x.id == doc.tipo)!; 
+      let categ: CatActividadesTipo = this.categorias.find(x => x.id == doc.tipo)!;
       console.log(categ);
       const index: number = categ.actividades.indexOf(doc);
-        if (index !== -1) {
-          categ.actividades.splice(index, 1);
-          this.seleccionado = new CatActividades();
-        }
+      if (index !== -1) {
+        categ.actividades.splice(index, 1);
+        this.seleccionado = new CatActividades();
+      }
     });
   }
 
