@@ -15,6 +15,7 @@ export class ProyectosService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
+
     ) { }
 
   private proyectosUrl = environment.ApiConfig.rutaBase + 'proyectos/';
@@ -58,6 +59,14 @@ export class ProyectosService {
     );
   }
 
+  public saveProyecto(proyecto: Proyecto): Observable<Proyecto> {
+    const ruta = `${this.proyectosUrl}`;
+    return this.http.post<Proyecto>(ruta, proyecto,this.httpOptions).pipe(
+      tap(_ => this.log(`proyecto`)),
+      catchError(this.handleError<Proyecto>('No se pudo guardar el proyecto'))
+    );
+  }
+
   getProyectoServicio(servicio: number): Observable<ServicioF> {
     const proyUrl = `${this.proyectosUrl}servicio/${servicio}`;
     return this.http.get<ServicioF>(proyUrl)
@@ -79,6 +88,8 @@ export class ProyectosService {
       catchError(this.handleError<any>('No se pudo actualizar el archivo'))
     );
   }
+
+  
 
   public delActividadServicio(actividad: number): Observable<any> {
     const ruta = `${this.proyectosUrl}actividad/borra/${actividad}`;

@@ -3,23 +3,23 @@
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Categoría</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="catego" multiple>
+            <mat-select [(ngModel)]="proyecto.categoria" name="catego">
               <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
+                {{food.viewValue | uppercase}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Cliente</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="razon">
-              <mat-option *ngFor="let personaMoral of personasMorales" [value]="personaMoral">
-                {{ personaMoral.razon }}
+            <mat-select [(ngModel)]="proyecto.cliente" name="razon">
+              <mat-option *ngFor="let personaMoral of personasMorales" [value]="personaMoral.id">
+                {{ personaMoral.razon | uppercase}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Proyecto</mat-label>
-            <input matInput [(ngModel)]="proyecto.proyecto" name="nombre" placeholder="Mina Mariana" value="Sushi">
+            <input matInput [(ngModel)]="proyecto.proyecto" name="proyecto" placeholder="Mina Mariana" value="Sushi">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
@@ -28,7 +28,7 @@
         </mat-form-field>
         
           <button mat-button color="warn">Cancelar</button>
-          <button mat-button color="primary" cdkFocusInitial>Guardar</button>
+          <button mat-button color="primary" cdkFocusInitial (click)="guardaProy();">Guardar</button>
         
     </form>
 </div>
