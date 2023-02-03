@@ -50,3 +50,15 @@ export class VwExpCatDocumentosServicios {
     servicio!: number;
     documentoId!: number;
 }
+
+export class Sector {
+    id!: number;
+    sector!: string;
+    ss!: string;
+    sector_id!: number;
+}
+
+export interface Par {
+    id: number;
+    valor: string;
+  }

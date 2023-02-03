@@ -1,14 +1,15 @@
 <div class="container-fluid">
     <h2>Nuevo proyecto</h2>
     <form class="example-form">
+        
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Categoría</mat-label>
-            <mat-select [(ngModel)]="proyecto.categoria" name="catego">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue | uppercase}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
+          <mat-label>Sector</mat-label>
+          <mat-select [(ngModel)]="proyecto.sector" name="sector">
+            <mat-option *ngFor="let sector of sectores" [value]="sector.id">
+              {{ sector.valor | uppercase}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Cliente</mat-label>
             <mat-select [(ngModel)]="proyecto.cliente" name="razon">
@@ -23,9 +24,16 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Ubicación</mat-label>
+          <textarea matInput  [(ngModel)]="proyecto.ubicacion" name="ubicacion" placeholder="Mazatlán, Sinaloa"></textarea>
+       </mat-form-field>
+        
+
+        <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Descripción breve del proyecto</mat-label>
             <textarea matInput  [(ngModel)]="proyecto.observaciones" name="observa" placeholder="Consiste en la puesta en marcha de un ..."></textarea>
         </mat-form-field>
+
         
           <button mat-button color="warn">Cancelar</button>
           <button mat-button color="primary" cdkFocusInitial (click)="guardaProy();">Guardar</button>

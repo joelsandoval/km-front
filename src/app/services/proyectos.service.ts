@@ -14,7 +14,7 @@ export class ProyectosService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
 
     ) { }
 
@@ -89,7 +89,6 @@ export class ProyectosService {
     );
   }
 
-  
 
   public delActividadServicio(actividad: number): Observable<any> {
     const ruta = `${this.proyectosUrl}actividad/borra/${actividad}`;
@@ -97,6 +96,9 @@ export class ProyectosService {
     .pipe(tap(_ => this.log('se recuperaron las actividades')),
       catchError(this.handleError<any[]>('No se pudieron recuperar los actividades')));
   }
+
+  
+
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

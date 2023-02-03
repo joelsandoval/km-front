@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../../model/proyecto';
 import { Moral, Fisica, PersonasMorales } from '../../../model/personas';
+import { Par } from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
-interface Food {
-  value: number;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-nuevo',
@@ -18,23 +18,18 @@ interface Food {
 export class NuevoComponent implements OnInit {
 
   selectedValue: string = '';
-  foods: Food[] = [
-    {value: 1, viewValue: 'Ambiental'},
-    {value: 2, viewValue: 'Energia y social'},
-    {value: 3, viewValue: 'Auditoría legal (Due Diligence)'},
-    {value: 4, viewValue: 'Gestión Administrativa'},
-    {value: 5, viewValue: 'Litigio Administrativo'},
-  ];
+  
 
   proyecto: Proyecto = new Proyecto();
-  personasMorales : any;
+  personasMorales : PersonasMorales[] = [];
+  sectores : Par[] = [];
 
-  
-  
   
 
   constructor(private service: CatalogosService,
-              private proyectoService: ProyectosService ) {}
+              private proyectoService: ProyectosService,
+              private _snackBar: MatSnackBar,
+              private router: Router ) {}
 
   ngOnInit(): void {
 
@@ -43,20 +38,30 @@ export class NuevoComponent implements OnInit {
         this.personasMorales = clis;
         console.log(clis);
       });
+
+      this.service.getListaSectores().subscribe(sect => {
+        this.sectores = sect;
+        console.log('sectores:');
+        console.log(sect);
+      });
    }
     
 
    guardaProy(){
       this.proyecto.registro = new Date();
-      console.log(this.proyecto);
-      console.log('Este proyecto es:', this.proyecto.cliente);
+      this.proyecto.estatus = 1;
       this.proyectoService.saveProyecto(this.proyecto).subscribe(
-        proy=> console.log(proy)
+        proy => { 
+          this.openSnackBar('El proyecto se ha guardado con éxito', 'ok');
+          this.router.navigate(['../proyectos']);
+        }
       )
     
    }
 
-
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
     
   }
 

@@ -19,6 +19,7 @@ import { ProyectoComponent } from './proyecto/proyecto.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     FormsModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ]
 })
 export class ProyectosModule { }
