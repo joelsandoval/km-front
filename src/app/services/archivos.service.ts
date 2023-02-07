@@ -60,7 +60,7 @@ export class ArchivosService {
         catchError(this.handleError<any>('No se pudieron recuperar los documentos')));
   }
 
-  downloadFile(route: string, filename: string): void {
+  public downloadFile(route: string, filename: string): void {
     console.log('entró al log')
     this.http.get(route, { responseType: 'blob' as 'json' }).subscribe(
       (response: any) => {
