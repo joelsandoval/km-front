@@ -25,7 +25,7 @@ export class FileUploadService {
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   public postArchivoServicio(fileToUpload: File, cliente: number, proyecto: number, servicio: number): Observable<Archivo> {
-    const endpoint1 = `${this.rutaBase}upload-pdf/servicio/${cliente},${proyecto},${servicio}`;
+    const endpoint1 = `${this.rutaBase}upload-ftp/servicio/${cliente},${proyecto},${servicio}`;
     const formData1: FormData = new FormData();
     formData1.append('file', fileToUpload);
     console.log(formData1);
