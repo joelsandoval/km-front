@@ -8,6 +8,7 @@ import { FisicaF } from 'src/app/model/personas';
 import { DataServicio, ServicioF } from 'src/app/model/proyecto';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { AuthService } from 'src/app/services/seguridad/auth.service';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
@@ -70,7 +71,8 @@ export class DocumentosComponent implements OnInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private serviceEx: ExpedienteService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private serviceFU: FileUploadService
   ) { }
 
   ngOnInit() {
@@ -151,13 +153,8 @@ export class DocumentosComponent implements OnInit {
   }
 
   descargaArchivo(ruta: string, filename: string): void {
-    this.service.downloadFile(ruta, filename);
+    this.serviceFU.downloadFile(ruta, filename);
   }
-
-  /* applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  } */
 
   borraArchivo(archi: Archivo) {
     console.log(archi);

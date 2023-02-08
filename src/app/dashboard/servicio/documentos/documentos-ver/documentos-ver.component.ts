@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Archivo } from 'src/app/model/archivos';
 import { ExpedienteServicioF } from 'src/app/model/expediente';
 import { ArchivosService } from 'src/app/services/archivos.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 
 @Component({
   selector: 'app-documentos-ver',
@@ -16,6 +17,7 @@ export class DocumentosVerComponent implements OnInit {
     public dialogRef: MatDialogRef<DocumentosVerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ExpedienteServicioF,
     private serviceA: ArchivosService,
+    private serviceFU: FileUploadService
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class DocumentosVerComponent implements OnInit {
   }
 
   descargaArchivo(ruta: string, filename: string): void {
-    this.serviceA.downloadFile(ruta, filename);
+    this.serviceFU.downloadFile(ruta, filename);
   }
 
 }
