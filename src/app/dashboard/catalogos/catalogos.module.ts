@@ -62,7 +62,7 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     MatSelectModule,
     MatDialogModule,
-    NgHttpLoaderModule,
+    NgHttpLoaderModule.forRoot(),
     MatSlideToggleModule,
     MatTooltipModule, 
     MatTableModule

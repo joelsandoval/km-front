@@ -7,7 +7,7 @@ export const environment = {
   production: false,
 
   ApiConfig: {
-    rutaBase:   'http://10.0.0.25:8087/operacion/',
+    rutaBase:   'http://e-scan.ovh:8087/operacion/',
   }
 
 };
