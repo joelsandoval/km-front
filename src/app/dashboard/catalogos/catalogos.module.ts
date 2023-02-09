@@ -21,6 +21,7 @@ import { ServiciosActividadesComponent } from './servicios/servicios-actividades
 import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-nuevo.component';
 import { ServiciosDocumentosAddComponent } from './servicios/servicios-documentos-add/servicios-documentos-add.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -49,7 +50,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     FormsModule,
     MatSelectModule,
     MatDialogModule,
-    NgHttpLoaderModule
+    NgHttpLoaderModule,
+    MatTableModule
   ]
 })
 export class CatalogosModule { }
