@@ -51,7 +51,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatDialogModule,
     NgHttpLoaderModule,
-    MatTableModule
+    MatTableModule,
   ]
 })
 export class CatalogosModule { }

@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { ServicioModule } from './dashboard/servicio/servicio.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { MatTableModule } from '@angular/material/table';
     ProyectosModule,
     ServiciosModule,
     ServicioModule,
-    MatTableModule
+    MatTableModule,
   ],
   
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
