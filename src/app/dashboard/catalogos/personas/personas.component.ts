@@ -13,7 +13,7 @@ import { CatalogosService } from 'src/app/services/catalogos.service';
 export class PersonasComponent implements OnInit {
 
   clientes: PersonasMorales[] = [];
-  displayedColumns: string[] = ['cliente', 'rfc'];
+  displayedColumns: string[] = ['id','cliente'];
   dataSource!: MatTableDataSource<PersonasMorales>;
   pageSize = 50;
 
