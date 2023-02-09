@@ -28,6 +28,8 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActividadesDelComponent } from './actividades/actividades-del/actividades-del.component';
 import { ServiciosActividadesAddComponent } from './servicios/servicios-actividades-add/servicios-actividades-add.component';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { ServiciosActividadesAddComponent } from './servicios/servicios-activida
     MatDialogModule,
     NgHttpLoaderModule,
     MatSlideToggleModule,
-    MatTooltipModule 
+    MatTooltipModule, 
+    MatTableModule
   ]
 })
 export class CatalogosModule { }

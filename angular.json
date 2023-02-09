@@ -93,6 +93,9 @@
             },
             "development": {
               "browserTarget": "km-front:build:development"
+            },
+            "local": {
+              "browserTarget": "km-front:build:local"
             }
           },
           "defaultConfiguration": "development"

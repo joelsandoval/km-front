@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../../model/proyecto';
-import { Moral, Fisica } from '../../../model/personas';
+import { Moral, Fisica, PersonasMorales } from '../../../model/personas';
+import { Par } from 'src/app/model/catalogos';
+import { CatalogosService } from 'src/app/services/catalogos.service';
+import { ProyectosService } from 'src/app/services/proyectos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
+
 
 @Component({
   selector: 'app-nuevo',
@@ -15,34 +18,51 @@ interface Food {
 export class NuevoComponent implements OnInit {
 
   selectedValue: string = '';
-  foods: Food[] = [
-    {value: '1', viewValue: 'Ambiental'},
-    {value: '2', viewValue: 'Energia y social'},
-    {value: '3', viewValue: 'Auditoría legal (Due Diligence)'},
-    {value: '4', viewValue: 'Gestión Administrativa'},
-    {value: '5', viewValue: 'Litigio Administrativo'},
-  ];
-
-  proyecto: Proyecto = new Proyecto();
-  clientes: Moral[] = [
-    {
-      id: 1,
-      nombre: 'Caminos del Norte S.A. de C.V.',
-      rfc: 'jjjj',
-      telefono: '444'
-    },
-    {
-      id: 1,
-      nombre: 'Minera Santa María, S.A.',
-      rfc: 'jjjj',
-      telefono: '444'
-    },
-  ];
   
 
-  constructor() { }
+  proyecto: Proyecto = new Proyecto();
+  personasMorales : PersonasMorales[] = [];
+  sectores : Par[] = [];
+
+  
+
+  constructor(private service: CatalogosService,
+              private proyectoService: ProyectosService,
+              private _snackBar: MatSnackBar,
+              private router: Router ) {}
 
   ngOnInit(): void {
+
+    let tipo: number = 3;
+      this.service.getListaClientes(tipo).subscribe(clis => {
+        this.personasMorales = clis;
+        console.log(clis);
+      });
+
+      this.service.getListaSectores().subscribe(sect => {
+        this.sectores = sect;
+        console.log('sectores:');
+        console.log(sect);
+      });
+   }
+    
+
+   guardaProy(){
+      this.proyecto.registro = new Date();
+      this.proyecto.estatus = 1;
+      this.proyectoService.saveProyecto(this.proyecto).subscribe(
+        proy => { 
+          this.openSnackBar('El proyecto se ha guardado con éxito', 'ok');
+          this.router.navigate(['../proyectos']);
+        }
+      )
+    
+   }
+
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+    
   }
 
-}
+

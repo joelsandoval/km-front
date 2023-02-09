@@ -124,4 +124,6 @@ export class DataServicio {
     servicio!: number;
     personas!: Fisica[];
   }
+
+
   
