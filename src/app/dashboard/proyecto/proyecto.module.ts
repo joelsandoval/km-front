@@ -23,6 +23,7 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { MatCardModule } from '@angular/material/card';
 import { EquipoNuevoComponent } from './equipo-nuevo/equipo-nuevo.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatInputModule,
     MatCardModule,
-    
+    NgHttpLoaderModule
   ]
 })
 export class ProyectoModule { }
