@@ -29,6 +29,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActividadesDelComponent } from './actividades/actividades-del/actividades-del.component';
 import { ServiciosActividadesAddComponent } from './servicios/servicios-actividades-add/servicios-actividades-add.component';
 import { MatTableModule } from '@angular/material/table';
+import { PersonasNuevoComponent } from './personas/personas-nuevo/personas-nuevo.component';
+
+
 
 
 
@@ -46,7 +49,8 @@ import { MatTableModule } from '@angular/material/table';
     DocumentosDelComponent,
     ActividadesComponent,
     ActividadesDelComponent,
-    ServiciosActividadesAddComponent
+    ServiciosActividadesAddComponent,
+    PersonasNuevoComponent
   ],
   imports: [
     CommonModule,
@@ -62,10 +66,8 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     MatSelectModule,
     MatDialogModule,
-    NgHttpLoaderModule.forRoot(),
-    MatSlideToggleModule,
-    MatTooltipModule, 
-    MatTableModule
+    NgHttpLoaderModule,
+    MatTableModule,
   ]
 })
 export class CatalogosModule { }

@@ -53,6 +53,14 @@ export class CatalogosService {
         catchError(this.handleError<PersonasMorales[]>('No se pudieron recuperar los clientes', [])));
   }
 
+  public saveCliente(cliente: PersonasMorales): Observable<PersonasMorales> {
+    const ruta = `${this.personasUrl}moral`;
+    return this.http.post<PersonasMorales>(ruta, cliente, this.httpOptions).pipe(
+      tap(_ => this.log(`personas`)),
+      catchError(this.handleError<PersonasMorales>('No se pudo guardar el cliente'))
+    );
+  }
+
   public updCategoria(catego: Categoria): Observable<Categoria> {
     const ruta = `${this.catalogosUrl}categoria`;
     return this.http.post<Categoria>(ruta, catego, this.httpOptions).pipe(

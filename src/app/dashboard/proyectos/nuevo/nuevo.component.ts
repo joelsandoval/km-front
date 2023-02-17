@@ -8,8 +8,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 
-
-
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.component.html',

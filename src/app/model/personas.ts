@@ -10,6 +10,10 @@ export class PersonasMorales {
     id!: number;
     razon!: string;
     rfc!: string;
+    tipo!: number;
+    principal!: number;
+    nombre_corto!: string;
+
 }
 
 export class Fisica {

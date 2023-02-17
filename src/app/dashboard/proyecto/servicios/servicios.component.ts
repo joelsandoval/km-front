@@ -6,6 +6,7 @@ import { Servicio, ServicioF } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
 
+
 export interface ProySer {
   proyecto: number;
 }
