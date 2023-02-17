@@ -3,19 +3,20 @@
         <mat-list>
             <mat-list-item>
                 <button mat-icon-button aria-label="Listado de proyectos" [routerLink]="['../proyectos']"
-                matTooltip="Todos los proyectos" [matTooltipPosition]="'left'">
+                    matTooltip="Todos los proyectos" [matTooltipPosition]="'left'">
                     <mat-icon>list</mat-icon>
-                  </button>
+                </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-icon-button aria-label="Nuevo Proyecto"
-                routerLink="nuevo" matTooltip="Nuevo proyecto" [matTooltipPosition]="'left'">
+                <button mat-icon-button aria-label="Nuevo Proyecto" routerLink="nuevo" matTooltip="Nuevo proyecto"
+                    [matTooltipPosition]="'left'">
                     <mat-icon>add_circle_outline</mat-icon>
-                  </button>
+                </button>
             </mat-list-item>
         </mat-list>
     </mat-drawer>
     <mat-drawer-content class="fondo-blanco">
         <router-outlet></router-outlet>
+        <ng-http-loader></ng-http-loader>
     </mat-drawer-content>
 </mat-drawer-container>

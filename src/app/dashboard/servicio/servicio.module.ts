@@ -28,6 +28,7 @@ import { DocumentosVerComponent } from './documentos/documentos-ver/documentos-v
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     NgHttpLoaderModule,
     MatBottomSheetModule,
     MatExpansionModule,
-    PipesModule
+    PipesModule,
+    MatSlideToggleModule
   ]
 })
 export class ServicioModule { }

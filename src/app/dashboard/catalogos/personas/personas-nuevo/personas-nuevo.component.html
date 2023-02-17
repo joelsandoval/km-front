@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Nuevo Cliente</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="example-form">
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>Nombre del Cliente</mat-label>
+      <input matInput [(ngModel)]="cliente.razon" name="razon" placeholder="Escriba la razón social del cliente">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>RFC</mat-label>
+      <input matInput [(ngModel)]="cliente.rfc" name="razon" placeholder="Escriba el RFC del cliente">
+    </mat-form-field>
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>Nombre Corto</mat-label>
+      <input matInput [(ngModel)]="cliente.nombre_corto" name="razon" placeholder="Escriba un nombre corto para el cliente">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button  cdkFocusInitial  color="primary" (click)="guardaCli();">Guardar</button>
+</div>

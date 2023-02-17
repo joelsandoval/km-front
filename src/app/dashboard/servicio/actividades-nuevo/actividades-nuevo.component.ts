@@ -1,10 +1,17 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CatActividades, CatActividadesTipo, Categoria } from 'src/app/model/catalogos';
-import { Fisica, FisicaF } from 'src/app/model/personas';
+import { CatActividades, CatActividadesTipo } from 'src/app/model/catalogos';
+import { FisicaF } from 'src/app/model/personas';
 import { Actividad, ActividadF } from 'src/app/model/proyecto';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+
+export interface NuevaActividad {
+  origen: number;
+  servicio: number;
+  documento: number;
+}
+
 
 @Component({
   selector: 'app-actividades-nuevo',
@@ -24,7 +31,7 @@ export class ActividadesNuevoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ActividadesNuevoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: NuevaActividad,
     private serviceCat: CatalogosService,
     private serviceProy: ProyectosService
     ) { }
@@ -43,13 +50,16 @@ export class ActividadesNuevoComponent implements OnInit {
   }
 
   guardaActividad(){
-    this.actividad.servicio = this.data;
+    this.actividad.servicio = this.data.servicio;
     this.actividad.actividad = this.activida.id;
     this.actividad.descripcion = this.activida.actividad;
     this.actividad.tipo = this.tipo.id;
     this.actividad.fecha = this.fecha;
     this.actividad.estatus = 1;
     this.actividad.responsable = this.responsable.usuarioId;
+    if(this.data.origen == 2){
+      this.actividad.documento = this.data.documento
+    }
     console.log(this.actividad);
 
     this.serviceProy.saveActividadServicio(this.actividad).subscribe(

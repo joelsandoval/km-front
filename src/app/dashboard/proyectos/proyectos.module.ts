@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     MatTabsModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgHttpLoaderModule
   ]
 })
 export class ProyectosModule { }

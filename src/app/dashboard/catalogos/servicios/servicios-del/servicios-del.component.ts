@@ -26,14 +26,25 @@ export class ServiciosDelComponent implements OnInit {
   }
 
   deleteCatego() {
-    if(this.data.tipo == 1) {
-      this.serviceCatalogo.delCategoria(this.data.id).subscribe(
-        _ => this.dialogRef.close(this.data)
-      )
-    } else {
-      this.serviceCatalogo.delServicio(this.data.id).subscribe(
-        _ => this.dialogRef.close(this.data)
-      )
+    switch (this.data.tipo) {
+      case 1:
+        this.serviceCatalogo.delCategoria(this.data.id).subscribe(
+          _ => this.dialogRef.close(this.data)
+        )
+        break;
+
+      case 2:
+        this.serviceCatalogo.delServicio(this.data.id).subscribe(
+          _ => this.dialogRef.close(this.data)
+        )
+        break;
+
+      case 3:
+        this.serviceCatalogo.delExpDocsServicio(this.data.id).subscribe(
+          _ => this.dialogRef.close(this.data)
+        )
+        break;
+
     }
   }
 

@@ -8,8 +8,10 @@ import { FisicaF } from 'src/app/model/personas';
 import { DataServicio, ServicioF } from 'src/app/model/proyecto';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { AuthService } from 'src/app/services/seguridad/auth.service';
+import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { DocumentosActualizaComponent } from './documentos-actualiza/documentos-actualiza.component';
 import { DocumentosAgregaComponent } from './documentos-agrega/documentos-agrega.component';
 import { DocumentosVerComponent } from './documentos-ver/documentos-ver.component';
@@ -69,7 +71,8 @@ export class DocumentosComponent implements OnInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private serviceEx: ExpedienteService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private serviceFU: FileUploadService
   ) { }
 
   ngOnInit() {
@@ -150,15 +153,8 @@ export class DocumentosComponent implements OnInit {
   }
 
   descargaArchivo(ruta: string, filename: string): void {
-    this.service.downloadFile(ruta, filename);
+    this.serviceFU.downloadFile(ruta, filename);
   }
-
-
-
-  /* applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  } */
 
   borraArchivo(archi: Archivo) {
     console.log(archi);
@@ -212,6 +208,22 @@ export class DocumentosComponent implements OnInit {
     this.service.getPorExpediente(this.seleccionado.id).subscribe(
       archis => this.archivos = archis
     )
+  }
+
+  registraActividad(valor: ExpedienteServicioF) {
+    const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
+      data: {
+        origen: 2,
+        servicio: this.data.servicio,
+        documento: this.seleccionado.id
+      } 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      /* this.actividades.unshift(result);
+      console.log(`Dialog result:`);
+      console.log(result); */
+    });
   }
 
 }

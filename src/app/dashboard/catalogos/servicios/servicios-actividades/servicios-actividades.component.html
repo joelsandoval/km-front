@@ -1,1 +1,28 @@
-<p>servicios-actividades works!</p>
+<table aria-label="Actividades" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Actividad</th>
+            <th>Futura</th>
+            <th>Días</th>
+            <th>
+                <button mat-icon-button aria-label="Nueva" class="float-right"
+                matTooltip="Nueva actividad" (click)="nuevaActividad();">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let act of actividades" style="cursor: pointer;">
+            <td>{{ act.actual }}</td>
+            <td>{{ act.futura }}</td>
+            <td>{{ act.dias }}</td>
+            <td>
+                <button mat-icon-button aria-label="Servicios" class="float-left" matTooltip="Eliminar documento"
+                    (click)="borraActividad(act);" color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

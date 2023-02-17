@@ -4,6 +4,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PersonasMorales } from 'src/app/model/personas';
 import { CatalogosService } from 'src/app/services/catalogos.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { PersonasNuevoComponent } from './personas-nuevo/personas-nuevo.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 @Component({
   selector: 'app-personas',
@@ -20,7 +26,8 @@ export class PersonasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: CatalogosService) { }
+  constructor(private service: CatalogosService,
+               public dialog: MatDialog,) { }
 
   ngOnInit(): void {
 
@@ -43,6 +50,25 @@ export class PersonasComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PersonasNuevoComponent, {
+      width: '700px',
+      height: '400px',
+      data: {
+        proyecto: this.dataSource,
+      },
+    });
+
+    /*dialogRef.afterClosed().subscribe(
+      result => {
+        if(result) {
+          this.servicios.push(result);
+          console.log(`Dialog result: ${result}`);
+        }
+      }
+    ); */
   }
 
 }

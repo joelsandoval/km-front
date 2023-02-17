@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ExpCatDocumentosServicios } from 'src/app/model/catalogos';
+import { ExpCatDocumentosServicios, VwExpCatDocumentosServicios } from 'src/app/model/catalogos';
 import { ExpCatDocumentos, ExpCatDocumentosCatego } from 'src/app/model/expediente';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
@@ -15,6 +15,8 @@ export class ServiciosDocumentosAddComponent implements OnInit {
   categs: ExpCatDocumentosCatego = new ExpCatDocumentosCatego(); 
   categorias: ExpCatDocumentosCatego[] = [];
   documento: ExpCatDocumentosServicios = new ExpCatDocumentosServicios();
+  nuevoS: VwExpCatDocumentosServicios = new VwExpCatDocumentosServicios();
+
   catego: number = 1;
   otros!: string;
   agregar: boolean = true;
@@ -32,6 +34,7 @@ export class ServiciosDocumentosAddComponent implements OnInit {
         this.categorias = cat;
         this.documento.servicio = this.data;
         this.documento.estatus = true;
+        console.log(this.data);
       }
     )
   }
@@ -41,8 +44,21 @@ export class ServiciosDocumentosAddComponent implements OnInit {
   }
 
   guardarDocumento(): void {
-    
-      if (this.agregar) {
+    let nuevo: ExpCatDocumentosServicios = new ExpCatDocumentosServicios();
+    nuevo.estatus = true;
+    nuevo.servicio = this.data;
+    nuevo.documento = this.catego;  
+
+    this.serviceExp.saveExpCatDocumentosServicios(nuevo).subscribe(
+      niu => {
+        this.nuevoS = niu;
+        console.log(niu);
+        this.dialogRef.close(niu);
+      }
+    )
+
+
+      /* if (this.agregar) {
         let nuevoEx: ExpCatDocumentos = new ExpCatDocumentos();
         nuevoEx.documento = this.otros;
         nuevoEx.descripcion = this.otros;
@@ -51,18 +67,18 @@ export class ServiciosDocumentosAddComponent implements OnInit {
         nuevoEx.tipo = this.catego;
         this.serviceExp.saveExpCatDocumento(nuevoEx).subscribe(
           resulta => {
-            /* let nuevoEt: ExpedienteServicio = new ExpedienteServicio();
+            let nuevoEt: ExpedienteServicio = new ExpedienteServicio();
             this.expediente.documento = resulta.id
             this.serviceExp.saveExpediente(this.expediente).subscribe(
               result => {
                 this.dialogRef.close(result);
               }
-            ) */
+            )
           }
         )
       } else {
         
-      }
+      } */
 
 
   }

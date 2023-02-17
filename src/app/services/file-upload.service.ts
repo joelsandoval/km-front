@@ -13,14 +13,14 @@ import { Archivo } from '../model/archivos';
 })
 
 export class FileUploadService {
-  
+
   rutaBase: string = `${environment.ApiConfig.rutaBase}filesystem/`;
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-    ) {
-    }
+  ) {
+  }
 
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -35,7 +35,28 @@ export class FileUploadService {
     );
   }
 
+  public getArchivoPDF(ruta: string): Observable<any> {
+    return this.http.get<any>(ruta, { responseType: 'blob' as 'json' })
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<any>('No se pudieron recuperar los documentos')));
+  }
 
+  public downloadFile(route: string, filename: string): void {
+    console.log('entró al log')
+    this.http.get(route, { responseType: 'blob' as 'json' }).subscribe(
+      (response: any) => {
+        let dataType = response.type;
+        let binaryData = [];
+        binaryData.push(response);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
+        if (filename)
+          downloadLink.setAttribute('download', filename);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+      }
+    )
+  }
 
   private log(message: string) {
     this.messageService.add(`PrioritariosService: ${message}`);

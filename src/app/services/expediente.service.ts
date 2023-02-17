@@ -6,6 +6,7 @@ import { MessageService } from '../services/message.service';
 
 import { environment } from '../../environments/environment';
 import { ExpCatDocumentos, ExpCatDocumentosCatego, ExpedienteServicio, ExpedienteServicioCatF, ExpedienteServicioF, ExpServicioArchivos } from '../model/expediente';
+import { ExpCatDocumentosServicios, VwExpCatDocumentosServicios } from '../model/catalogos';
 
 @Injectable({
   providedIn: 'root'
@@ -93,6 +94,36 @@ export class ExpedienteService {
     return this.http.get<ExpCatDocumentosCatego[]>(url)
       .pipe(tap(_ => this.log('Se recuperó el expediente')),
         catchError(this.handleError<ExpCatDocumentosCatego[]>('No se pudo recuperar el expediente')));
+  }
+
+  saveExpCatDocumentosServicios(expediente: ExpCatDocumentosServicios): Observable<VwExpCatDocumentosServicios> {
+    let url = `${this.expedienteUrl}documentos/servicios/guarda`;
+    return this.http.post<VwExpCatDocumentosServicios>(url, expediente, this.httpOptions).pipe(
+      tap(_ => this.log(`se insertó un nuevo documento al catálogo ${expediente.documento}`)),
+      catchError(this.handleError<VwExpCatDocumentosServicios>('updatePrioritario'))
+    );
+  }
+
+  saveExpCatDocumentosCatego(catego: ExpCatDocumentosCatego): Observable<ExpCatDocumentosCatego> {
+    let url = `${this.expedienteUrl}documentos/catego/guarda`;
+    return this.http.post<ExpCatDocumentosCatego>(url, catego, this.httpOptions).pipe(
+      tap(_ => this.log(`se insertó un nuevo documento al catálogo ${catego.categoria}`)),
+      catchError(this.handleError<ExpCatDocumentosCatego>('updatePrioritario'))
+    );
+  }
+
+  delExpDocsCatego(doc: number): Observable<any> {
+    const docsUrl = `${this.expedienteUrl}documentos/catego/delete/${doc}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
+  }
+
+  delExpDocumentos(doc: number): Observable<any> {
+    const docsUrl = `${this.expedienteUrl}documentos/delete/${doc}`;
+    return this.http.get(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError('No se pudieron recuperar los documentos')));
   }
 
   /** Log a HeroService message with the MessageService */
