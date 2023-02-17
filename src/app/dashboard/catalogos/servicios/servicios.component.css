@@ -19,3 +19,10 @@
     overflow: scroll;
     padding: 10px;
 }
+
+.contenedor-big {
+    width: 100%; 
+    max-height: 650px; 
+    overflow: scroll;
+    padding: 10px;
+}
