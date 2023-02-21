@@ -1,7 +1,29 @@
 
+.roboto, .mat-card, .mat-tab {
+    font-family: 'Roboto Condensed', sans-serif  !important;
+}
+
+.mat-tab-label {
+    text-align: left !important;
+    font-family: 'Roboto Condensed', sans-serif  !important;
+    font-size: small;
+}
+
+.seleccionado {
+    font-weight: bold;
+    color: darkslateblue;
+}
+
 .contenedor {
     width: 100%; 
     max-height: 600px; 
+    overflow: scroll;
+    padding: 10px;
+}
+
+.contenedor-big {
+    width: 100%; 
+    max-height: 650px; 
     overflow: scroll;
     padding: 10px;
 }
