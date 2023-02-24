@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +17,8 @@ import { ServicioModule } from './dashboard/servicio/servicio.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
@@ -39,7 +41,13 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     ServiciosModule,
     ServicioModule,
     MatTableModule,
-    NgHttpLoaderModule.forRoot()
+    NgHttpLoaderModule.forRoot(),
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['http://localhost:8087'],
+          sendAccessToken: true
+      }
+  })
   ],
   
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
