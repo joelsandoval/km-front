@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </mat-card-title>
-                    <table mat-table #table [dataSource]="dataSource" title="Clientes" matSort
+                    <!--  <table mat-table #table [dataSource]="dataSource" title="Clientes" matSort
                         aria-label="Listado de clientes" class="table table-striped table-hover" id="tblClientes"
                         name="tblClientes">
                         <ng-container matColumnDef="acciones">
@@ -32,8 +32,25 @@
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+                    </table> -->
+                    <table aria-label="Clientes" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let clie of clientes" (click)="selectCliente(clie)"
+                                [ngClass]="{seleccionado: seleccionado == clie}" style="cursor: pointer;">
+                                <td>{{ clie.razon | uppercase }}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+                    
                 </mat-card>
             </div>
             <br />

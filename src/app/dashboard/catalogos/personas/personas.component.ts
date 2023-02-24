@@ -19,6 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class PersonasComponent implements OnInit {
 
   clientes: PersonasMorales[] = [];
+  seleccionado: PersonasMorales = new PersonasMorales();
   displayedColumns: string[] = ['id','cliente'];
   dataSource!: MatTableDataSource<PersonasMorales>;
   pageSize = 50;
@@ -32,6 +33,13 @@ export class PersonasComponent implements OnInit {
   ngOnInit(): void {
 
     let tipo: number = 3;
+    this.service.getListaClientes(tipo).subscribe(
+      clis => {
+        this.clientes = clis;
+      }
+    )
+
+    /*
       this.service.getListaClientes(tipo).subscribe(clis => {
         this.dataSource = new MatTableDataSource(clis);
         this.dataSource.paginator = this.paginator;
@@ -40,7 +48,11 @@ export class PersonasComponent implements OnInit {
 
       });
 
+   */
+  }
 
+  selectCliente(value: PersonasMorales) {
+    this.seleccionado = value;
   }
 
   applyFilter(event: Event) {
