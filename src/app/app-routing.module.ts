@@ -5,10 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { PrincipalGuard } from './services/guards/principal.guard';
 
 const routes: Routes = [
-  
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [PrincipalGuard], data: {requiredRoles: ['admin', 'user']}},
   { path: 'login', component: LoginComponent},
+  
+  
   {
     path: 'proyectos',
     loadChildren: () => import('./dashboard/proyectos/proyectos.module').then(mod => mod.ProyectosModule),
@@ -34,7 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/catalogos/catalogos.module').then(mod => mod.CatalogosModule),
     data: { preload: true },
   },
-  //{ path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -20,12 +20,12 @@ export class AppComponent {
     private messageService: MessageService,
     private loginService: LoginService
   ) {
-    this.configure();
+    //this.configure();
   }
 
   authConfig: AuthConfig = {
     issuer: 'http://localhost:8180/realms/kmc',
-    redirectUri: 'http://localhost:4200/km-front/home',
+    redirectUri: 'http://localhost:4200/km-front/*',
     clientId: 'kmc-front',
     responseType: 'code',
     scope: 'openid profile email offline_access',
