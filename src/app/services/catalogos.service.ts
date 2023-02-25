@@ -61,6 +61,14 @@ export class CatalogosService {
     );
   }
 
+  public updCliente(cliente: PersonasMorales): Observable<PersonasMorales> {
+    const ruta = `${this.personasUrl}moral`;
+    return this.http.post<PersonasMorales>(ruta, cliente, this.httpOptions).pipe(
+      tap(_ => this.log(`actualizado cliente ${cliente.razon}`)),
+      catchError(this.handleError<PersonasMorales>('No se pudo actualizar el cliente'))
+    );
+  }
+
   public updCategoria(catego: Categoria): Observable<Categoria> {
     const ruta = `${this.catalogosUrl}categoria`;
     return this.http.post<Categoria>(ruta, catego, this.httpOptions).pipe(

@@ -8,6 +8,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PersonasNuevoComponent } from './personas-nuevo/personas-nuevo.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ export class PersonasComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private service: CatalogosService,
-               public dialog: MatDialog,) { }
+               public dialog: MatDialog,
+               private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -83,4 +85,20 @@ export class PersonasComponent implements OnInit {
     ); */
   }
 
-}
+  guardaCli(value: PersonasMorales ){
+    this.service.updCliente(value).subscribe(
+      proy => { 
+       /* this.openSnackBar('El cliente se ha guardado con éxito', 'ok'); */
+        this.router.navigate(['../personas']);
+      }
+    )
+  
+ }
+    
+  
+   
+
+ }
+  
+
+
