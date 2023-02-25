@@ -24,7 +24,7 @@ export class PrincipalGuard implements CanActivate {
     const realRol = this.loginService.getIsAdmin() ? 'admin' : 'user';
     
     if (requiredRoles.indexOf(realRol) === -1) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/']);
       return false;
     }
     

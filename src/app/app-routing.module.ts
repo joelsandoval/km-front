@@ -6,7 +6,7 @@ import { PrincipalGuard } from './services/guards/principal.guard';
 
 const routes: Routes = [
   
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [PrincipalGuard], data: {requiredRoles: ['admin', 'user']}},
   { path: 'login', component: LoginComponent},
   {
