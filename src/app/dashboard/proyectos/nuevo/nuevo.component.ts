@@ -4,7 +4,7 @@ import { Moral, Fisica, PersonasMorales } from '../../../model/personas';
 import { Par } from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router } from '@angular/router';
 
 

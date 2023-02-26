@@ -3,23 +3,23 @@ import { CommonModule } from '@angular/common';
 import { ServicioComponent } from './servicio.component';
 import { ServicioRoutingModule } from './servicio-routing.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { GeneralesComponent } from './generales/generales.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { EquipoComponent } from './equipo/equipo.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { ActividadesNuevoComponent } from './actividades-nuevo/actividades-nuevo.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { DocumentosActualizaComponent } from './documentos/documentos-actualiza/documentos-actualiza.component';
@@ -28,7 +28,7 @@ import { DocumentosVerComponent } from './documentos/documentos-ver/documentos-v
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PipesModule } from 'src/app/pipes/pipes.module';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
 
 @NgModule({
   declarations: [

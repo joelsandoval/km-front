@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { Categoria, CatServicio, Servicios } from 'src/app/model/catalogos';
 import { Servicio, ServicioF } from 'src/app/model/proyecto';
 import { CatalogosService } from 'src/app/services/catalogos.service';

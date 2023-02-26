@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Servicio, ServicioF } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';

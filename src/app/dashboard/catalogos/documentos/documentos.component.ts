@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ExpCatDocumentos, ExpCatDocumentosCatego } from 'src/app/model/expediente';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { DocumentosDelComponent } from './documentos-del/documentos-del.component';

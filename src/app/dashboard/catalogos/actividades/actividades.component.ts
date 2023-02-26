@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { CatActividades, CatActividadesTipo } from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ActividadesDelComponent } from './actividades-del/actividades-del.component';

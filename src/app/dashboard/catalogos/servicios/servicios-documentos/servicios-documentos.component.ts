@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { VwExpCatDocumentosServicios } from 'src/app/model/catalogos';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ServiciosDelComponent } from '../servicios-del/servicios-del.component';
