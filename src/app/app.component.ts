@@ -28,13 +28,12 @@ export class AppComponent {
 
   authConfig: AuthConfig = {
     issuer: this.urlSecure,
-    redirectUri: `${window.location.origin}/km-front/home`,
+    redirectUri: `${window.location.origin}/km-front`,
     clientId: 'kmc-front',
     responseType: 'code',
     scope: 'openid profile email offline_access',
-    showDebugInformation: true,
-    requireHttps: false,
     disableAtHashCheck: true,
+    showDebugInformation: true
   };
 
   configure(): void {
@@ -42,10 +41,11 @@ export class AppComponent {
     this.oauthService.configure(this.authConfig);
     this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setupAutomaticSilentRefresh();
-    this.oauthService.loadDiscoveryDocument().then((algo: any) => {
+    this.oauthService.loadDiscoveryDocumentAndTryLogin()
+/*     this.oauthService.loadDiscoveryDocument().then((algo: any) => {
       console.log(algo);
       console.log(this.oauthService.tryLogin());
-    })
+    }) */
       .then((algo: any) => {
         console.log(algo);
         console.log('¿tiene los claims?')
