@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
@@ -44,13 +46,13 @@ import { HttpClientModule } from '@angular/common/http';
     NgHttpLoaderModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8087'],
-          sendAccessToken: true
+        allowedUrls: ['http://localhost:8087/operacion'],
+        sendAccessToken: true
       }
-  })
+    })
   ],
-  
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

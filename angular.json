@@ -53,7 +53,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "baseHref": "/km-front-desa/",
+              "baseHref": "/km-front/",
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -91,7 +91,7 @@
             "production": {
               "browserTarget": "km-front:build:production"
             },
-            "development": {
+            "dev": {
               "browserTarget": "km-front:build:development"
             },
             "local": {

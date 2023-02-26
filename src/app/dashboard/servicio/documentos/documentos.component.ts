@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/model/archivos';
 import { ExpedienteServicioCatF, ExpedienteServicioF } from 'src/app/model/expediente';
 import { FisicaF } from 'src/app/model/personas';
@@ -10,11 +10,8 @@ import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
-import { AuthService } from 'src/app/services/seguridad/auth.service';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
-import { DocumentosActualizaComponent } from './documentos-actualiza/documentos-actualiza.component';
 import { DocumentosAgregaComponent } from './documentos-agrega/documentos-agrega.component';
-import { DocumentosVerComponent } from './documentos-ver/documentos-ver.component';
 
 export interface NuevoDocumento {
   cliente: number;
@@ -68,7 +65,6 @@ export class DocumentosComponent implements OnInit {
     private service: ArchivosService,
     private serviceP: ProyectosService,
     private dialog: MatDialog,
-    private auth: AuthService,
     private route: ActivatedRoute,
     private serviceEx: ExpedienteService,
     private _bottomSheet: MatBottomSheet,
