@@ -26,3 +26,7 @@
     overflow: scroll;
     padding: 10px;
 }
+
+tr {
+    max-height: 10px;
+}

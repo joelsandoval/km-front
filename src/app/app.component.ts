@@ -58,7 +58,7 @@ export class AppComponent {
       });
     }).then(() => {
       console.log('¿tiene los claims?');
-      console.log(this.oauthService.getIdentityClaims());
+      console.log(this.oauthService.getAccessToken());
       if (this.oauthService.getIdentityClaims()) {
         this.isLogged = this.authService.getIsLogged();
         this.isAdmin = this.authService.getIsAdmin();

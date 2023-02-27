@@ -1,7 +1,6 @@
 
-import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Injectable } from '@angular/core';
-import { MessageService } from '../message.service';
 
 @Injectable({
     providedIn: 'root'
