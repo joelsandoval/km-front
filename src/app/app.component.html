@@ -1,15 +1,21 @@
 <mat-toolbar class="fondo">
-  <button mat-icon-button aria-label="Example icon-button with menu icon" routerLink="home" class="blanco">
+  <button mat-icon-button aria-label="Example icon-button with menu icon" [routerLink]="['']" class="blanco">
     <mat-icon>home</mat-icon>
   </button>
   <span class="blanco">KM-Consultores</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button aria-label="Favorito" class="blanco">
+  <span class="blanco">{{ userName }}</span>
+  <button mat-icon-button aria-label="Favorito" class="blanco" *ngIf="isLogged">
     <mat-icon>notifications</mat-icon>
   </button>
-  <button mat-icon-button aria-label="Compartir" class="blanco" (click)="logout()">
-    <mat-icon>logout</mat-icon>
+  <button mat-icon-button aria-label="Compartir" class="blanco" (click)="login()" matTooltip="Iniciar sesión"
+    *ngIf="!isLogged">
+    <mat-icon>power_settings_new</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Compartir" class="blanco" (click)="logout()" matTooltip="Cerrar sesión"
+    *ngIf="isLogged">
+    <mat-icon>power_settings_new</mat-icon>
   </button>
 </mat-toolbar>
-<br/>
+<br />
 <router-outlet></router-outlet>

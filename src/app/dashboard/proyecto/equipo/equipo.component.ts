@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AsignacionF } from 'src/app/model/personas';
 import { EquipoNuevoComponent } from '../equipo-nuevo/equipo-nuevo.component';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';

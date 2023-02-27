@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
-import { ExpedienteServicio, ExpedienteServicioF } from 'src/app/model/expediente';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ExpedienteServicioF } from 'src/app/model/expediente';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 

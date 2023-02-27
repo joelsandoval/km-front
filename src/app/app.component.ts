@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
-import { MessageService } from './services/message.service';
-import { LoginService } from './services/seguridad/login.service';
-
 import { environment } from '../environments/environment';
+import { MessageService } from './services/message.service';
+import { AuthService } from './services/seguridad/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +12,11 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   title = 'kmc-front';
 
-  username!: string;
-  isLogged!: boolean;
-  isAdmin!: boolean;
-  private urlSecure = environment.ApiConfig.rutaIssuer;
-
-  constructor(
-    private oauthService: OAuthService,
-    private messageService: MessageService,
-    private loginService: LoginService,
-  ) {
-    this.configure();
-  }
+  isLogged: boolean = false;
+  userName: string = '';
+  isAdmin: boolean = false;
+  roles: string[] = [];
+  urlSecure = environment.ApiConfig.rutaIssuer;
 
   authConfig: AuthConfig = {
     issuer: this.urlSecure,
@@ -36,30 +28,48 @@ export class AppComponent {
     showDebugInformation: true
   };
 
-  configure(): void {
-    console.log('pasa a ver si entra al config')
-    this.oauthService.configure(this.authConfig);
-    this.oauthService.tokenValidationHandler = new NullValidationHandler();
-    this.oauthService.setupAutomaticSilentRefresh();
-    this.oauthService.loadDiscoveryDocumentAndTryLogin()
-/*     this.oauthService.loadDiscoveryDocument().then((algo: any) => {
-      console.log(algo);
-      console.log(this.oauthService.tryLogin());
-    }) */
-      .then((algo: any) => {
-        console.log(algo);
-        console.log('¿tiene los claims?')
-        console.log(this.oauthService.getAccessToken());
-        if (this.oauthService.getIdentityClaims()) {
-          this.isLogged = this.loginService.getIsLogged();
-          this.isAdmin = this.loginService.getIsAdmin();
-          console.log(`Está logueado ${this.isLogged}`);
-        }
-      });
+  constructor(
+    private authService: AuthService,
+    private oauthService: OAuthService,
+    private messageService: MessageService
+  ) {
+    this.configure(this.authConfig);
   }
 
-  logout() {
-    this.loginService.logout();
+  login() {
+    this.authService.login();
   }
+
+
+  logout() {
+    this.authService.logout();
+  }
+
+  public configure(authConfig: AuthConfig): void {
+    console.log('pasa a ver si entra al config')
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler = new NullValidationHandler();
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.loadDiscoveryDocument().then(() => {
+      this.oauthService.tryLogin({
+        onTokenReceived: (info) => {
+          console.debug('state', info.state);
+        }
+      });
+    }).then(() => {
+      console.log('¿tiene los claims?');
+      console.log(this.oauthService.getIdentityClaims());
+      if (this.oauthService.getIdentityClaims()) {
+        this.isLogged = this.authService.getIsLogged();
+        this.isAdmin = this.authService.getIsAdmin();
+        this.userName = this.authService.getUsername();
+        this.roles = this.authService.getRoles();
+        this.messageService.sendMessage(this.userName);
+        ;
+      }
+    });
+  }
+
+
 
 }

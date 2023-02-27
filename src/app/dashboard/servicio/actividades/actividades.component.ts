@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { ActividadF, Calendario } from 'src/app/model/proyecto';
 import * as global from 'src/app/model/global'
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { Fisica } from 'src/app/model/personas';
