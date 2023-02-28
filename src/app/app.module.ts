@@ -14,7 +14,6 @@ import { ServiciosModule } from './dashboard/servicios/servicios.module';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ServicioModule } from './dashboard/servicio/servicio.module';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -48,7 +47,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgHttpLoaderModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:8087/operacion'],
+        allowedUrls: ['http://localhost:8087'],
         sendAccessToken: true
       }
     })

@@ -25,7 +25,8 @@ export class AppComponent {
     responseType: 'code',
     scope: 'openid profile email offline_access',
     disableAtHashCheck: true,
-    showDebugInformation: true
+    showDebugInformation: true,
+    requireHttps: false
   };
 
   constructor(
@@ -51,6 +52,7 @@ export class AppComponent {
     this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => {
+      console.log('paso 5')
       this.oauthService.tryLogin({
         onTokenReceived: (info) => {
           console.debug('state', info.state);
