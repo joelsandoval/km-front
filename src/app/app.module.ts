@@ -47,7 +47,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgHttpLoaderModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:8087'],
+        allowedUrls: ['http://e-scan.ovh:8087/operacion','http://localhost:8087/operacion'],
         sendAccessToken: true
       }
     })

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProyectoF } from '../../../model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+import { AuthService } from 'src/app/services/seguridad/auth.service';
 
 @Component({
   selector: 'app-listado',
@@ -21,12 +22,15 @@ export class ListadoComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private servicioP: ProyectosService
+    private servicioP: ProyectosService,
+    private auth: AuthService
   ) {
 
   }
 
   ngOnInit(): void {
+    console.log('proyectos');
+    console.log(this.auth.getRoles());
     this.servicioP.getProyectosActivos().subscribe(
       proys => {
         this.dataSource = new MatTableDataSource(proys);
