@@ -19,19 +19,21 @@
                         </div>
                     </div>
                     <mat-card-content>
+                        <br/>
                         <div class="row" *ngIf="nuevaBool">
-                            <div class="col col-md-7 offset-md-2">
-                                <mat-form-field style="display: block;" class="roboto">
+                            <div class="col col-md-6 offset-md-2">
+                                <mat-form-field appearance="outline" style="width: 100%;" class="roboto float-right">
                                     <mat-label>Categoría nueva</mat-label>
-                                    <input matInput name="categoria" id="categoria" [(ngModel)]="nueva.categoria">
+                                    <input matInput name="categoria" id="categoria"
+                                    [(ngModel)]="nueva.categoria">
                                 </mat-form-field>
                             </div>
-                            <div class="col col-md-2">
-                                <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
+                            <div class="col col-md-3">
+                                <button mat-icon-button aria-label="Servicios" class="float-left" color="primary"
                                     matTooltip="Guardar servicio" (click)="guardaCatego();">
                                     <mat-icon>save</mat-icon>
                                 </button>
-                                <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
+                                <button mat-icon-button aria-label="Servicios" class="float-left" color="warn"
                                     matTooltip="Cancelar servicio" (click)="cancelCatego();">
                                     <mat-icon>close</mat-icon>
                                 </button>
@@ -42,16 +44,14 @@
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let catego of categorias" [ngClass]="{seleccionado: seleccionada == catego}"
                                     style="cursor: pointer;">
-                                    <td (click)="selectCatego(catego)">{{ catego.categoria }}</td>
-                                    <td></td>
+                                    <td (click)="selectCatego(catego)" style="vertical-align: middle;">{{ catego.categoria }}</td>
                                     <td>
-                                        <button mat-icon-button aria-label="Servicios" class="float-left"
+                                        <button mat-icon-button aria-label="Servicios" class="float-left" *ngIf="seleccionada == catego"
                                             matTooltip="Eliminar categoria" (click)="borraCatego(catego);" color="warn">
                                             <mat-icon>delete</mat-icon>
                                         </button>
@@ -80,11 +80,11 @@
                     </div>
                     <div class="row" *ngIf="nuevoBool">
                         <div class="col col-md-7 offset-md-2">
-                            <mat-form-field style="display: block;" class="roboto">
+                            <mat-form-field appearance="outline"  style="display: block;" class="roboto">
                                 <mat-label>Nuevo servicio</mat-label>
                                 <input matInput name="servicio" id="servicio" [(ngModel)]="nuevo.servicio">
                             </mat-form-field>
-                            <mat-form-field style="display: block;" class="roboto">
+                            <mat-form-field appearance="outline"  style="display: block;" class="roboto">
                                 <mat-label>Nombre corto</mat-label>
                                 <input matInput name="corto" id="corto" [(ngModel)]="nuevo.servicioCorto">
                             </mat-form-field>
@@ -129,9 +129,8 @@
             <mat-card style="width: 100%;" *ngIf="seleccionado.id > 0">
                 <mat-card-header>
                     <mat-card-title>{{ seleccionado.servicioCorto }}</mat-card-title>
-                    <mat-card-subtitle>Start</mat-card-subtitle>
                 </mat-card-header>
-                <mat-card-content>
+                <mat-card-content >
                     <mat-tab-group>
                         <mat-tab>
                             <ng-template mat-tab-label>
@@ -140,17 +139,17 @@
                             </ng-template>
                             <br />
                             <div class="row">
-                                <mat-form-field style="display: block;" class="roboto">
+                                <mat-form-field appearance="outline"  style="display: block;" class="roboto">
                                     <mat-label>Servicio</mat-label>
                                     <input matInput name="servicio" id="servicio" [(ngModel)]="seleccionado.servicio">
                                 </mat-form-field>
                             </div>
                             <div class="row">
-                                <mat-form-field style="display: block; width: 48%;" class="roboto">
+                                <mat-form-field appearance="outline"  style="display: block; width: 48%;" class="roboto">
                                     <mat-label>Nombre corto</mat-label>
                                     <input matInput name="Corto" id="Corto" [(ngModel)]="seleccionado.servicioCorto">
                                 </mat-form-field>
-                                <mat-form-field style="display: block; width: 50%;">
+                                <mat-form-field appearance="outline"  style="display: block; width: 50%;">
                                     <mat-label>Categoria</mat-label>
                                     <mat-select [(ngModel)]="seleccionado.categoria" name="categoria">
                                         <mat-option *ngFor="let catego of categorias" [value]="catego.id">
@@ -161,9 +160,11 @@
                             </div>
                             <div class="row">
                                 <div class="col col-md-12">
-                                    <button mat-raised-button color="warn" class="float-left"
-                                        (click)="borraServicio(seleccionado)">Eliminar servicio</button>
-                                    <button mat-button cdkFocusInitial color="primary" class="float-right"
+                                    <button mat-icon-button color="warn" class="float-left" (click)="borraServicio(seleccionado)"
+                                    matTooltip="Eliminar servicio">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button mat-raised-button cdkFocusInitial color="primary" class="float-right"
                                         (click)="guardarServicio(seleccionado, 2);">Guardar</button>
                                 </div>
                             </div>

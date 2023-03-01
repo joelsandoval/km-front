@@ -6,6 +6,7 @@ export interface EntidadBorra {
   tipo: number;
   id: number;
   descripcion: string;
+  corto: string;
 }
 
 @Component({

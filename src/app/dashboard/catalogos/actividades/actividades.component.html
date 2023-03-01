@@ -16,19 +16,21 @@
                         </div>
                     </div>
                 </mat-card-title>
+                <br />
                 <div class="row" *ngIf="nuevaBool">
-                    <div class="col col-md-7 offset-md-2">
-                        <mat-form-field style="display: block;" class="roboto">
+                    <div class="col col-md-7 offset-md-1">
+                        <mat-form-field appearance="outline" style="display: block; width: 100%;"
+                            class="roboto float-right">
                             <mat-label>Categoría nueva</mat-label>
                             <input matInput name="categoria" id="categoria" [(ngModel)]="nueva.actividadTipo">
                         </mat-form-field>
                     </div>
-                    <div class="col col-md-2">
-                        <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
+                    <div class="col col-md-3">
+                        <button mat-icon-button aria-label="Servicios" class="float-left" color="primary"
                             matTooltip="Guardar cat" (click)="guardaCatego();">
                             <mat-icon>save</mat-icon>
                         </button>
-                        <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
+                        <button mat-icon-button aria-label="Servicios" class="float-leftt" color="warn"
                             matTooltip="Cancelar cat" (click)="cancelCatego();">
                             <mat-icon>close</mat-icon>
                         </button>
@@ -49,7 +51,8 @@
                             <td></td>
                             <td>
                                 <button mat-icon-button aria-label="Servicios" class="float-left"
-                                    matTooltip="Eliminar categoria" (click)="borraCatego(catego);" color="warn">
+                                    *ngIf="seleccionada == catego" matTooltip="Eliminar categoria"
+                                    (click)="borraCatego(catego);" color="warn">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </td>
@@ -59,10 +62,12 @@
             </mat-card>
             <br />
             <mat-card style="width: 100%;" *ngIf="seleccionada.id > 0">
-                <mat-card-title>
+                <mat-card-header>
                     <div class="row">
                         <div class="col col-md-9">
-                            {{ seleccionada.actividadTipo }}
+                            <mat-card-title>
+                                {{ seleccionada.actividadTipo }}
+                            </mat-card-title>
                         </div>
                         <div class="col col-md-2">
                             <button mat-icon-button aria-label="Documentos" class="float-right" matTooltip="Documentos"
@@ -71,73 +76,80 @@
                             </button>
                         </div>
                     </div>
-                </mat-card-title>
-                <div class="row" *ngIf="nuevoBool">
-                    <div class="col col-md-7 offset-md-2">
-                        <mat-form-field style="display: block;" class="roboto">
-                            <mat-label>Nuevo </mat-label>
-                            <input matInput name="servicio" id="servicio" [(ngModel)]="nuevo.actividad">
-                        </mat-form-field>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row" *ngIf="nuevoBool">
+                        <div class="col col-md-7 offset-md-2">
+                            <mat-form-field appearance="outline" style="display: block;" class="roboto">
+                                <mat-label>Nuevo </mat-label>
+                                <input matInput name="servicio" id="servicio" [(ngModel)]="nuevo.actividad">
+                            </mat-form-field>
+                        </div>
+                        <div class="col col-md-2">
+                            <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
+                                matTooltip="Guardar servicio" (click)="guardarCompromiso(nuevo, 1);">
+                                <mat-icon>save</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
+                                matTooltip="Cancelar servicio" (click)="cancelCompromiso();">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col col-md-2">
-                        <button mat-icon-button aria-label="Servicios" class="float-right" color="primary"
-                            matTooltip="Guardar servicio" (click)="guardarCompromiso(nuevo, 1);">
-                            <mat-icon>save</mat-icon>
-                        </button>
-                        <button mat-icon-button aria-label="Servicios" class="float-right" color="warn"
-                            matTooltip="Cancelar servicio" (click)="cancelCompromiso();">
-                            <mat-icon>close</mat-icon>
-                        </button>
-                    </div>
-                </div>
-                <table aria-label="Servicios" class="table table-striped table-hover">
-                    <tbody>
-                        <tr *ngFor="let doc of seleccionada.actividades" (click)="selectCompromiso(doc)"
-                            [ngClass]="{seleccionado: seleccionado == doc}" style="cursor: pointer;">
-                            <td>{{ doc.actividad }}</td>
-                            <td>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table aria-label="Servicios" class="table table-striped table-hover">
+                        <tbody>
+                            <tr *ngFor="let doc of seleccionada.actividades" (click)="selectCompromiso(doc)"
+                                [ngClass]="{seleccionado: seleccionado == doc}" style="cursor: pointer;">
+                                <td>{{ doc.actividad }}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </mat-card-content>
             </mat-card>
             <br />
         </div>
         <div class="col col-md-6">
             <br />
             <mat-card style="width: 100%;" *ngIf="seleccionado.id > 0">
-                <mat-card-title>{{ seleccionado.actividad }}</mat-card-title>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">source</mat-icon>
-                    Generales
-                </ng-template>
+                <mat-card-header>
+                    <mat-card-title>{{ seleccionado.actividad }}</mat-card-title>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">source</mat-icon>
+                        Generales
+                    </ng-template>
+                </mat-card-header>
                 <br />
-                <div class="row">
-                    <mat-form-field style="display: block;" class="roboto">
-                        <mat-label>Servicio</mat-label>
-                        <input matInput name="servicio" id="servicio" [(ngModel)]="seleccionado.actividad">
-                    </mat-form-field>
-                </div>
-                <div class="row">
-                    <mat-form-field style="display: block; width: 50%;">
-                        <mat-label>Categoría</mat-label>
-                        <mat-select [(ngModel)]="seleccionado.tipo" name="categoria">
-                            <mat-option *ngFor="let catego of categorias" [value]="catego.id">
-                                {{catego.actividadTipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="row">
-                    <div class="col col-md-12">
-                        <button mat-raised-button color="warn" class="float-left"
-                            (click)="borraCompromiso(seleccionado)">Eliminar servicio</button>
-                        <button mat-button cdkFocusInitial color="primary" class="float-right"
-                            (click)="guardarCompromiso(seleccionado, 2);">Guardar</button>
+                <mat-card-content>
+                    <div class="row">
+                        <mat-form-field appearance="outline" style="display: block;" class="roboto">
+                            <mat-label>Actividad/Compromiso</mat-label>
+                            <input matInput name="servicio" id="servicio" [(ngModel)]="seleccionado.actividad">
+                        </mat-form-field>
                     </div>
-                </div>
-                <br />
-
+                    <div class="row">
+                        <mat-form-field appearance="outline" style="display: block; width: 50%;">
+                            <mat-label>Etapa</mat-label>
+                            <mat-select [(ngModel)]="seleccionado.tipo" name="categoria">
+                                <mat-option *ngFor="let catego of categorias" [value]="catego.id">
+                                    {{catego.actividadTipo}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <button mat-icon-button color="warn" class="float-left" matTooltip="Eliminar actividad"
+                                (click)="borraCompromiso(seleccionado)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-raised-button cdkFocusInitial color="primary" class="float-right"
+                                (click)="guardarCompromiso(seleccionado, 2);">Guardar</button>
+                        </div>
+                    </div>
+                    <br />
+                </mat-card-content>
             </mat-card>
 
         </div>

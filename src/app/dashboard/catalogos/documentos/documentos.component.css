@@ -19,3 +19,7 @@
     overflow: scroll;
     padding: 10px;
 }
+
+.mat-card-header{
+    line-height: 40px;
+}

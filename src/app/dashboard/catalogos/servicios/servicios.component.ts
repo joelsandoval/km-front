@@ -21,7 +21,7 @@ export class ServiciosComponent implements OnInit {
   nuevoBool: boolean = false;
 
   documentos: VwExpCatDocumentosServicios[] = [];
-  
+
   constructor(
     private serviceCatalogo: CatalogosService,
     private dialog: MatDialog
@@ -61,7 +61,7 @@ export class ServiciosComponent implements OnInit {
           let catego: Categoria = this.categorias.find(x => x.id == value.categoria)!;
           catego.servicios.push(servi);
         }
-        
+
       }
     )
   }
@@ -100,13 +100,14 @@ export class ServiciosComponent implements OnInit {
       data: {
         tipo: 1,
         id: catego.id,
-        descripcion: catego.categoria
+        descripcion: catego.categoria,
+        corto: ''
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => { 
-      if(result) {
-      const index: number = this.categorias.indexOf(catego);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const index: number = this.categorias.indexOf(catego);
         if (index !== -1) {
           this.categorias.splice(index, 1);
         }
@@ -121,18 +122,23 @@ export class ServiciosComponent implements OnInit {
       data: {
         tipo: 2,
         id: servi.id,
-        descripcion: servi.servicio
+        descripcion: servi.servicio,
+        corto: servi.servicioCorto
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      let categ: Categoria = this.categorias.find(x => x.id == servi.categoria)!; 
-      console.log(categ);
-      const index: number = categ.servicios.indexOf(servi);
+      if (result) {
+        let categ: Categoria = this.categorias.find(x => x.id == servi.categoria)!;
+        console.log(categ);
+        const index: number = categ.servicios.indexOf(servi);
         if (index !== -1) {
           categ.servicios.splice(index, 1);
           this.seleccionado = new Servicios();
         }
+      }
     });
+
   }
 }
+

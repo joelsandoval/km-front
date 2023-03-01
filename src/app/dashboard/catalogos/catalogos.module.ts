@@ -28,6 +28,8 @@ import { ActividadesDelComponent } from './actividades/actividades-del/actividad
 import { ServiciosActividadesAddComponent } from './servicios/servicios-actividades-add/servicios-actividades-add.component';
 import { MatTableModule } from '@angular/material/table';
 import { PersonasNuevoComponent } from './personas/personas-nuevo/personas-nuevo.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -66,6 +68,8 @@ import { PersonasNuevoComponent } from './personas/personas-nuevo/personas-nuevo
     MatDialogModule,
     NgHttpLoaderModule,
     MatTableModule,
+    MatSlideToggleModule,
+    MatTooltipModule
   ]
 })
 export class CatalogosModule { }
