@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +18,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatToolbarModule,
     MatTooltipModule,
     MatIconModule,
@@ -50,7 +49,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         allowedUrls: ['http://e-scan.ovh:8087/operacion','http://localhost:8087/operacion'],
         sendAccessToken: true
       }
-    })
+    }),
   ],
 
   providers: [],
