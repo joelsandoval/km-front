@@ -50,9 +50,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+
                 </mat-card>
-               
+
             </div>
             <br />
             <br />
@@ -61,43 +61,41 @@
             <br />
             <br />
             <mat-card style="width: 100%;" *ngIf="seleccionado.id > 0">
-                <mat-card-title>{{ seleccionado.razon }}</mat-card-title>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">source</mat-icon>
-                    Generales
-                </ng-template>
-                <br />
-                <div class="row">
-                    <mat-form-field style="display: block;" class="roboto">
-                        <mat-label>Razón Social</mat-label>
-                        <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.razon">
-                    </mat-form-field>
-                </div>
-                <div class="row">
-                    <mat-form-field style="display: block; width: 50%;">
-                        <mat-label>RFC</mat-label>
-                        <input matInput name="rfc" id="rfc" [(ngModel)]="seleccionado.rfc">
-                    </mat-form-field>
-                </div>
-                <div class="row">
-                    <mat-form-field style="display: block; width: 50%;">
-                        <mat-label>nombre_corto</mat-label>
-                        <input matInput name="nombre_corto" id="nombre_corto" [(ngModel)]="seleccionado.nombre_corto">
-                    </mat-form-field>
-                </div>
-                <div class="row">
-                    <div class="col col-md-12">
-                        <button mat-raised-button color="warn" class="float-left"
-                            >Eliminar cliente</button>
-                        <button mat-button cdkFocusInitial color="primary" class="float-right"
-                        (click)="guardaCli(seleccionado);">Guardar</button>
+                <mat-card-header>
+                    <mat-card-title>{{ seleccionado.razon }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+                        <mat-form-field style="display: block;" class="roboto">
+                            <mat-label>Razón Social</mat-label>
+                            <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.razon">
+                        </mat-form-field>
                     </div>
-                </div>
-                <br />
-
+                    <div class="row">
+                        <mat-form-field style="display: block; width: 50%;">
+                            <mat-label>RFC</mat-label>
+                            <input matInput name="rfc" id="rfc" [(ngModel)]="seleccionado.rfc">
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field style="display: block; width: 50%;">
+                            <mat-label>nombre_corto</mat-label>
+                            <input matInput name="nombre_corto" id="nombre_corto"
+                                [(ngModel)]="seleccionado.nombre_corto">
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <button mat-raised-button color="warn" class="float-left">Eliminar cliente</button>
+                            <button mat-button cdkFocusInitial color="primary" class="float-right"
+                                (click)="guardaCli(seleccionado);">Guardar</button>
+                        </div>
+                    </div>
+                    <br />
+                </mat-card-content>
             </mat-card>
-    
-           
+
+
         </div>
     </div>
 </div>

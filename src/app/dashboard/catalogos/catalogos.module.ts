@@ -21,11 +21,9 @@ import { ServiciosActividadesComponent } from './servicios/servicios-actividades
 import { ServiciosNuevoComponent } from './servicios/servicios-nuevo/servicios-nuevo.component';
 import { ServiciosDocumentosAddComponent } from './servicios/servicios-documentos-add/servicios-documentos-add.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { DocumentosDelComponent } from './documentos/documentos-del/documentos-del.component';
 import { ActividadesComponent } from './actividades/actividades.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActividadesDelComponent } from './actividades/actividades-del/actividades-del.component';
 import { ServiciosActividadesAddComponent } from './servicios/servicios-actividades-add/servicios-actividades-add.component';
 import { MatTableModule } from '@angular/material/table';

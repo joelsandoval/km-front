@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgModule } from '@angular/core';
         sendAccessToken: true
       }
     }),
+    BrowserAnimationsModule
   ],
 
   providers: [],
