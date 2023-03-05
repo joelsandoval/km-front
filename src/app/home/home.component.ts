@@ -15,21 +15,37 @@ export class HomeComponent implements OnInit {
   roles: string[] = [];
   username: string = '';
   userName: string = '';
+  rol: string = '';
 
   constructor(
     private authService: AuthService,
     private messageService: MessageService,
+    private messageService2: MessageService,
      private oauthService: OAuthService
   ) { }
 
   ngOnInit(): void {
-    this.roles = this.authService.getRoles();
+    //this.roles = this.authService.getRoles();
     //this.userName = this.authService.getUsername();
-    this.userName =  this.oauthService.getIdentityClaims()[`preferred_username`];
-    this.messageService.getMessage().subscribe({
+    //this.userName =  this.oauthService.getIdentityClaims()[`preferred_username`];
+  /*   this.messageService2.getMessage().subscribe({
       next: res => {
 
         this.username = res['text'];
+
+      },
+      error: error => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('Request complete');
+      }
+    }); */
+
+    this.messageService.getMessage().subscribe({
+      next: res => {
+
+        this.rol = res['text'];
       },
       error: error => {
         console.log(error);

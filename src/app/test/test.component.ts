@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from '../services/message.service'
+import { AuthService } from '../services/seguridad/auth.service';
 
 @Component({
   selector: 'app-test',
@@ -8,12 +9,14 @@ import { MessageService } from '../services/message.service'
 })
 export class TestComponent {
   username: string = '';
+  uName: string = '';
   constructor(
     private messageService: MessageService,
+   private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    //this.userName = this.authService.getUsername();
+   //this.uName = this.authService.getUsername();
     this.messageService.getMessage().subscribe({
       next: res => {
 
