@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
 import { MessageService } from './services/message.service';
@@ -27,6 +27,8 @@ export class AppComponent {
     disableAtHashCheck: true,
     showDebugInformation: true,
     requireHttps: false
+    //silentRefreshRedirectUri: `${window.location.origin}/km-front`,
+    //useSilentRefresh: true
   };
 
   constructor(
@@ -46,32 +48,61 @@ export class AppComponent {
     this.authService.logout();
   }
 
+  /* public getUsername(): string {
+        return this.oauthService.getIdentityClaims()[`preferred_username`];
+    } */
+
+  ngOnInit(): void {
+    this.roles = this.authService.getRoles();
+
+    this.messageService.getMessage().subscribe({
+      next: res => {
+
+        this.userName = res['text'];
+      },
+      error: error => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('Request complete');
+      }
+    });
+  }
+
   public configure(authConfig: AuthConfig): void {
     console.log('pasa a ver si entra al config')
     this.oauthService.configure(authConfig);
     this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setupAutomaticSilentRefresh();
-    this.oauthService.loadDiscoveryDocument().then(() => {
-      console.log('paso 5')
-      this.oauthService.tryLogin({
-        onTokenReceived: (info) => {
-          console.debug('state', info.state);
-        }
-      });
-    }).then(() => {
-      console.log('¿tiene los claims?');
-      console.log(this.oauthService.getAccessToken());
-      if (this.oauthService.getIdentityClaims()) {
-        this.isLogged = this.authService.getIsLogged();
-        this.isAdmin = this.authService.getIsAdmin();
-        this.userName = this.authService.getUsername();
-        this.roles = this.authService.getRoles();
-        this.messageService.sendMessage(this.userName);
-        ;
+    this.oauthService.loadDiscoveryDocument()
+    .then(() => this.oauthService.tryLogin())
+      .then(() => {
+        if (this.oauthService.getIdentityClaims()) {
+          this.isLogged = true;
+          this.isAdmin = true;
+         //this.userName = this.authService.getUsername();
+          this.userName =  this.oauthService.getIdentityClaims()[`preferred_username`];
+          this.roles = this.authService.getRoles();
+          this.messageService.getMessage().subscribe({
+      next: res => {
+
+        this.userName = res['text'];
+        console.log(res)
+      },
+      error: error => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('Request complete');
       }
     });
+          this.messageService.sendMessage(this.userName);
+          console.log(this.oauthService.getAccessToken());
+          console.log(this.oauthService.getIdentityClaims());
+          console.log(this.userName);
+         // console.log(this.messageService.sendMessage(this.userName));
+
+        }
+      });
   }
-
-
-
 }

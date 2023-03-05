@@ -5,7 +5,11 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Proyectos</mat-card-title>
-          <mat-card-subtitle>Seguimiento a los proyectos</mat-card-subtitle>
+          <mat-card-subtitle>Seguimiento a los proyectos </mat-card-subtitle>
+          <mat-card-title *ngIf="!username">No has iniciado sesión</mat-card-title>
+          <mat-card-title *ngIf="username">Hola {{username}} </mat-card-title>
+          <mat-card-title *ngIf="userName">Hola {{userName}} </mat-card-title>
+          <button *ngIf="!username" onClick="window.location.reload();">Presiona aqui despues de hacer login</button>
         </mat-card-header>
         <img mat-card-image
           src="https://media.ambito.com/p/86577f2cd56624e85dbdac0fd9b477e6/adjuntos/239/imagenes/037/557/0037557128/medioambientejpeg.jpeg"
@@ -28,7 +32,7 @@
         <img mat-card-image src="https://treehouse.wpenginepowered.com/wp-content/uploads/2013/12/files-and-folders.jpg"
           alt="Catálogos">
         <mat-card-content>
-         
+
         </mat-card-content>
         <mat-card-actions>
           <button mat-button [routerLink]="['catalogos']">Catálogos</button>
