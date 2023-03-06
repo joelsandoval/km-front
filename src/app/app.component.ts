@@ -47,20 +47,16 @@ export class AppComponent {
   }
 
   public configure(authConfig: AuthConfig): void {
-    console.log('pasa a ver si entra al config')
     this.oauthService.configure(authConfig);
     this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => {
-      console.log('paso 5')
       this.oauthService.tryLogin({
         onTokenReceived: (info) => {
           console.debug('state', info.state);
         }
       });
     }).then(() => {
-      console.log('¿tiene los claims?');
-      console.log(this.oauthService.getAccessToken());
       if (this.oauthService.getIdentityClaims()) {
         this.isLogged = this.authService.getIsLogged();
         this.isAdmin = this.authService.getIsAdmin();
