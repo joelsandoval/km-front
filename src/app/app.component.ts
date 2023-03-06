@@ -53,7 +53,7 @@ export class AppComponent {
     this.oauthService.loadDiscoveryDocument().then(() => {
       this.oauthService.tryLogin({
         onTokenReceived: (info) => {
-          console.debug('state', info.state);
+          console.log('state', info.state);
         }
       });
     }).then(() => {
@@ -63,7 +63,6 @@ export class AppComponent {
         this.userName = this.authService.getUsername();
         this.roles = this.authService.getRoles();
         this.messageService.sendMessage(this.userName);
-        ;
       }
     });
   }
