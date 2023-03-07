@@ -2,6 +2,7 @@ import { User } from './../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-userURL = 'http://localhost:8087/operacion/user/';
+
+userURL = environment.ApiConfig.rutaBase +  'user/';
 
   httpOptions = { headers: new HttpHeaders({'Content-Type' : 'application/json'})};
 
