@@ -1,5 +1,5 @@
-<h3  *ngIf="data.origen == 1">Nuevo documento en el expediente</h3>
-<h3  *ngIf="data.origen == 2">Carga archivos al expediente</h3>
+<h3 mat-dialog-title *ngIf="data.origen == 1">Nuevo documento en el expediente</h3>
+<h3 mat-dialog-title *ngIf="data.origen == 2">Carga archivos al expediente</h3>
 <hr/>
 <form id="singleUploadForm" name="singleUploadForm" action="/" method="POST" enctype="multipart/form-data">
     <mat-dialog-content class="mat-typography">

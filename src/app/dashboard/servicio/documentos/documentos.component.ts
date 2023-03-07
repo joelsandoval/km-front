@@ -103,7 +103,7 @@ export class DocumentosComponent implements OnInit {
     this.documento = new Archivo(this.data.servicio);
     const dialogNew = this.dialog.open(DocumentosAgregaComponent, {
       width: '700px',
-      height: '350px',
+      height: '400px',
       data: {
         cliente: this.data.cliente,
         proyecto: this.data.proyecto,
@@ -174,7 +174,7 @@ export class DocumentosComponent implements OnInit {
   nuevoExpediente(): void {
     const dialogNew = this.dialog.open(DocumentosAgregaComponent, {
       width: '700px',
-      height: '350px',
+      height: '400px',
       data: {
         cliente: this.data.cliente,
         proyecto: this.data.proyecto,

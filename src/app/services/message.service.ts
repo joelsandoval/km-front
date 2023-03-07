@@ -35,8 +35,6 @@ export class MessageService {
   private subject = new Subject<any>();
 
   public sendMessage(message: any): void {
-    console.log('manda el mensaje');
-    console.log(message);
     this.subject.next({text: message});
   }
 

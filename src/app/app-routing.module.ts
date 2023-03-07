@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { PrincipalGuard } from './services/guards/principal.guard';
 
 const routes: Routes = [
-
   {
     path: 'proyectos',
     loadChildren: () => import('./dashboard/proyectos/proyectos.module').then(mod => mod.ProyectosModule),
@@ -30,9 +29,8 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/catalogos/catalogos.module').then(mod => mod.CatalogosModule),
     data: { preload: true },
   },
-  //{ path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  //{ path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

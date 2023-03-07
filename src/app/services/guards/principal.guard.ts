@@ -15,9 +15,7 @@ export class PrincipalGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const requiredRoles = next.data['requiredRoles'];
-    console.log(requiredRoles);
     if (!this.authService.getIsLogged()) {
-      console.log('no está logueado, según esto');
       this.router.navigate(['']);
       return false;
     }
@@ -25,7 +23,6 @@ export class PrincipalGuard implements CanActivate {
     const realRol = this.authService.getIsAdmin() ? 'app-admin' : 'app-user';
     
     if (requiredRoles.indexOf(realRol) === -1) {
-      console.log('aquí no se que pasa');
       this.router.navigate(['']);
       return false;
     }

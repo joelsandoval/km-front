@@ -23,7 +23,6 @@ export class AuthService {
     }
 
     public logout(): void {
-        console.log('entro al servicio de logau')
         this.oauthService.logOut();
     }
 
