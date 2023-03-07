@@ -8,6 +8,10 @@
   <button mat-icon-button aria-label="Favorito" class="blanco" *ngIf="isLogged">
     <mat-icon>notifications</mat-icon>
   </button>
+  <button mat-icon-button aria-label="Compartir" class="blanco" routerLink="/signup" matTooltip="Regístrate"
+    *ngIf="!isLogged">
+    <mat-icon>assignment_ind</mat-icon>
+  </button>
   <button mat-icon-button aria-label="Compartir" class="blanco" (click)="login()" matTooltip="Iniciar sesión"
     *ngIf="!isLogged">
     <mat-icon>power_settings_new</mat-icon>

@@ -5,6 +5,7 @@ import { CatalogosComponent } from './catalogos.component';
 import { PersonasComponent } from './personas/personas.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'actividades',
         component: ActividadesComponent,
+      },
+      {
+        path: 'usuarios',
+        component: UsuariosComponent,
       },
       {
         path: '',

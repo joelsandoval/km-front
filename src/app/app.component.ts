@@ -28,7 +28,7 @@ export class AppComponent {
     responseType: 'code',
     scope: 'openid profile email offline_access',
     disableAtHashCheck: true,
-    showDebugInformation: false,
+    showDebugInformation: true,
     requireHttps: false
     //silentRefreshRedirectUri: `${window.location.origin}/km-front`,
     //useSilentRefresh: true
