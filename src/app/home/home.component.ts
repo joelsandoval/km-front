@@ -5,6 +5,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Credenciales } from '../model/seguridad';
 
 @Component({
   selector: 'app-home',
@@ -16,17 +17,27 @@ export class HomeComponent implements OnInit {
   username: string = '';
   userName: string = '';
   rol: string = '';
+  claims: any;
+  credenciales: Credenciales = new Credenciales('','',[]);
 
   constructor(
     private authService: AuthService,
     private messageService: MessageService,
     private messageService2: MessageService,
      private oauthService: OAuthService
-  ) { }
+  ) { 
+    this.messageService.getMessage().subscribe(
+      res => {
+        console.log('se está recibiendo');
+        console.log(res);
+        this.credenciales = res['text'];
+      }
+    );
+  }
 
   ngOnInit(): void {
     //this.roles = this.authService.getRoles();
-    //this.userName = this.authService.getUsername();
+    this.userName = this.authService.getUsername();
     //this.userName =  this.oauthService.getIdentityClaims()[`preferred_username`];
   /*   this.messageService2.getMessage().subscribe({
       next: res => {
@@ -41,19 +52,6 @@ export class HomeComponent implements OnInit {
         console.log('Request complete');
       }
     }); */
-
-    this.messageService.getMessage().subscribe({
-      next: res => {
-
-        this.rol = res['text'];
-      },
-      error: error => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log('Request complete');
-      }
-    });
 
   }
 }

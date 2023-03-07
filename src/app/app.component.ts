@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
+import { Credenciales } from './model/seguridad';
 import { MessageService } from './services/message.service';
 import { AuthService } from './services/seguridad/auth.service';
 
@@ -14,6 +15,7 @@ export class AppComponent {
 
   isLogged: boolean = false;
   userName: string = '';
+  nombre: string = '';
   isAdmin: boolean = false;
   rol: string = '';
   roles: string[] = [];
@@ -63,14 +65,15 @@ export class AppComponent {
         if (this.oauthService.getIdentityClaims()) {
           this.isLogged = true;
           this.isAdmin = this.roles.includes("app-admin");
-          //this.userName = this.authService.getUsername();
           this.userName = this.oauthService.getIdentityClaims()[`preferred_username`];
+          this.nombre = this.oauthService.getIdentityClaims()[`name`];
           this.roles = this.authService.getRoles();
           if (this.roles.includes("app-admin")) {
             this.rol = "app-admin";
           } else {
             this.rol = "app-user";
           }
+          let credenciales: Credenciales = new Credenciales(this.userName, this.nombre, this.roles);
           /* this.messageService2.getMessage().subscribe({
             next: res => {
               this.userName = res['text'];
@@ -102,7 +105,7 @@ export class AppComponent {
           console.log(this.userName);
           console.log(this.roles.includes("app-admin"));
           // console.log(this.oauthService.initLoginFlow());
-          this.messageService.sendMessage(this.rol);
+          this.messageService.sendMessage(credenciales);
 
         }
       });
