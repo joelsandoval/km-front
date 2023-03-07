@@ -1,11 +1,12 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
+  <div class="row"  *ngIf="credenciales">
     <div class="col col-md-3">
-      <mat-card class="example-card">
+      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-user')">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Proyectos</mat-card-title>
-          <mat-card-subtitle>Seguimiento a los proyectos</mat-card-subtitle>
+          <mat-card-subtitle>Seguimiento a los proyectos </mat-card-subtitle>
+
         </mat-card-header>
         <img mat-card-image
           src="https://media.ambito.com/p/86577f2cd56624e85dbdac0fd9b477e6/adjuntos/239/imagenes/037/557/0037557128/medioambientejpeg.jpeg"
@@ -19,7 +20,7 @@
       </mat-card>
     </div>
     <div class="col col-md-3">
-      <mat-card class="example-card" *ngIf="roles.includes('app-admin')">
+      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-admin')">
         <mat-card-header>
           <div mat-card-avatar class="header-image-servicios"></div>
           <mat-card-title>Catálogos</mat-card-title>
@@ -28,13 +29,20 @@
         <img mat-card-image src="https://treehouse.wpenginepowered.com/wp-content/uploads/2013/12/files-and-folders.jpg"
           alt="Catálogos">
         <mat-card-content>
-         
+
         </mat-card-content>
         <mat-card-actions>
           <button mat-button [routerLink]="['catalogos']">Catálogos</button>
           <button mat-button>Más...</button>
         </mat-card-actions>
       </mat-card>
+    </div>
+  </div>
+  <div class="row"  *ngIf="!isLogged">
+    <div class="jumbotron">
+      <h1 class="display-4">Inicia sesión</h1>
+      <p class="lead">En este momento no puedes ingresar al sistema, es necesario iniciar sesión haciendo clic en el botón de la esquina superior derecha</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button" (click)="login()">Iniciar sesión</a>
     </div>
   </div>
 </div>

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/seguridad/auth.service';
+import { MessageService } from '../services/message.service';
+import { OAuthService } from 'angular-oauth2-oidc';
+
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Credenciales } from '../model/seguridad';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +13,36 @@ import { AuthService } from '../services/seguridad/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  roles: string[] =[];
-  constructor(
-    private authService: AuthService
-  ) { }
+  roles: string[] = [];
+  username: string = '';
+  userName: string = '';
+  rol: string = '';
+  claims: any;
+  credenciales: Credenciales = new Credenciales('','',[]);
+  isLogged: boolean = false;
 
-  ngOnInit(): void {
-    this.roles = this.authService.getRoles();
+  constructor(
+    private authService: AuthService,
+    private messageService: MessageService,
+  ) { 
+    this.messageService.getMessage().subscribe(
+      res => {
+        console.log('se está recibiendo');
+        console.log(res);
+        this.credenciales = res['text'];
+        this.isLogged = this.authService.getIsLogged();
+      }
+    );
   }
 
+  ngOnInit(): void {    
+    this.credenciales = this.authService.getCredenciales();
+    this.isLogged = this.authService.getIsLogged();
+  }
+
+  login() {
+    this.authService.login();
+  }
   
-
-
 }
+

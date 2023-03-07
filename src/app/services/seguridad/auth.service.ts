@@ -1,6 +1,7 @@
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Injectable } from '@angular/core';
+import { Credenciales } from 'src/app/model/seguridad';
 
 @Injectable({
     providedIn: 'root'
@@ -45,6 +46,13 @@ export class AuthService {
         const payloadDecodedJson = atob(payload);
         const payloadDecoded = JSON.parse(payloadDecodedJson);
         return payloadDecoded.realm_access.roles;
+    }
+
+    public getCredenciales(): Credenciales {
+        let nombre = this.oauthService.getIdentityClaims()[`name`];
+        let user = this.oauthService.getIdentityClaims()[`preferred_username`];
+        let roles = this.getRoles();
+        return new Credenciales(nombre, user, roles);
     }
 
 }
