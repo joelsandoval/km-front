@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
 import { PrincipalGuard } from './services/guards/principal.guard';
 
 const routes: Routes = [
@@ -30,9 +31,8 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/catalogos/catalogos.module').then(mod => mod.CatalogosModule),
     data: { preload: true },
   },
-  //{ path: 'home', component: HomeComponent },
-  { path: '', component: HomeComponent },
-  //{ path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: 'signup', component: SignupComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
