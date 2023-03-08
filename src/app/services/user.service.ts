@@ -1,8 +1,11 @@
 import { User } from './../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { catchError, tap } from 'rxjs/operators';
+import { MessageService } from './message.service';
+
 
 
 @Injectable({
@@ -11,13 +14,35 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
 
-userURL = environment.ApiConfig.rutaBase +  'user/';
+  private userURL = environment.ApiConfig.rutaBase + 'users/';
+  private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-  httpOptions = { headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+  constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
-  constructor(private httpClient: HttpClient) { }
+  getUsers(): Observable<User[]> {
+    const docsUrl = `${this.userURL}users`;
+    return this.httpClient.get<User[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<User[]>('No se pudieron recuperar los documentos', [])));
+  }
 
   public create(user: User): Observable<any> {
     return this.httpClient.post<any>(this.userURL + 'create', user, this.httpOptions);
   }
+
+  private log(message: string) {
+    this.messageService.add(`PrioritariosService: ${message}`);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      console.error(error); // log to console instead
+
+      this.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    };
+  }
+
 }
