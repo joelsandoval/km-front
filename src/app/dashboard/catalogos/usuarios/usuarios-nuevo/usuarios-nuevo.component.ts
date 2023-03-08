@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PersonasMorales } from 'src/app/model/personas';
-import { CatalogosService } from 'src/app/services/catalogos.service';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
 
@@ -13,13 +13,18 @@ import { Router } from '@angular/router';
 })
 export class UsuariosNuevoComponent implements OnInit {
 
-  cliente: PersonasMorales = new PersonasMorales();
+  username: string ='';
+   email: string ='';
+   firstName: string ='';
+   lastName: string ='';
+   password: string ='';
+  usuario: User = new User(this.username, this.email, this.firstName, this.lastName, this.password);
 
 
   constructor(
     public dialogRef: MatDialogRef<UsuariosNuevoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number,
-    private serviceCatalogo: CatalogosService,
+    private serviceUser: UserService,
     private _snackBar: MatSnackBar,
     private router: Router
     ) { }
@@ -27,6 +32,23 @@ export class UsuariosNuevoComponent implements OnInit {
   ngOnInit() {
   }
 
- 
+  guardaUser(){
+    this.usuario.username= this.usuario.username;
+    this.usuario.firstName=this.usuario.firstName;
+    this.usuario.lastName=this.usuario.lastName;
+    this.usuario.email=this.usuario.email;
+    this.usuario.password=this.usuario.password;
+    this.serviceUser.create(this.usuario).subscribe(
+      res => {
+        this.openSnackBar('El usuario se ha guardado con éxito', 'ok');
+        this.router.navigate(['catalogos']);
+      }
+    )
+  }
+
+  openSnackBar(message: string, action: string) {
+  this._snackBar.open(message, action);
+}
+
 
 }

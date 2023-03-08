@@ -14,13 +14,13 @@ import { MessageService } from './message.service';
 export class UserService {
 
 
-  private userURL = environment.ApiConfig.rutaBase + 'users/';
+  private userURL = environment.ApiConfig.rutaBase + 'seguridad/users/';
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
   getUsers(): Observable<User[]> {
-    const docsUrl = `${this.userURL}users`;
+    const docsUrl = `${this.userURL}`;
     return this.httpClient.get<User[]>(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<User[]>('No se pudieron recuperar los documentos', [])));
