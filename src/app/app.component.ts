@@ -58,7 +58,6 @@ export class AppComponent {
     this.oauthService.loadDiscoveryDocument()
     .then(() => this.oauthService.tryLogin())
     .then(() => {
-      console.log('revisa si son las claims');
       if (this.oauthService.getIdentityClaims()) {      
         this.isLogged = this.authService.getIsLogged();
         this.roles = this.authService.getRoles();
@@ -72,10 +71,6 @@ export class AppComponent {
           this.rol = "app-user";
         }
         let credenciales: Credenciales = new Credenciales(this.userName, this.nombre, this.roles);
-        console.log(credenciales);
-        console.log(this.oauthService.getIdentityClaims());
-        console.log(this.userName);
-        console.log(this.roles.includes("app-admin"));
         this.messageService.sendMessage(credenciales);
       }
     });

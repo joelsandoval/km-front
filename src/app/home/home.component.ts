@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/seguridad/auth.service';
 import { MessageService } from '../services/message.service';
-import { OAuthService } from 'angular-oauth2-oidc';
-
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Credenciales } from '../model/seguridad';
 
 @Component({
@@ -27,8 +23,6 @@ export class HomeComponent implements OnInit {
   ) { 
     this.messageService.getMessage().subscribe(
       res => {
-        console.log('se está recibiendo');
-        console.log(res);
         this.credenciales = res['text'];
         this.isLogged = this.authService.getIsLogged();
       }
