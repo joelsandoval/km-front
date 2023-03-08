@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UsuariosNuevoComponent } from './usuarios-nuevo/usuarios-nuevo.component';

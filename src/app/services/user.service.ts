@@ -15,6 +15,7 @@ export class UserService {
 
 
   private userURL = environment.ApiConfig.rutaBase + 'seguridad/users/';
+  private createUserURL = environment.ApiConfig.rutaBase + 'user/';
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private httpClient: HttpClient, private messageService: MessageService) { }
@@ -27,7 +28,7 @@ export class UserService {
   }
 
   public create(user: User): Observable<any> {
-    return this.httpClient.post<any>(this.userURL + 'create', user, this.httpOptions);
+    return this.httpClient.post<any>(this.createUserURL + 'create', user, this.httpOptions);
   }
 
   private log(message: string) {
