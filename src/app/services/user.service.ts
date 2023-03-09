@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-userURL = 'http://localhost:8087/operacion/user/';
+  userURL = 'http://localhost:8087/operacion/user/';
 
-  httpOptions = { headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private httpClient: HttpClient) { }
 
