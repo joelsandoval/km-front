@@ -59,7 +59,7 @@ export class UsuariosComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(UsuariosNuevoComponent, {
       width: '700px',
-      height: '400px',
+      height: '600px',
       data: {
         ds: this.dataSource
       },

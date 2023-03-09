@@ -20,17 +20,18 @@
                     <table aria-label="Usuarios" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Usuario</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let res of usuarios" (click)="selectUser(res)"
                                 [ngClass]="{seleccionado: seleccionado == res}" style="cursor: pointer;">
-                                <td>{{ res.username | uppercase }}</td>
-                                <td>
-                                </td>
+                                <td>{{ res.firstName+ " " + res.lastName| uppercase }}</td>
+                                <td>{{ res.email | uppercase }}</td>
+                                <td>{{ res.username }}</td>
+
                             </tr>
                         </tbody>
                     </table>
