@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-   username: string ='';
-   email: string ='';
-   firstName: string ='';
-   lastName: string ='';
-   password: string ='';
+   username!: string;
+   email!: string;
+   firstName!: string;
+   lastName!: string;
+   password!: string;
+   rol!: string;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit {
   }
 
   onRegister(): void {
-    const user = new User(this.username, this.email, this.firstName, this.lastName, this.password);
+    const user = new User();
     this.userService.create(user).subscribe(
       data => {
         console.log(data);

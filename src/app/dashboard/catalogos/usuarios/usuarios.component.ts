@@ -15,13 +15,14 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class UsuariosComponent implements OnInit {
   usuarios: User[] = [];
-  username: string = '';
-  email: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  password: string = '';
+  username!: string;
+  email!: string;
+  firstName!: string;
+  lastName!: string;
+  password!: string;
+  rol!: string;
 
-  seleccionado: User = new User(this.username, this.email, this.firstName, this.lastName, this.password);
+  seleccionado: User = new User();
   dataSource!: MatTableDataSource<User>;
   pageSize = 50;
 

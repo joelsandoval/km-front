@@ -1,4 +1,5 @@
 import { User } from './../model/user';
+import { Roles } from '../model/roles';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -14,6 +15,7 @@ import { MessageService } from './message.service';
 export class UserService {
 
   private userURL = environment.ApiConfig.rutaBase + 'seguridad/users/';
+  private rolesURL = environment.ApiConfig.rutaBase + 'seguridad/roles/';
   private createUserURL = environment.ApiConfig.rutaBase + 'user/';
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -24,6 +26,13 @@ export class UserService {
     return this.httpClient.get<User[]>(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<User[]>('No se pudieron recuperar los documentos', [])));
+  }
+
+  getRoles(): Observable<Roles[]> {
+    const docsUrl = `${this.rolesURL}`;
+    return this.httpClient.get<Roles[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<Roles[]>('No se pudieron recuperar los documentos', [])));
   }
 
   public create(user: User): Observable<any> {

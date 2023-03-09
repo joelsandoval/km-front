@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/model/user';
+import { Roles } from 'src/app//model/roles';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
@@ -13,12 +14,10 @@ import { Router } from '@angular/router';
 })
 export class UsuariosNuevoComponent implements OnInit {
 
-  username: string = '';
-  email: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  password: string = '';
-  usuario: User = new User(this.username, this.email, this.firstName, this.lastName, this.password);
+
+  usuario: User = new User();
+  usuarioRoles : Roles[] = [];
+  selectedValue: string = '';
 
 
   constructor(
@@ -31,6 +30,11 @@ export class UsuariosNuevoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.serviceUser.getRoles().subscribe(res => {
+        this.usuarioRoles = res;
+        console.log(res);
+      });
+
   }
 
   guardaUser() {
