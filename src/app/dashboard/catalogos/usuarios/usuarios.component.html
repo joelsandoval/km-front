@@ -1,4 +1,4 @@
-<!-- <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col col-md-6">
             <br />
@@ -7,17 +7,17 @@
                     <mat-card-title>
                         <div class="row">
                             <div class="col col-md-9">
-                                Catálogo de Clientes
+                                Catálogo de Usuarios
                             </div>
                             <div class="col col-md-2">
                                 <button mat-icon-button aria-label="Nueva" class="float-right"
-                                    matTooltip="Nuevo Cliente" (click)="openDialog()">
+                                    matTooltip="Nuevo Usuario"  (click)="openDialog()">
                                     <mat-icon>add_circle_outline</mat-icon>
                                 </button>
                             </div>
                         </div>
                     </mat-card-title>
-                    <table aria-label="Clientes" class="table table-striped table-hover">
+                    <table aria-label="Usuarios" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th></th>
@@ -26,9 +26,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let clie of clientes" (click)="selectCliente(clie)"
-                                [ngClass]="{seleccionado: seleccionado == clie}" style="cursor: pointer;">
-                                <td>{{ clie.razon | uppercase }}</td>
+                            <tr *ngFor="let res of usuarios" (click)="selectUser(res)"
+                                [ngClass]="{seleccionado: seleccionado == res}" style="cursor: pointer;">
+                                <td>{{ res.username | uppercase }}</td>
                                 <td>
                                 </td>
                             </tr>
@@ -44,36 +44,37 @@
         <div class="col col-md-6">
             <br />
             <br />
-            <mat-card style="width: 100%;" *ngIf="seleccionado.id > 0">
+            <mat-card style="width: 100%;" *ngIf="seleccionado">
                 <mat-card-header>
-                    <mat-card-title>{{ seleccionado.razon }}</mat-card-title>
+                    <mat-card-title>{{ seleccionado.username }}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
                         <mat-form-field appearance="outline"  style="display: block;" class="roboto">
-                            <mat-label>Razón Social</mat-label>
-                            <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.razon">
+                            <mat-label>Nombre Usuario</mat-label>
+                            <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.username">
                         </mat-form-field>
                     </div>
                     <div class="row">
                         <mat-form-field appearance="outline"  style="display: block; width: 50%;">
-                            <mat-label>RFC</mat-label>
-                            <input matInput name="rfc" id="rfc" [(ngModel)]="seleccionado.rfc">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput name="firstName" id="firstName" [(ngModel)]="seleccionado.firstName">
                         </mat-form-field>
                     </div>
                     <div class="row">
                         <mat-form-field appearance="outline"  style="display: block; width: 50%;">
-                            <mat-label>nombre_corto</mat-label>
-                            <input matInput name="nombre_corto" id="nombre_corto"
-                                [(ngModel)]="seleccionado.nombre_corto">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput name="lastName" id="lastName"
+                                [(ngModel)]="seleccionado.lastName">
                         </mat-form-field>
                     </div>
+                    <br />
                     <div class="row">
-                        <div class="col col-md-12">
-                            <button mat-raised-button color="warn" class="float-left">Eliminar cliente</button>
-                            <button mat-button cdkFocusInitial color="primary" class="float-right"
-                                (click)="guardaCli(seleccionado);">Guardar</button>
-                        </div>
+                        <mat-form-field appearance="outline"  style="display: block; width: 50%;">
+                            <mat-label>e-mail</mat-label>
+                            <input matInput name="email" id="email"
+                                [(ngModel)]="seleccionado.email" >
+                        </mat-form-field>
                     </div>
                     <br />
                 </mat-card-content>
@@ -82,4 +83,4 @@
 
         </div>
     </div>
-</div> -->
+</div>

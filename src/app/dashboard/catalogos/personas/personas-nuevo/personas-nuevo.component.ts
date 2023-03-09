@@ -34,13 +34,13 @@ export class PersonasNuevoComponent implements OnInit {
     this.cliente.principal = 1;
     this.cliente.tipo = 3;
     this.serviceCatalogo.saveCliente(this.cliente).subscribe(
-      cli => { 
+      cli => {
         this.openSnackBar('El cliente se ha guardado con éxito', 'ok');
         this.router.navigate(['../personas']);
       }
     )
-  
-   
+
+
 
  }
 

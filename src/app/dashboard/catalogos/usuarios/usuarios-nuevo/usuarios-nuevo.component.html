@@ -1,22 +1,30 @@
-<!-- <h2 mat-dialog-title>Nuevo Cliente</h2>
+<h2 mat-dialog-title>Nuevo Usuario</h2>
 <mat-dialog-content class="mat-typography">
   <form class="example-form">
     <mat-form-field class="example-full-width"  appearance="fill">
-      <mat-label>Nombre del Cliente</mat-label>
-      <input matInput [(ngModel)]="cliente.razon" name="razon" placeholder="Escriba la razón social del cliente">
+      <mat-label>Usuario(Alias)</mat-label>
+      <input matInput [(ngModel)]="usuario.username" name="username" placeholder="Escriba el nombre del usuario">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width"  appearance="fill">
-      <mat-label>RFC</mat-label>
-      <input matInput [(ngModel)]="cliente.rfc" name="razon" placeholder="Escriba el RFC del cliente">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="usuario.firstName" name="firstName" placeholder="Escriba el nombre de la persona">
     </mat-form-field>
     <mat-form-field class="example-full-width"  appearance="fill">
-      <mat-label>Nombre Corto</mat-label>
-      <input matInput [(ngModel)]="cliente.nombre_corto" name="razon" placeholder="Escriba un nombre corto para el cliente">
+      <mat-label>Apellidos</mat-label>
+      <input matInput [(ngModel)]="usuario.lastName" name="lastName" placeholder="Escriba los apellidos de la persona">
+    </mat-form-field>
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>e-mail</mat-label>
+      <input matInput [(ngModel)]="usuario.email" name="email" placeholder="Escriba correo electrónico">
+    </mat-form-field>
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [(ngModel)]="usuario.password" name="password" placeholder="Escriba el nombre de la persona">
     </mat-form-field>
   </form>
 </mat-dialog-content>
 <div mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-button  cdkFocusInitial  color="primary" (click)="guardaCli();">Guardar</button>
-</div> -->
+  <button mat-button  cdkFocusInitial  color="primary" (click)="guardaUser();">Guardar</button>
+</div>

@@ -31,6 +31,7 @@ import { PersonasNuevoComponent } from './personas/personas-nuevo/personas-nuevo
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosNuevoComponent } from './usuarios/usuarios-nuevo/usuarios-nuevo.component';
 
 
 
@@ -53,7 +54,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     ServiciosActividadesAddComponent,
     PersonasNuevoComponent,
     UsuariosComponent,
-  
+    UsuariosNuevoComponent,
+
   ],
   imports: [
     CommonModule,
