@@ -1,12 +1,13 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from 'src/app/services/seguridad/user.service';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { User } from 'src/app/model/user';
+import { User } from 'src/app/model/seguridad/user';
 import { UsuariosNuevoComponent } from './usuarios-nuevo/usuarios-nuevo.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserRepresentation } from 'src/app/model/seguridad/seguridad';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  usuarios: User[] = [];
+  usuarios: UserRepresentation[] = [];
   username!: string;
   email!: string;
   firstName!: string;
@@ -22,7 +23,7 @@ export class UsuariosComponent implements OnInit {
   password!: string;
   rol!: string;
 
-  seleccionado: User = new User();
+  seleccionado: UserRepresentation = new  UserRepresentation('','','','',[],[]);
   dataSource!: MatTableDataSource<User>;
   pageSize = 50;
 
@@ -35,7 +36,6 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //let tipo: number = 3;
     this.service.getUsers().subscribe(
       res => {
         this.usuarios = res;
@@ -44,7 +44,7 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  selectUser(value: User) {
+  selectUser(value: UserRepresentation) {
     this.seleccionado = value;
   }
 
@@ -64,6 +64,14 @@ export class UsuariosComponent implements OnInit {
       data: {
         ds: this.dataSource
       },
+    });
+
+    dialogRef.afterClosed().subscribe((result : UserRepresentation) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.usuarios.push(result);
+      };
     });
 
   }

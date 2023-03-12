@@ -1,7 +1,7 @@
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Injectable } from '@angular/core';
-import { Credenciales } from 'src/app/model/seguridad';
+import { Credenciales } from 'src/app/model/seguridad/seguridad';
 
 @Injectable({
     providedIn: 'root'

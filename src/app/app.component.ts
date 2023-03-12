@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
-import { Credenciales } from './model/seguridad';
+import { Credenciales } from './model/seguridad/seguridad';
 import { MessageService } from './services/message.service';
 import { AuthService } from './services/seguridad/auth.service';
 

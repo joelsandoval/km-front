@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/seguridad/auth.service';
 import { MessageService } from '../services/message.service';
-import { Credenciales } from '../model/seguridad';
+import { Credenciales } from '../model/seguridad/seguridad';
 
 @Component({
   selector: 'app-home',

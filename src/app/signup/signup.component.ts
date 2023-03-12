@@ -1,7 +1,8 @@
-import { User } from './../model/user';
-import { UserService } from './../services/user.service';
+import { User } from './../model/seguridad/user';
+import { UserService } from '../services/seguridad/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserRepresentation } from '../model/seguridad/seguridad';
 
 @Component({
   selector: 'app-signup',
@@ -10,20 +11,23 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-   username!: string;
-   email!: string;
-   firstName!: string;
-   lastName!: string;
-   password!: string;
-   rol!: string;
+  username!: string;
+  email!: string;
+  firstName!: string;
+  lastName!: string;
+  password!: string;
+  rol!: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService, 
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
 
   onRegister(): void {
-    const user = new User();
+    const user = new  UserRepresentation('','','','',[],[]);
     this.userService.create(user).subscribe(
       data => {
         console.log(data);

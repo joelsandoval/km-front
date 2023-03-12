@@ -1,10 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from 'src/app/model/user';
-import { Roles } from 'src/app//model/roles';
-import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/model/seguridad/user';
+import { Roles } from 'src/app/model/seguridad/roles';
+import { UserService } from 'src/app/services/seguridad/user.service';
 import { Router } from '@angular/router';
+import { CredentialRepresentation, UserRepresentation } from 'src/app/model/seguridad/seguridad';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { Router } from '@angular/router';
 export class UsuariosNuevoComponent implements OnInit {
 
 
-  usuario: User = new User();
+  usuario: UserRepresentation = new UserRepresentation('','','','',[],[]);
   usuarioRoles : Roles[] = [];
   selectedValue: string = '';
-
+  password: string = '';
+  rolesSeleccionados : Roles[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<UsuariosNuevoComponent>,
@@ -38,15 +40,22 @@ export class UsuariosNuevoComponent implements OnInit {
   }
 
   guardaUser() {
-    this.usuario.username = this.usuario.username;
-    this.usuario.firstName = this.usuario.firstName;
-    this.usuario.lastName = this.usuario.lastName;
-    this.usuario.email = this.usuario.email;
-    this.usuario.password = this.usuario.password;
+    let credens: CredentialRepresentation = new CredentialRepresentation();
+    let roles: string[] = [];
+
+    credens.value = this.password;
+    this.usuario.credentials.push(credens);
+
+    this.rolesSeleccionados.forEach(
+     function (value) { roles.push(value.name);} 
+    )
+    this.usuario.realmRoles = roles;  
+
     this.serviceUser.create(this.usuario).subscribe(
-      res => {
+      (res: UserRepresentation) => {
         this.openSnackBar('El usuario se ha guardado con éxito', 'ok');
-        this.router.navigate(['../usuarios']);
+        this.dialogRef.close(res);
+        console.log(res);
       }
     )
   }
@@ -55,5 +64,10 @@ export class UsuariosNuevoComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
+  consola() {
+    console.log(this.usuario);
+    console.log(this.rolesSeleccionados);
+    console.log(this.password);
+  }
 
 }
