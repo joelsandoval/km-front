@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row"  *ngIf="credenciales">
     <div class="col col-md-3">
-      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-user')">
+      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-socio') || credenciales.roles.includes('app-biologo') || credenciales.roles.includes('app-user')">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Proyectos</mat-card-title>
@@ -20,7 +20,7 @@
       </mat-card>
     </div>
     <div class="col col-md-3">
-      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-admin')">
+      <mat-card class="example-card" *ngIf="credenciales.roles.includes('app-admin') || credenciales.roles.includes('app-socio')">
         <mat-card-header>
           <div mat-card-avatar class="header-image-servicios"></div>
           <mat-card-title>Catálogos</mat-card-title>

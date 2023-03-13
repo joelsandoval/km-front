@@ -71,4 +71,14 @@ export class ServiciosComponent implements OnInit {
     );
   }
 
+  abreServicio(seleccionado: ServicioF){
+    console.log(seleccionado);
+    this.router.navigate([this.ruta, seleccionado.id], {
+      queryParams: {
+        servicio: btoa(JSON.stringify(seleccionado)),
+      },
+    });
+  }
+
+
 }

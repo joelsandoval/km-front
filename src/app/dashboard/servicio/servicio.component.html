@@ -1,10 +1,16 @@
 <mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;">
   <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
-    <mat-list *ngIf="data">
+    <mat-list *ngIf="servicio">
       <mat-list-item>
-        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', data.servicio, data.proyecto]"
+        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', servicio.servicio, servicio.proyecto]"
           matTooltip="Datos generales">
           <mat-icon>article</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button aria-label="Documentos" routerLink="" (click)="documentos()" 
+          matTooltip="Documentos">
+          <mat-icon>folder_copy</mat-icon>
         </button>
       </mat-list-item>
       <mat-list-item>
@@ -20,7 +26,7 @@
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['../../../proyecto', data.proyecto]" matTooltip="Regresar">
+        <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['../../proyecto', servicio.proyecto]" matTooltip="Regresar">
           <mat-icon>arrow_back</mat-icon>
         </button>
       </mat-list-item>

@@ -19,8 +19,6 @@ export class ProyectoComponent implements OnInit {
     this.route.paramMap.subscribe(
       (params) => {
         this.proyecto = +params.get('id')!;
-        console.log('proyecto');
-        console.log(this.proyecto);
       }
     )
   }

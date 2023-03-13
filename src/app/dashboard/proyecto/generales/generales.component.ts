@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Proyecto, ProyectoF } from 'src/app/model/proyecto';
-import { environment } from 'src/environments/environment';
+import { ProyectoF } from 'src/app/model/proyecto';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
-import * as global from '../../../model/global';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
 @Component({
@@ -31,8 +29,6 @@ export class GeneralesComponent implements OnInit {
         this.servicioP.getProyecto(this.id).subscribe(
           proyecto => {
             this.proyecto = proyecto;
-            console.log('generales');
-            console.log(this.proyecto);
           }
         )
       }

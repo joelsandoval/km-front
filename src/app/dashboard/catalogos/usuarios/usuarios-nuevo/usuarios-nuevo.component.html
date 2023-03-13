@@ -14,7 +14,7 @@
       <mat-label>Apellidos</mat-label>
       <input matInput [(ngModel)]="usuario.lastName" name="lastName" placeholder="Escriba los apellidos de la persona">
     </mat-form-field>
-    <mat-form-field class="example-full-width"  appearance="fill">
+    <mat-form-field class="example-full-width"  appearance="fill" type="email">
       <mat-label>e-mail</mat-label>
       <input matInput [(ngModel)]="usuario.email" name="email" placeholder="Escriba correo electrónico">
     </mat-form-field>
@@ -26,7 +26,7 @@
       <mat-label>Rol</mat-label>
       <mat-select [(ngModel)]="rolesSeleccionados" name="name" multiple>
         <mat-option *ngFor="let item of usuarioRoles" [value]="item">
-          {{ item.name | uppercase}}
+          {{ item.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>

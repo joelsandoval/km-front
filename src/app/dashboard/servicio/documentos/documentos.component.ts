@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/model/archivos';
 import { ExpedienteServicioCatF, ExpedienteServicioF } from 'src/app/model/expediente';
 import { FisicaF } from 'src/app/model/personas';
-import { DataServicio, ServicioF } from 'src/app/model/proyecto';
+import { ServicioF } from 'src/app/model/proyecto';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -36,9 +36,9 @@ export interface Categos {
   styleUrls: ['./documentos.component.css']
 })
 export class DocumentosComponent implements OnInit {
-  @Input() data!: DataServicio;
-  @Output() documentoCambia = new EventEmitter<ExpedienteServicioF>();
-
+  //@Input() ;
+  //@Output() documentoCambia = new EventEmitter<ExpedienteServicioF>();
+  servicio: ServicioF = new ServicioF();
   documento$: Archivo[] = [];
   documento: Archivo = new Archivo(0);
   me!: number;
@@ -74,15 +74,13 @@ export class DocumentosComponent implements OnInit {
   ngOnInit() {
 
     this.catego = 1;
-    this.serviceP.getProyectoServicio(this.data.servicio).subscribe(
-      servi => {
-        this.servicioF = servi;
-        this.serviceEx.getExpedienteCatServicio(this.data.servicio).subscribe(
+    this.route.queryParams.subscribe(
+      (params) => {
+        this.servicio = JSON.parse(params['servicio']);
+        this.serviceEx.getExpedienteCatServicio(this.servicio.id).subscribe(
           exp => {
             this.expedienteCat = exp;
             this.seleccionado = this.expedienteCat[0].documentos[0];
-            //this.filesNumber = this.expedienteCat.reduce((sum, current) => sum + current.archivos, 0);
-            //this.filesTooltip = `Descargar ${this.filesNumber} archivos`;
             this.service.getPorExpediente(this.seleccionado.id).subscribe(
               archis => this.archivos = archis
             )
@@ -90,7 +88,6 @@ export class DocumentosComponent implements OnInit {
         )
       }
     )
-
   }
 
 
@@ -100,14 +97,14 @@ export class DocumentosComponent implements OnInit {
 
   nuevoDocumento(exp: ExpedienteServicioF): void {
     const me = 0; //this.auth.getUserId();
-    this.documento = new Archivo(this.data.servicio);
+    this.documento = new Archivo(this.servicio.id);
     const dialogNew = this.dialog.open(DocumentosAgregaComponent, {
       width: '700px',
       height: '400px',
       data: {
-        cliente: this.data.cliente,
-        proyecto: this.data.proyecto,
-        servicio: this.data.servicio,
+        cliente: 1,
+        proyecto: this.servicio.proyecto,
+        servicio: this.servicio.servicio,
         user: me,
         catego: null,
         persona: 1,
@@ -124,7 +121,7 @@ export class DocumentosComponent implements OnInit {
   }
 
   descargaTodos() {
-    this.service.getPorExpedienteTT(this.data.servicio, this.catego).subscribe(
+    this.service.getPorExpedienteTT(this.servicio.id, this.catego).subscribe(
       archivos => {
         archivos.forEach(
           archivo => {
@@ -176,9 +173,9 @@ export class DocumentosComponent implements OnInit {
       width: '700px',
       height: '400px',
       data: {
-        cliente: this.data.cliente,
-        proyecto: this.data.proyecto,
-        servicio: this.data.servicio,
+        cliente: 1,
+        proyecto: this.servicio.proyecto,
+        servicio: this.servicio.servicio,
         user: 0,
         catego: null,
         persona: 1,
@@ -189,7 +186,7 @@ export class DocumentosComponent implements OnInit {
 
     dialogNew.afterClosed().subscribe(result => {
       if (result) {
-        this.serviceEx.getExpedienteCatServicio(this.data.servicio).subscribe(
+        this.serviceEx.getExpedienteCatServicio(this.servicio.id).subscribe(
           exp => {
             this.expedienteCat = exp;
           }
@@ -199,7 +196,7 @@ export class DocumentosComponent implements OnInit {
   }
 
   selectExpediente(value: ExpedienteServicioF) {
-    this.documentoCambia.emit(value);
+    //this.documentoCambia.emit(value);
     this.seleccionado = value;
     this.service.getPorExpediente(this.seleccionado.id).subscribe(
       archis => this.archivos = archis
@@ -210,7 +207,7 @@ export class DocumentosComponent implements OnInit {
     const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
       data: {
         origen: 2,
-        servicio: this.data.servicio,
+        servicio: this.servicio.servicio,
         documento: this.seleccionado.id
       } 
     });

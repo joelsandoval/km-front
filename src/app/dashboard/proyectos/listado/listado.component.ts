@@ -29,14 +29,11 @@ export class ListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('proyectos');
-    console.log(this.auth.getRoles());
     this.servicioP.getProyectosActivos().subscribe(
       proys => {
         this.dataSource = new MatTableDataSource(proys);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(proys);
       }
     )
 

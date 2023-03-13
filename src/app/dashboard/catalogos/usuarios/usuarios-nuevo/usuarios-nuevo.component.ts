@@ -33,8 +33,8 @@ export class UsuariosNuevoComponent implements OnInit {
 
   ngOnInit() {
     this.serviceUser.getRoles().subscribe(res => {
-        this.usuarioRoles = res;
-        console.log(res);
+        this.usuarioRoles = res.filter(x => x.name.includes('app'));
+        console.log(res); 
       });
 
   }
@@ -55,7 +55,6 @@ export class UsuariosNuevoComponent implements OnInit {
       (res: UserRepresentation) => {
         this.openSnackBar('El usuario se ha guardado con éxito', 'ok');
         this.dialogRef.close(res);
-        console.log(res);
       }
     )
   }

@@ -39,3 +39,8 @@ span {
 .roboto {
     font-family: 'Roboto Condensed', sans-serif  !important;
 }
+
+.fondo {
+    background-color: white;
+    color: black;
+}

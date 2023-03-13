@@ -4,52 +4,10 @@
             <mat-icon>article</mat-icon> {{ servicio.servicio }}
         </h2>
     </div>
-    <!-- <div class="row">
-        <div class="col col-md-4">
-            <mat-label class="etiqueta">Institucion</mat-label><br />
-            <span class="texto">{{ servicio.institucion }}</span><br />
-        </div>
-        <div class="col col-md-4">
-            <mat-label class="etiqueta">Fecha </mat-label><br />
-            <span class="texto">{{ servicio.registro | date: 'dd/MM/yyyy' }}</span><br />
-        </div>
-        <div class="col col-md-4"></div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col col-md-4">
-            <mat-label class="etiqueta">Responsable</mat-label><br />
-            <span class="texto">{{ servicio.responsable }}</span><br />
-        </div>
-        <div class="col col-md-4">
-            <mat-label class="etiqueta">Estatus </mat-label><br />
-            <span class="{{ servicio.clase }}">{{ servicio.estatus }}</span><br />
-        </div>
-        <div class="col col-md-4">
-
-        </div>
-    </div> -->
     <hr />
     <div class="row">
         <div class="col col-md-12">
-            <mat-tab-group color="primary">
-                <mat-tab>
-                    <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">folder_copy</mat-icon>
-                        &nbsp;Expediente
-                    </ng-template>
-                    <br />
-                    <app-documentos [data]="data" (documentoCambia)="seleccionaExpediente($event)"></app-documentos>
-                </mat-tab>
-                <mat-tab>
-                    <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">event</mat-icon>
-                        &nbsp;Actividades/Compromisos
-                    </ng-template>
-                    <br />
-                    <app-actividades [servicio]="data.servicio" (actividadCambia)="seleccionaActividad($event)"></app-actividades>
-                </mat-tab>
-            </mat-tab-group>
+            
         </div>
     </div>
 </div>

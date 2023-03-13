@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { DocumentosComponent } from './documentos/documentos.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { GeneralesComponent } from './generales/generales.component';
 import { ServicioComponent } from './servicio.component';
@@ -12,15 +13,19 @@ const routes: Routes = [
     component: ServicioComponent, 
     children: [
       {
-        path: 'generales/:servicio/:proyecto',
+        path: 'generales/:servi',
         component: GeneralesComponent,
       },
       {
-        path: 'actividades/:servicio',
+        path: 'documentos/:servi',
+        component: DocumentosComponent,
+      },
+      {
+        path: 'actividades/:servi',
         component: ActividadesComponent,
       },
       {
-        path: 'equipo/:servicio',
+        path: 'equipo/:servi',
         component: EquipoComponent,
       },
       {

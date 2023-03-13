@@ -21,7 +21,7 @@
     </tr>
     <tr *ngFor="let servicio of servicios">
         <td>{{ servicio.id }}</td>
-        <td><a [routerLink]="[ruta, servicio.id, proyecto]" style="padding: 0%;">{{ servicio.servicioCorto }}</a></td>
+        <td><a routerLink="" (click)="abreServicio(servicio)" style="padding: 0%;">{{ servicio.servicioCorto }}</a></td>
         <td>{{ servicio.referencia }}</td>
         <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
         <td>
