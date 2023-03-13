@@ -58,7 +58,8 @@ export class AppComponent {
     this.oauthService.loadDiscoveryDocument()
     .then(() => this.oauthService.tryLogin())
     .then(() => {
-      if (this.oauthService.getIdentityClaims()) {      
+      if (this.oauthService.getIdentityClaims()) {
+        console.log(this.oauthService.getAccessToken())
         this.isLogged = this.authService.getIsLogged();
         this.roles = this.authService.getRoles();
         this.nombre = this.oauthService.getIdentityClaims()[`name`];

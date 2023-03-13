@@ -35,9 +35,17 @@ export class UserService {
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<Roles[]>('No se pudieron recuperar los documentos', [])));
   }
-
+//Crea Usuario
   public create(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}create-user`, user, this.httpOptions);
+  }
+//Actualiza Usuario
+  public updateUser(user: UserRepresentation): Observable<UserRepresentation> {
+    return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user`, user, this.httpOptions);
+  }
+//Borra Usuario
+  public delUser(user: UserRepresentation): Observable<UserRepresentation> {
+     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`, user, this.httpOptions);
   }
 
   private log(message: string) {
