@@ -45,7 +45,7 @@ export class UserService {
   }
 //Borra Usuario
   public delUser(user: UserRepresentation): Observable<UserRepresentation> {
-     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`, user, this.httpOptions);
+     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
   }
 
   private log(message: string) {
