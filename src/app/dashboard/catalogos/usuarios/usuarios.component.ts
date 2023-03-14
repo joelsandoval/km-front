@@ -7,7 +7,7 @@ import { UsuariosNuevoComponent } from './usuarios-nuevo/usuarios-nuevo.componen
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserRepresentation } from 'src/app/model/seguridad/seguridad';
+import { CredentialRepresentation, UserRepresentation } from 'src/app/model/seguridad/seguridad';
 
 @Component({
   selector: 'app-usuarios',
@@ -20,8 +20,10 @@ export class UsuariosComponent implements OnInit {
   email!: string;
   firstName!: string;
   lastName!: string;
-  password!: string;
+  password: string ='';
   rol!: string;
+
+
 
   seleccionado: UserRepresentation = new UserRepresentation('', '', '', '', [], []);
   dataSource!: MatTableDataSource<User>;
@@ -51,13 +53,29 @@ export class UsuariosComponent implements OnInit {
   editUser(value: UserRepresentation){
       this.service.updateUser(value).subscribe(
         proy => {
-          this.router.navigate(['../usuarios']);
+          this.router.navigate(['./']);
         }
       )
       }
-   /* delUser(servi: UserService ) {
-        servi.delUser;
-   } */
+
+  editUserCreds(usuario: UserRepresentation){
+      let credens: CredentialRepresentation = new CredentialRepresentation();
+      credens.value = this.password;
+      //usuario.credentials.push(credens)
+      //usuario.credentials[0] =credens;
+
+      //this.seleccionado.credentials.pop();
+      //this.seleccionado.credentials.length=0;
+      this.seleccionado.credentials = [];
+      this.seleccionado.credentials.push(credens);
+
+      this.service.updateUserCreds(usuario).subscribe(
+        proy => {
+          this.router.navigate(['./']);
+        }
+      )
+      }
+
 
   delUser(value: UserRepresentation){
       this.service.delUser(value).subscribe(
