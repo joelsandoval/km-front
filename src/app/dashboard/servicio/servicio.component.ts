@@ -19,13 +19,6 @@ export class ServicioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    /* this.route.paramMap.subscribe(
-      par => {
-        this.data.cliente = this.cliente;
-        this.data.servicio = +par.get('servicio')!;
-        this.data.proyecto = +par.get('proyecto')!;
-      }
-    ) */
     this.route.queryParams.subscribe(
       (params) => {
         this.servicio = JSON.parse(atob(params['servicio']));

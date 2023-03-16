@@ -15,3 +15,8 @@ table {
 .seleccionado {
     font-weight: bold;
 }
+
+.fondo {
+    background-color: white;
+    color: black;
+}

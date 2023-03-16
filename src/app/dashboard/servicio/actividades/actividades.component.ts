@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { Fisica } from 'src/app/model/personas';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-actividades',
@@ -24,18 +25,25 @@ export class ActividadesComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public service: ProyectosService
+    public service: ProyectosService,
+    public route: ActivatedRoute
   ) { }
 
 
   ngOnInit(): void {
-
-    this.service.getProyectoActividades(this.servicio).subscribe(
-      actis => {
-        this.actividades = actis;
+    this.route.queryParams.subscribe(
+      (params) => {
+        this.servicio = JSON.parse(atob(params['servicio']));
+        console.log(this.servicio);
+        this.service.getProyectoActividades(this.servicio).subscribe(
+          actis => {
+            this.actividades = actis;
+          }
+        )
+        this.calendario = global.calendario;
       }
     )
-    this.calendario = global.calendario;
+    
   }
 
 

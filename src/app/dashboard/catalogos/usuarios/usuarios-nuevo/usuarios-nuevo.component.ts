@@ -50,7 +50,7 @@ export class UsuariosNuevoComponent implements OnInit {
      function (value) { roles.push(value.name);} 
     )
     this.usuario.realmRoles = roles;  
-
+    console.log(this.usuario);  
     this.serviceUser.create(this.usuario).subscribe(
       (res: UserRepresentation) => {
         this.openSnackBar('El usuario se ha guardado con éxito', 'ok');

@@ -23,7 +23,7 @@ export class UsuariosComponent implements OnInit {
   password!: string;
   rol!: string;
 
-  seleccionado: UserRepresentation = new  UserRepresentation('','','','',[],[]);
+  seleccionado: UserRepresentation = new UserRepresentation('', '', '', '', [], []);
   dataSource!: MatTableDataSource<User>;
   pageSize = 50;
 
@@ -48,6 +48,25 @@ export class UsuariosComponent implements OnInit {
     this.seleccionado = value;
   }
 
+  editUser(value: UserRepresentation){
+      this.service.updateUser(value).subscribe(
+        proy => {
+          this.router.navigate(['../usuarios']);
+        }
+      )
+      }
+   /* delUser(servi: UserService ) {
+        servi.delUser;
+   } */
+
+  delUser(value: UserRepresentation){
+      this.service.delUser(value).subscribe(
+        proy => {
+          this.router.navigate(['../usuarios']);
+        }
+      )
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -66,17 +85,19 @@ export class UsuariosComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result : UserRepresentation) => {
-      console.log('The dialog was closed');
-      console.log(result);
-      if (result) {
-        this.usuarios.push(result);
-      };
-    });
+
+
+      dialogRef.afterClosed().subscribe((result: UserRepresentation) => {
+        console.log('The dialog was closed');
+        console.log(result);
+        if (result) {
+          this.usuarios.push(result);
+        };
+      });
+
+    }
 
   }
-
-}
 
 
 
