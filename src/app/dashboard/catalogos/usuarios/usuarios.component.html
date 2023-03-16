@@ -94,30 +94,47 @@
           </mat-card>
 
         </mat-tab>
-        <mat-tab label="Contraseña" *ngIf="seleccionado">
-          <ng-template mat-tab-label>
+
+
+
+
+        <mat-tab label="Contraseña2" *ngIf="seleccionado">
+           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">password</mat-icon>
             &nbsp;Actualización de Contraseña
           </ng-template>
-          <div class="row">
-            <mat-form-field appearance="outline" style="display: block; width: 50%;">
-              <mat-label>Contraseña</mat-label>
-              <input matInput name="password" id="password" [(ngModel)]="password">
-            </mat-form-field>
-          </div>
-          <div class="row">
-                <div class="col col-md-12">
-                  <button mat-button cdkFocusInitial color="primary" class="float-right" (click)="editUserCreds(seleccionado);">Cambiar Contraseña</button>
-                </div>
-              </div>
-              <br />
+          <br>
 
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">people_outline</mat-icon>
-            &nbsp;Roles
-          </ng-template>Content 2
+
+
+          <div class="row">
+                <mat-form-field appearance="outline" style="display: block;" class="roboto">
+                  <mat-label>Nombre Usuario</mat-label>
+                  <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.username" disabled="disabled">
+                </mat-form-field>
+              </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="{{hidePassword ? 'password' : 'text' }}" name="password" [(ngModel)]="password">
+              <button mat-icon-button matSuffix (click)="toggleHidePassword()">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Confirmar contraseña</mat-label>
+              <input matInput type="{{hideConfirmPassword ? 'password' : 'text' }}" name="confirmPassword" [(ngModel)]="confirmPassword" (change)="submit()">
+              <button mat-icon-button matSuffix (click)="toggleHideConfirmPassword()" >
+                <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="!changePass" (click)="editUserCreds(seleccionado); openSnackBar();">Cambiar
+              contraseña</button>
+            </div>
+
         </mat-tab>
       </mat-tab-group>
 

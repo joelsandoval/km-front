@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { UserService } from 'src/app/services/seguridad/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CredentialRepresentation, UserRepresentation } from 'src/app/model/seguridad/seguridad';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuarios',
@@ -21,6 +23,8 @@ export class UsuariosComponent implements OnInit {
   firstName!: string;
   lastName!: string;
   password: string = '';
+  confirmPassword: string = '';
+
   rol!: string;
 
 
@@ -28,13 +32,16 @@ export class UsuariosComponent implements OnInit {
   seleccionado: UserRepresentation = new UserRepresentation('', '', '', '', [], []);
   dataSource!: MatTableDataSource<User>;
   pageSize = 50;
+  durationInSeconds = 5;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private service: UserService,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private _snackBar: MatSnackBar
+    ) { }
 
   ngOnInit(): void {
 
@@ -59,12 +66,17 @@ export class UsuariosComponent implements OnInit {
   }
 
   editUserCreds(usuario: UserRepresentation) {
-    console.log(usuario);
+    usuario = this.seleccionado
     let credens: CredentialRepresentation = new CredentialRepresentation();
     credens.value = this.password;
-    usuario.credentials = [];
-    usuario.credentials.push(credens);
-    console.log(usuario);
+    //usuario.credentials.push(credens)
+    //usuario.credentials[0] =credens;
+
+    //this.seleccionado.credentials.pop();
+    //this.seleccionado.credentials.length=0;
+    this.seleccionado.credentials = [];
+    this.seleccionado.credentials.push(credens);
+
     this.service.updateUserCreds(usuario).subscribe(
       proy => {
         this.router.navigate(['./']);
@@ -109,9 +121,50 @@ export class UsuariosComponent implements OnInit {
       };
     });
 
+
+
+
   }
 
+  changePasswordForm = new FormGroup({
+    password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required])
+  });
+
+  hidePassword = true;
+  hideConfirmPassword = true;
+  changePass = false;
+
+  toggleHidePassword() {
+    this.hidePassword = !this.hidePassword;
+  }
+
+  toggleHideConfirmPassword() {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+
+  submit() {
+    if (this.password == this.confirmPassword) {
+      this.changePass = true;
+    } else {
+      this.changePass = false;
+    }
+  }
+
+  openSnackBar() {
+
+  this._snackBar.open("Contraseña actualizada correctamente", "", {
+  duration: 2500,
+  horizontalPosition: "start",
+  verticalPosition: "top",
+});
+
+  }
+
+
+
+  //snackBarRef = inject(MatSnackBarRef);
+
+
 }
-
-
 

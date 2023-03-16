@@ -3,6 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,13 +17,14 @@ import { MatTableModule } from '@angular/material/table';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponent } from './test/test.component';
 import { SignupComponent } from './signup/signup.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,13 +42,16 @@ import { SignupComponent } from './signup/signup.component';
     MatToolbarModule,
     MatTooltipModule,
     MatIconModule,
+    MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
     NgbModule,
     ProyectosModule,
+    ReactiveFormsModule,
     ServiciosModule,
     ServicioModule,
+    MatSnackBarModule,
     MatTableModule,
     NgHttpLoaderModule.forRoot(),
     OAuthModule.forRoot({
