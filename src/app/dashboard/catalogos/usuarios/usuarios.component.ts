@@ -20,7 +20,7 @@ export class UsuariosComponent implements OnInit {
   email!: string;
   firstName!: string;
   lastName!: string;
-  password: string ='';
+  password: string = '';
   rol!: string;
 
 
@@ -50,39 +50,35 @@ export class UsuariosComponent implements OnInit {
     this.seleccionado = value;
   }
 
-  editUser(value: UserRepresentation){
-      this.service.updateUser(value).subscribe(
-        proy => {
-          this.router.navigate(['./']);
-        }
-      )
+  editUser(value: UserRepresentation) {
+    this.service.updateUser(value).subscribe(
+      proy => {
+        this.router.navigate(['./']);
       }
+    )
+  }
 
-  editUserCreds(usuario: UserRepresentation){
-      let credens: CredentialRepresentation = new CredentialRepresentation();
-      credens.value = this.password;
-      //usuario.credentials.push(credens)
-      //usuario.credentials[0] =credens;
-
-      //this.seleccionado.credentials.pop();
-      //this.seleccionado.credentials.length=0;
-      this.seleccionado.credentials = [];
-      this.seleccionado.credentials.push(credens);
-
-      this.service.updateUserCreds(usuario).subscribe(
-        proy => {
-          this.router.navigate(['./']);
-        }
-      )
+  editUserCreds(usuario: UserRepresentation) {
+    console.log(usuario);
+    let credens: CredentialRepresentation = new CredentialRepresentation();
+    credens.value = this.password;
+    usuario.credentials = [];
+    usuario.credentials.push(credens);
+    console.log(usuario);
+    this.service.updateUserCreds(usuario).subscribe(
+      proy => {
+        this.router.navigate(['./']);
       }
+    )
+  }
 
 
-  delUser(value: UserRepresentation){
-      this.service.delUser(value).subscribe(
-        proy => {
-          this.router.navigate(['../usuarios']);
-        }
-      )
+  delUser(value: UserRepresentation) {
+    this.service.delUser(value).subscribe(
+      proy => {
+        this.router.navigate(['../usuarios']);
+      }
+    )
   }
 
   applyFilter(event: Event) {
@@ -105,17 +101,17 @@ export class UsuariosComponent implements OnInit {
 
 
 
-      dialogRef.afterClosed().subscribe((result: UserRepresentation) => {
-        console.log('The dialog was closed');
-        console.log(result);
-        if (result) {
-          this.usuarios.push(result);
-        };
-      });
-
-    }
+    dialogRef.afterClosed().subscribe((result: UserRepresentation) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.usuarios.push(result);
+      };
+    });
 
   }
+
+}
 
 
 
