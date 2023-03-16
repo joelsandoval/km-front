@@ -43,9 +43,13 @@ export class UserService {
   public updateUser(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user`, user, this.httpOptions);
   }
+
+  public updateUserCreds(user: UserRepresentation): Observable<UserRepresentation> {
+    return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user-creds`, user, this.httpOptions);
+  }
 //Borra Usuario
   public delUser(user: UserRepresentation): Observable<UserRepresentation> {
-     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`, user, this.httpOptions);
+     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
   }
 
   private log(message: string) {

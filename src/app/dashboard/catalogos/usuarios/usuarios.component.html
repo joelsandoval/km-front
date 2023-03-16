@@ -105,6 +105,12 @@
               <input matInput name="password" id="password" [(ngModel)]="seleccionado.credentials">
             </mat-form-field>
           </div>
+          <div class="row">
+                <div class="col col-md-12">
+                  <button mat-button cdkFocusInitial color="primary" class="float-right" (click)="editUserCreds(seleccionado);">Cambiar Contraseña</button>
+                </div>
+              </div>
+              <br />
 
         </mat-tab>
         <mat-tab>
