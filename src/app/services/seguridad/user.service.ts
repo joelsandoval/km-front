@@ -52,6 +52,11 @@ export class UserService {
      return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
   }
 
+//Roles de Usuario
+  public getRolsUser(user: UserRepresentation): Observable<UserRepresentation> {
+     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}user-roles/${user.id}`);
+  }
+
   private log(message: string) {
     this.messageService.add(`PrioritariosService: ${message}`);
   }

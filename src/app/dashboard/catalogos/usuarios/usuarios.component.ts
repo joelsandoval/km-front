@@ -9,7 +9,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CredentialRepresentation, UserRepresentation } from 'src/app/model/seguridad/seguridad';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { Roles } from 'src/app/model/seguridad/roles';
 
 @Component({
   selector: 'app-usuarios',
@@ -24,8 +25,19 @@ export class UsuariosComponent implements OnInit {
   lastName!: string;
   password: string = '';
   confirmPassword: string = '';
-
   rol!: string;
+  hidePassword = true;
+  hideConfirmPassword = true;
+  changePass = false;
+  itemRoles: Roles[] = [];
+  itemResult: Roles[] = [];
+  rolesUsuario: any;
+  rolesDisponibles: Roles[] = [];
+  rolesSeleccionados: Roles[] = [];
+  visible = false;
+  enable = false;
+
+
 
 
 
@@ -41,15 +53,17 @@ export class UsuariosComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
     this.service.getUsers().subscribe(
       res => {
         this.usuarios = res;
-      }
-    )
+      });
+
+
+
 
   }
 
@@ -69,11 +83,6 @@ export class UsuariosComponent implements OnInit {
     usuario = this.seleccionado
     let credens: CredentialRepresentation = new CredentialRepresentation();
     credens.value = this.password;
-    //usuario.credentials.push(credens)
-    //usuario.credentials[0] =credens;
-
-    //this.seleccionado.credentials.pop();
-    //this.seleccionado.credentials.length=0;
     this.seleccionado.credentials = [];
     this.seleccionado.credentials.push(credens);
 
@@ -84,6 +93,23 @@ export class UsuariosComponent implements OnInit {
     )
   }
 
+  editUserRoles(value: UserRepresentation) {
+
+
+
+    this.service.getRoles().subscribe(rdis => {
+      this.itemRoles = rdis.filter(x => x.name.includes('app'));
+    }
+    );
+
+    this.service.getRolsUser(value).subscribe(rus => {
+      this.rolesUsuario = rus;
+    }
+    );
+
+
+  }
+
 
   delUser(value: UserRepresentation) {
     this.service.delUser(value).subscribe(
@@ -92,6 +118,8 @@ export class UsuariosComponent implements OnInit {
       }
     )
   }
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -131,9 +159,7 @@ export class UsuariosComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required])
   });
 
-  hidePassword = true;
-  hideConfirmPassword = true;
-  changePass = false;
+
 
   toggleHidePassword() {
     this.hidePassword = !this.hidePassword;
@@ -153,11 +179,11 @@ export class UsuariosComponent implements OnInit {
 
   openSnackBar() {
 
-  this._snackBar.open("Contraseña actualizada correctamente", "", {
-  duration: 2500,
-  horizontalPosition: "start",
-  verticalPosition: "top",
-});
+    this._snackBar.open("Contraseña actualizada correctamente", "", {
+      duration: 2500,
+      horizontalPosition: "start",
+      verticalPosition: "top",
+    });
 
   }
 

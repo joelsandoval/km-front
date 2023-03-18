@@ -26,8 +26,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let res of usuarios" (click)="selectUser(res)" [ngClass]="{seleccionado: seleccionado == res}"
-                style="cursor: pointer;">
+              <tr *ngFor="let res of usuarios" (click)="selectUser(res); visible=false "
+                [ngClass]="{seleccionado: seleccionado == res}" style="cursor: pointer;">
                 <td>{{ res.firstName+ " " + res.lastName| uppercase }}</td>
                 <td>{{ res.email }}</td>
                 <td>{{ res.username }}</td>
@@ -50,9 +50,7 @@
             &nbsp;Generales
           </ng-template>
           <mat-card style="width: 100%;" *ngIf="seleccionado">
-            <mat-card-header>
-              <mat-card-title>{{ seleccionado.username }}</mat-card-title>
-            </mat-card-header>
+
             <mat-card-content>
               <div class="row">
                 <mat-form-field appearance="outline" style="display: block;" class="roboto">
@@ -98,22 +96,15 @@
 
 
 
-        <mat-tab label="Contraseña2" *ngIf="seleccionado">
-           <ng-template mat-tab-label>
+        <mat-tab label="Contraseña" *ngIf="seleccionado">
+          <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">password</mat-icon>
             &nbsp;Actualización de Contraseña
           </ng-template>
           <br>
-
-
-
           <div class="row">
-                <mat-form-field appearance="outline" style="display: block;" class="roboto">
-                  <mat-label>Nombre Usuario</mat-label>
-                  <input matInput name="razon" id="razon" [(ngModel)]="seleccionado.username" disabled="disabled">
-                </mat-form-field>
-              </div>
-
+            <h2> {{seleccionado.firstName+ " " + seleccionado.lastName}} </h2>
+          </div>
           <div class="row">
             <mat-form-field>
               <mat-label>Contraseña</mat-label>
@@ -125,17 +116,66 @@
 
             <mat-form-field>
               <mat-label>Confirmar contraseña</mat-label>
-              <input matInput type="{{hideConfirmPassword ? 'password' : 'text' }}" name="confirmPassword" [(ngModel)]="confirmPassword" (change)="submit()">
-              <button mat-icon-button matSuffix (click)="toggleHideConfirmPassword()" >
+              <input matInput type="{{hideConfirmPassword ? 'password' : 'text' }}" name="confirmPassword"
+                [(ngModel)]="confirmPassword" (change)="submit()">
+              <button mat-icon-button matSuffix (click)="toggleHideConfirmPassword()">
                 <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
             </mat-form-field>
 
-            <button mat-raised-button color="primary" [disabled]="!changePass" (click)="editUserCreds(seleccionado); openSnackBar();">Cambiar
+            <button mat-raised-button color="primary" [disabled]="!changePass"
+              (click)="editUserCreds(seleccionado); openSnackBar();">Cambiar
               contraseña</button>
-            </div>
+          </div>
 
         </mat-tab>
+
+        <mat-tab label="Roles" *ngIf="seleccionado">
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">Roles</mat-icon>
+            &nbsp;Roles
+          </ng-template>
+          <br>
+          <div class="row">
+            <h2> {{seleccionado.firstName+ " " + seleccionado.lastName}} </h2>
+          </div>
+
+          <br>
+          <ng-container *ngIf="!visible; else viewRoles">
+            <button (click)="visible=true; editUserRoles(seleccionado)">Ver Roles</button>
+
+          </ng-container>
+
+
+          <ng-template #viewRoles>
+
+
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Roles de Usuario</mat-label>
+              <mat-select [(ngModel)]="rolesSeleccionados" name="name" multiple>
+                <mat-option *ngFor="let item of rolesUsuario" [value]="item">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Roles Disponibles</mat-label>
+              <mat-select [(ngModel)]="rolesDisponibles" name="name" multiple>
+                <mat-option *ngFor="let item of itemRoles" [value]="item">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+          </ng-template>
+
+        </mat-tab>
+
+
       </mat-tab-group>
 
     </div>
