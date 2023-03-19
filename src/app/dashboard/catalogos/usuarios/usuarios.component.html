@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let res of usuarios" (click)="selectUser(res); visible=false "
+              <tr *ngFor="let res of usuarios" (click)="selectUser(res); editUserRoles(res); visible=false; itemUser = []; itemRols = []; itemRolsFilt = [];  "
                 [ngClass]="{seleccionado: seleccionado == res}" style="cursor: pointer;">
                 <td>{{ res.firstName+ " " + res.lastName| uppercase }}</td>
                 <td>{{ res.email }}</td>
@@ -141,8 +141,8 @@
           </div>
 
           <br>
-          <ng-container *ngIf="!visible; else viewRoles">
-            <button (click)="visible=true; editUserRoles(seleccionado)">Ver Roles</button>
+          <ng-container *ngIf="visible; else viewRoles">
+            <button (loadeddata)=" editUserRoles(seleccionado)"></button>
 
           </ng-container>
 
@@ -150,22 +150,35 @@
           <ng-template #viewRoles>
 
 
-            <br>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Roles de Usuario</mat-label>
-              <mat-select [(ngModel)]="rolesSeleccionados" name="name" multiple>
-                <mat-option *ngFor="let item of rolesUsuario" [value]="item">
-                  {{ item.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <table aria-label="Roles de Usuario" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Nombre Rol</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let res of itemUser"
+                 style="cursor: pointer;">
+                <td>{{ res}}</td>
+                <td>eliminar</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+
             <br>
 
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Roles Disponibles</mat-label>
               <mat-select [(ngModel)]="rolesDisponibles" name="name" multiple>
-                <mat-option *ngFor="let item of itemRoles" [value]="item">
-                  {{ item.name }}
+                <mat-option *ngFor="let item of itemRolsFilt" [value]="item">
+                  {{ item }}
                 </mat-option>
               </mat-select>
             </mat-form-field>

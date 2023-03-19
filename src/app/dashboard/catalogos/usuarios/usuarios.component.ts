@@ -36,9 +36,9 @@ export class UsuariosComponent implements OnInit {
   rolesSeleccionados: Roles[] = [];
   visible = false;
   enable = false;
-
-
-
+  itemUser: string[] = [];
+  itemRols: string[] = [];
+  itemRolsFilt: string[] = [];
 
 
   seleccionado: UserRepresentation = new UserRepresentation('', '', '', '', [], []);
@@ -95,20 +95,41 @@ export class UsuariosComponent implements OnInit {
 
   editUserRoles(value: UserRepresentation) {
 
+    this.itemUser = [];
+    this.itemRols = [];
+    this.itemRolsFilt = [];
 
-
-    this.service.getRoles().subscribe(rdis => {
-      this.itemRoles = rdis.filter(x => x.name.includes('app'));
-    }
-    );
 
     this.service.getRolsUser(value).subscribe(rus => {
+      this.itemUser = [];
       this.rolesUsuario = rus;
+      this.pushItems(rus, this.itemUser);
+      //console.log(this.itemUser[0])
+
     }
     );
 
+    this.service.getRoles().subscribe(rdis => {
+      this.itemRols = [];
+      this.itemRolsFilt = [];
+      this.itemRoles = rdis;
+      this.pushItems(rdis, this.itemRols);
+      this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x));
+
+
+    }
+    );
 
   }
+
+
+  pushItems(obj: Object, arr: string[]) {
+
+    Object.values(obj).forEach(val => {
+      arr.push(val.name);
+    });
+  }
+
 
 
   delUser(value: UserRepresentation) {
