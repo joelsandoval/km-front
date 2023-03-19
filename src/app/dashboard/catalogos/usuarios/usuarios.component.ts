@@ -114,7 +114,7 @@ export class UsuariosComponent implements OnInit {
       this.itemRolsFilt = [];
       this.itemRoles = rdis;
       this.pushItems(rdis, this.itemRols);
-      this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x));
+      this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x) && x.includes('app'));
 
 
     }

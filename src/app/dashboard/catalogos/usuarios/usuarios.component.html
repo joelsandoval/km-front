@@ -158,30 +158,43 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let res of itemUser"
-                 style="cursor: pointer;">
+              <tr *ngFor="let res of itemUser" name="name">
                 <td>{{ res}}</td>
-                <td>eliminar</td>
+                <td matTooltip="Eliminar Rol" color="danger"><mat-icon color="danger">delete</mat-icon></td>
+              </tr>
+            </tbody>
+          </table>
+          <table aria-label="Roles Disponibles" class="table table-striped table-hover">
+            <thead>
+              <tr [(ngModel)]="rolesDisponibles" name="name">
+                <th>Nombre Rol</th>
+                <th>Agregar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemRolsFilt" style="cursor: pointer;">
+                <td>{{ item}}</td>
+                <td matTooltip="Agregar Rol"><mat-icon>add_circle_outline</mat-icon></td>
 
               </tr>
             </tbody>
           </table>
+          <br>
 
 
 
 
 
 
-            <br>
 
-            <mat-form-field class="example-full-width" appearance="fill">
+<!--             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Roles Disponibles</mat-label>
               <mat-select [(ngModel)]="rolesDisponibles" name="name" multiple>
                 <mat-option *ngFor="let item of itemRolsFilt" [value]="item">
                   {{ item }}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
 
 
           </ng-template>
