@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { UserService } from 'src/app/services/seguridad/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/seguridad/user';
 import { UsuariosNuevoComponent } from './usuarios-nuevo/usuarios-nuevo.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -51,6 +51,7 @@ export class UsuariosComponent implements OnInit {
 
   constructor(private service: UserService,
     public dialog: MatDialog,
+    private route: ActivatedRoute,
     private router: Router,
     private _snackBar: MatSnackBar
   ) { }
@@ -61,11 +62,19 @@ export class UsuariosComponent implements OnInit {
       res => {
         this.usuarios = res;
       });
-
-
-
-
   }
+
+  reloadURL(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+    });
+  }
+
+
+
+
 
   selectUser(value: UserRepresentation) {
     this.seleccionado = value;
@@ -88,7 +97,7 @@ export class UsuariosComponent implements OnInit {
 
     this.service.updateUserCreds(usuario).subscribe(
       proy => {
-        this.router.navigate(['./']);
+        this.router.navigate(['../']);
       }
     )
   }
@@ -97,7 +106,7 @@ export class UsuariosComponent implements OnInit {
 
     this.service.addRolUser(userId, rolName).subscribe(
       proy => {
-        this.router.navigate(['./']);
+        this.router.navigate(['../']);
       },
     (error: any) => {
         console.log(error)

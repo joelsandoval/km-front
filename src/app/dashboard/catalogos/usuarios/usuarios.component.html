@@ -160,7 +160,7 @@
             <tbody>
               <tr *ngFor="let res of itemUser" name="name">
                 <td>{{ res}}</td>
-                <td matTooltip="Eliminar Rol" color="warn" (click)="delUserRol(seleccionado.id,res); openSnackBar('Rol Eliminado correctamente');"><mat-icon color="warn" >delete</mat-icon></td>
+                <td matTooltip="Eliminar Rol" color="warn" (click)="delUserRol(seleccionado.id,res); openSnackBar('Rol Eliminado correctamente'); reloadURL();"><mat-icon color="warn" >delete</mat-icon></td>
               </tr>
             </tbody>
           </table>
@@ -174,7 +174,7 @@
             <tbody>
               <tr *ngFor="let item of itemRoles"  name="name" style="cursor: pointer;">
                 <td>{{ item.name}}</td>
-                <td matTooltip="Agregar Rol" (click)="addUserRol(seleccionado.id,item.name); openSnackBar('Rol agregado correctamente');"><mat-icon>add_circle_outline</mat-icon></td>
+                <td matTooltip="Agregar Rol" (click)="addUserRol(seleccionado.id,item.name); openSnackBar('Rol agregado correctamente'); reloadURL();"><mat-icon>add_circle_outline</mat-icon></td>
 
               </tr>
             </tbody>
