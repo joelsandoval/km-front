@@ -93,6 +93,30 @@ export class UsuariosComponent implements OnInit {
     )
   }
 
+  addUserRol(userId: string, rolName: string){
+
+    this.service.addRolUser(userId, rolName).subscribe(
+      proy => {
+        this.router.navigate(['./']);
+      },
+    (error: any) => {
+        console.log(error)
+    }
+    )
+  }
+
+  delUserRol(userId: string, rolName: string){
+
+    this.service.delRolUser(userId, rolName).subscribe(
+      proy => {
+        this.router.navigate(['./']);
+      },
+    (error: any) => {
+        console.log(error)
+    }
+    )
+  }
+
   editUserRoles(value: UserRepresentation) {
 
     this.itemUser = [];
@@ -113,8 +137,8 @@ export class UsuariosComponent implements OnInit {
       this.itemRols = [];
       this.itemRolsFilt = [];
       this.itemRoles = rdis;
-      this.pushItems(rdis, this.itemRols);
-      this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x) && x.includes('app'));
+      //this.pushItems(rdis, this.itemRols);
+      //this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x) && x.includes('app'));
 
 
     }
@@ -198,9 +222,9 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  openSnackBar() {
+  openSnackBar(msg: string) {
 
-    this._snackBar.open("Contraseña actualizada correctamente", "", {
+    this._snackBar.open(msg, "", {
       duration: 2500,
       horizontalPosition: "start",
       verticalPosition: "top",

@@ -1,6 +1,6 @@
 import { User } from '../../model/seguridad/user';
 import { Roles } from '../../model/seguridad/roles';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -35,11 +35,11 @@ export class UserService {
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<Roles[]>('No se pudieron recuperar los documentos', [])));
   }
-//Crea Usuario
+  //Crea Usuario
   public create(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}create-user`, user, this.httpOptions);
   }
-//Actualiza Usuario
+  //Actualiza Usuario
   public updateUser(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user`, user, this.httpOptions);
   }
@@ -47,14 +47,24 @@ export class UserService {
   public updateUserCreds(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user-creds`, user, this.httpOptions);
   }
-//Borra Usuario
+  //Borra Usuario
   public delUser(user: UserRepresentation): Observable<UserRepresentation> {
-     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
+    return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
   }
 
-//Roles de Usuario
+  //Roles de Usuario
   public getRolsUser(user: UserRepresentation): Observable<UserRepresentation> {
-     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}user-roles/${user.id}`);
+    return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}user-roles/${user.id}`);
+  }
+
+  //Agrega Rol de Usuario
+  public addRolUser(userId: string, rolName: string): Observable<UserRepresentation> {
+    return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}user-addrol/${userId},${rolName}`);
+  }
+
+  //Borra Rol de Usuario
+  public delRolUser(userId: string, rolName: string): Observable<UserRepresentation> {
+    return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}user-delrol/${userId},${rolName}`);
   }
 
   private log(message: string) {
