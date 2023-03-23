@@ -135,8 +135,9 @@ export class UsuariosComponent implements OnInit {
 
     this.service.getRolsUser(value).subscribe(rus => {
       this.itemUser = [];
-      this.rolesUsuario = rus;
+      //this.rolesUsuario = rus
       this.pushItems(rus, this.itemUser);
+      this.itemUser= this.itemUser.filter(x => x.includes('app'));
       //console.log(this.itemUser[0])
 
     }
@@ -145,9 +146,9 @@ export class UsuariosComponent implements OnInit {
     this.service.getRoles().subscribe(rdis => {
       this.itemRols = [];
       this.itemRolsFilt = [];
-      this.itemRoles = rdis;
+      //this.itemRoles = rdis;
       //this.pushItems(rdis, this.itemRols);
-      //this.itemRolsFilt = this.itemRols.filter(x => !this.itemUser.includes(x) && x.includes('app'));
+      this.itemRoles = rdis.filter(x => x.name.includes('app') && !this.itemUser.includes(x.name));
 
 
     }
