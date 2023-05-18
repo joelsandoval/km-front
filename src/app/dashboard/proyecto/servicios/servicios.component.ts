@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Servicio, ServicioF } from 'src/app/model/proyecto';
+import { ServicioF } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
 
@@ -62,10 +62,13 @@ export class ServiciosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(
-      result => {
-        if(result) {
+      (result: ServicioF) => {
+        console.log('cerro el dialogo');
+        console.log(result);
+        if(result.id > 0) {
           this.servicios.push(result);
-          console.log(`Dialog result: ${result}`);
+          console.log(`que paso con servicios?`);
+          console.log(this.servicios);
         }
       }
     );

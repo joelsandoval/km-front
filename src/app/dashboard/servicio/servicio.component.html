@@ -1,4 +1,4 @@
-<mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;">
+<mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;margin-top: -30px;">
   <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
     <mat-list *ngIf="servicio">
       <mat-list-item>
@@ -34,6 +34,5 @@
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
-    <ng-http-loader></ng-http-loader>
   </mat-drawer-content>
 </mat-drawer-container>

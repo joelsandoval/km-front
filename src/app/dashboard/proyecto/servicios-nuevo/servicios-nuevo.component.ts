@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Categoria, CatServicio, Servicios } from 'src/app/model/catalogos';
-import { Servicio, ServicioF } from 'src/app/model/proyecto';
+import { Categoria, Servicios } from 'src/app/model/catalogos';
+import { Servicio } from 'src/app/model/proyecto';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { ProySer } from '../servicios/servicios.component';
@@ -44,8 +44,9 @@ export class ServiciosNuevoComponent implements OnInit {
     this.servicio.estatus = 1;
     this.service.saveProyectoServicio(this.servicio).subscribe(
       servi => {
-        this.dialogRef.close(servi);
-        console.log(servi);
+        console.log('se encontro esto, después de guardar: '); 
+        console.log(servi); 
+        this.dialogRef.close(servi);        
       }
     )
   }
