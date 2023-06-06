@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { ActividadF, Calendario } from 'src/app/model/proyecto';
+import { ActividadF, Calendario, ServicioF } from 'src/app/model/proyecto';
 import * as global from 'src/app/model/global'
 import { MatDialog } from '@angular/material/dialog';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
@@ -22,7 +22,8 @@ export class ActividadesComponent implements OnInit {
   personas: Fisica[] = [];
   folders = global.folders;
   notes = global.notes;
-
+  servi: ServicioF = new ServicioF(); 
+  
   constructor(
     public dialog: MatDialog,
     public service: ProyectosService,
@@ -33,9 +34,9 @@ export class ActividadesComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(
       (params) => {
-        this.servicio = JSON.parse(atob(params['servicio']));
+        this.servi = JSON.parse(atob(params['servicio']));
         console.log(this.servicio);
-        this.service.getProyectoActividades(this.servicio).subscribe(
+        this.service.getProyectoActividades(this.servi.id).subscribe(
           actis => {
             this.actividades = actis;
           }
@@ -51,7 +52,7 @@ export class ActividadesComponent implements OnInit {
     const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
       data: {
         origen: 1,
-        servicio: this.servicio,
+        servicio: this.servi,
       }
     });
 

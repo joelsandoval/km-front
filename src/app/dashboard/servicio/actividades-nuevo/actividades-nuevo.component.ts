@@ -2,13 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CatActividades, CatActividadesTipo } from 'src/app/model/catalogos';
 import { FisicaF } from 'src/app/model/personas';
-import { Actividad, ActividadF } from 'src/app/model/proyecto';
+import { Actividad, ActividadF, ServicioF } from 'src/app/model/proyecto';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
 export interface NuevaActividad {
   origen: number;
-  servicio: number;
+  servicio: ServicioF;
   documento: number;
 }
 
@@ -41,6 +41,7 @@ export class ActividadesNuevoComponent implements OnInit {
       categos => {
         this.tipos = categos;
         console.log(this.tipos);
+
         this.serviceCat.getPersonasMoral(1).subscribe(
           fisicas => this.fisicas = fisicas
         )
@@ -50,7 +51,7 @@ export class ActividadesNuevoComponent implements OnInit {
   }
 
   guardaActividad(){
-    this.actividad.servicio = this.data.servicio;
+    this.actividad.servicio = this.data.servicio.id;
     this.actividad.actividad = this.activida.id;
     this.actividad.descripcion = this.activida.actividad;
     this.actividad.tipo = this.tipo.id;
@@ -59,14 +60,17 @@ export class ActividadesNuevoComponent implements OnInit {
     this.actividad.responsable = this.responsable.usuarioId;
     if(this.data.origen == 2){
       this.actividad.documento = this.data.documento
+    } else {
+      this.actividad.documento = 0
     }
+    console.log('actividad nueva');
     console.log(this.actividad);
 
     this.serviceProy.saveActividadServicio(this.actividad).subscribe(
       acti => {
-        //this.actividadF = acti;
+        this.actividadF = acti;
         this.dialogRef.close(acti);
-        //console.log(this.actividadF);
+        console.log(this.actividadF);
       }
     );
     
