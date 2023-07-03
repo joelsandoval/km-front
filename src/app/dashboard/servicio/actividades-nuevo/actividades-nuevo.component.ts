@@ -37,6 +37,7 @@ export class ActividadesNuevoComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.serviceCat.getActividadesTipo().subscribe(
       categos => {
         this.tipos = categos;

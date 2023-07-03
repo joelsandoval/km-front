@@ -76,7 +76,7 @@ export class DocumentosComponent implements OnInit {
     this.catego = 1;
     this.route.queryParams.subscribe(
       (params) => {
-        this.servicio = JSON.parse(params['servicio']);
+        this.servicio = JSON.parse(atob(params['servicio']));
         this.serviceEx.getExpedienteCatServicio(this.servicio.id).subscribe(
           exp => {
             this.expedienteCat = exp;

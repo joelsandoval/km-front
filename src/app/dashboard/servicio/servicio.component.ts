@@ -22,16 +22,28 @@ export class ServicioComponent implements OnInit {
     this.route.queryParams.subscribe(
       (params) => {
         this.servicio = JSON.parse(atob(params['servicio']));
-        console.log(this.servicio);
+        //console.log(this.servicio);
       }
     )
-    
+
   }
 
-  documentos(){
-    this.router.navigate(['documentos', this.servicio.id], { relativeTo: this.route, queryParams: {
-      servicio: JSON.stringify(this.servicio),
-    } });
+  documentos() {
+    this.router.navigate(['documentos', this.servicio.id], {
+      relativeTo: this.route, queryParams: {
+        servicio: btoa(JSON.stringify(this.servicio)),
+      }
+    });
   }
+
+  actividades() {
+    this.router.navigate(['actividades', this.servicio.id], {
+      relativeTo: this.route,
+      queryParams: {
+        servicio: btoa(JSON.stringify(this.servicio)),
+      },
+    });
+  }
+
 
 }

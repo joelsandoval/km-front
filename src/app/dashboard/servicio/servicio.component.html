@@ -2,21 +2,15 @@
   <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
     <mat-list *ngIf="servicio">
       <mat-list-item>
-        <button mat-icon-button aria-label="Datos Generales del Proyecto" [routerLink]="['generales', servicio.servicio, servicio.proyecto]"
-          matTooltip="Datos generales">
-          <mat-icon>article</mat-icon>
+        <button mat-icon-button aria-label="Compromisos/Obligaciones" routerLink="" (click)="actividades();"
+          matTooltip="Compromisos">
+          <mat-icon>fact_check</mat-icon>
         </button>
       </mat-list-item>
       <mat-list-item>
         <button mat-icon-button aria-label="Documentos" routerLink="" (click)="documentos()" 
           matTooltip="Documentos">
           <mat-icon>folder_copy</mat-icon>
-        </button>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-icon-button aria-label="Compromisos/Obligaciones" [routerLink]="['actividades', 1]"
-          matTooltip="Compromisos">
-          <mat-icon>fact_check</mat-icon>
         </button>
       </mat-list-item>
       <mat-list-item>

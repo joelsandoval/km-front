@@ -4,8 +4,9 @@ import * as global from 'src/app/model/global'
 import { MatDialog } from '@angular/material/dialog';
 import { ActividadesNuevoComponent } from '../actividades-nuevo/actividades-nuevo.component';
 import { ProyectosService } from 'src/app/services/proyectos.service';
-import { Fisica } from 'src/app/model/personas';
+import { Fisica, FisicaF } from 'src/app/model/personas';
 import { ActivatedRoute } from '@angular/router';
+import { CatalogosService } from 'src/app/services/catalogos.service';
 
 @Component({
   selector: 'app-actividades',
@@ -19,7 +20,8 @@ export class ActividadesComponent implements OnInit {
   calendario: Calendario[] = [];
   actividades: ActividadF[] = [];
   seleccionado: ActividadF = new ActividadF();
-  personas: Fisica[] = [];
+  personas: FisicaF[] = [];
+  persona: FisicaF = new FisicaF();
   folders = global.folders;
   notes = global.notes;
   servi: ServicioF = new ServicioF(); 
@@ -27,7 +29,8 @@ export class ActividadesComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public service: ProyectosService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public catService: CatalogosService
   ) { }
 
 
@@ -35,10 +38,15 @@ export class ActividadesComponent implements OnInit {
     this.route.queryParams.subscribe(
       (params) => {
         this.servi = JSON.parse(atob(params['servicio']));
-        console.log(this.servicio);
+        console.log(this.servi);
         this.service.getProyectoActividades(this.servi.id).subscribe(
           actis => {
             this.actividades = actis;
+            this.catService.getPersonasMoral(1).subscribe(
+              perss => {
+                this.personas = perss;
+              }
+            )
           }
         )
         this.calendario = global.calendario;
@@ -60,7 +68,7 @@ export class ActividadesComponent implements OnInit {
       this.actividades.unshift(result);
       console.log(`Dialog result:`);
       console.log(result);
-    });
+    }); 
   }
 
 
@@ -95,6 +103,10 @@ export class ActividadesComponent implements OnInit {
   selectActividad(value: ActividadF) {
     this.actividadCambia.emit(value);
     this.seleccionado = value;
+    console.log(this.seleccionado);
+    console.log(this.personas);
+    this.persona = this.personas.find(x => x.usuarioId == this.seleccionado.responsableId)!;
+    console.log(this.persona);
   }
 
   delete(actividad: ActividadF, ev: any) {

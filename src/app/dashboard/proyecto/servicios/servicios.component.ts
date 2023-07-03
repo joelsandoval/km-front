@@ -34,22 +34,19 @@ export class ServiciosComponent implements OnInit {
   ngOnInit(): void {
     let origen = this.router.url;
     let num = origen.split("/").length - 1;
-
+    
+    if (num == 4) {
+      this.ruta = '../../../../servicio';
+    } else {
+      this.ruta = '../../servicio';
+    }
+    
     this.servicioP.getProyectoServicios(this.proyecto).subscribe(
       servs => {
         this.servicios = servs;
       }
     )
 
-
-    switch (num) {
-      case 4:
-        this.ruta = '../../../../servicio';
-        break;
-
-      default:
-        this.ruta = '../../servicio';
-    }
   }
 
   openDialog() {
@@ -65,7 +62,7 @@ export class ServiciosComponent implements OnInit {
       (result: ServicioF) => {
         console.log('cerro el dialogo');
         console.log(result);
-        if(result.id > 0) {
+        if (result.id > 0) {
           this.servicios.push(result);
           console.log(`que paso con servicios?`);
           console.log(this.servicios);
@@ -74,7 +71,7 @@ export class ServiciosComponent implements OnInit {
     );
   }
 
-  abreServicio(seleccionado: ServicioF){
+  abreServicio(seleccionado: ServicioF) {
     console.log(seleccionado);
     this.router.navigate([this.ruta, seleccionado.id], {
       queryParams: {

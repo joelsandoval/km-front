@@ -1,6 +1,11 @@
 <div class="container-fluid fondo">
     <div class="row">
         <div class="col col-md-7">
+            <h3>{{ servi.servicio }}</h3>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col col-md-7">
             <table title="Servicios" matSort aria-label="Listado de servicios" id="tblServicios" name="tblServicios"
                 style="width: 100%">
                 <tr>
@@ -73,11 +78,8 @@
                         <br />
                         <mat-form-field appearance="fill" style="width: 40%;">
                             <mat-label>Responsable</mat-label>
-                            <mat-select name="categoria" [(ngModel)]="seleccionado.responsableId">
-                                <mat-option *ngFor="let persona of personas" value="persona.id">{{ persona.nombre
-                                    }}</mat-option>
-                                <mat-option value="seleccionado.responsableId">{{ seleccionado.responsable
-                                    }}</mat-option>
+                            <mat-select name="categoria" [(ngModel)]="persona">
+                                <mat-option *ngFor="let person of personas" value="person">{{ person.alias }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
