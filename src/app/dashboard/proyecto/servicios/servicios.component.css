@@ -1,6 +1,9 @@
+tr {
+    height: 40px;
+}
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
-    height: 50px;
   }
 
 .fondo {
@@ -19,7 +22,7 @@ tr:nth-child(even) {
 
 mat-card {
     margin: 0;
-    font-family: 'Roboto Condensed', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 

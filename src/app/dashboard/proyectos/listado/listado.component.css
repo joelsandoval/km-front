@@ -1,5 +1,10 @@
-table {
+mat-table {
     width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.celda {
+    cursor: pointer;
 }
 
 .mat-form-field {
@@ -9,8 +14,14 @@ table {
 
 td, th {
     vertical-align: middle;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .icon-km {
     color: darkslategrey;
+}
+
+.vinculo {
+    text-decoration: underline;
+    color: darkslategray;
 }

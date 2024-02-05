@@ -36,14 +36,16 @@ export class EquipoComponent implements OnInit {
   nuevoEquipo() {
     const dialogNuevo = this.dialog.open(EquipoNuevoComponent,
       {
-        width: '350px',
+        width: '450px',
         data: new AsignacionF(this.proyecto),
       }
     );
 
     dialogNuevo.afterClosed().subscribe(
       (result: AsignacionF) => {
-        this.equipo.push(result);
+        if (result) {
+          this.equipo.push(result);
+        }
       }
     );
   }

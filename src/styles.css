@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
-
-html, body { height: 100%; 
-    font-family: 'Roboto Condensed', sans-serif  !important;
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .badge-rojo {
@@ -25,7 +25,7 @@ html, body { height: 100%;
 }
 
 .badge-amarillo {
-    background-color:goldenrod !important;
+    background-color: goldenrod !important;
     color: black;
     padding: 4px 8px;
     text-align: center;
@@ -42,5 +42,11 @@ html, body { height: 100%;
     font-size: 0.85em !important;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}

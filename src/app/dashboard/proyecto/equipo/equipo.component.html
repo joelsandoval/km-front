@@ -1,30 +1,33 @@
-<div class="row">
-    <div class="col col-md-11">
-        <h3>
-            <mat-icon>people</mat-icon> Equipo de trabajo
-        </h3>
-    </div>
-    <div class="col col-md-1">
-        <button mat-icon-button aria-label="Trámties/Servicios" matTooltip="Trámites/Servicios" (click)="nuevoEquipo()">
-            <mat-icon>add_circle_outline</mat-icon>
-        </button>
-    </div>
-</div>
-<table aria-label="equipo" style="width: 100%">
-    <tr>
-        <th>No.</th>
-        <th>Persona</th>
-        <th>Rol</th>
-        <th></th>
-    </tr>
-    <tr *ngFor="let personal of equipo">
-        <td>{{ personal.persona.id }}</td>
-        <td>{{ personal.persona.nombre }}</td>
-        <td>{{ personal.rol.descripcion }}</td>
-        <td>
-            <button mat-icon-button aria-label="Eliminar">
-                <mat-icon color="warn">close</mat-icon>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-11">
+            <h3>
+                <mat-icon>people</mat-icon> Equipo de trabajo
+            </h3>
+        </div>
+        <div class="col col-md-1">
+            <button mat-icon-button aria-label="Equipo de trabajo" matTooltip="Agrega personal al equipo de trabajo"
+                (click)="nuevoEquipo()">
+                <mat-icon>add_circle_outline</mat-icon>
             </button>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+    <table aria-label="equipo" style="width: 100%">
+        <tr>
+            <th>No.</th>
+            <th>Persona</th>
+            <th>Rol</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let personal of equipo">
+            <td>{{ personal.persona.id }}</td>
+            <td>{{ personal.persona.nombre }}</td>
+            <td>{{ personal.rol.descripcion }}</td>
+            <td>
+                <button mat-icon-button aria-label="Eliminar">
+                    <mat-icon color="warn">close</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

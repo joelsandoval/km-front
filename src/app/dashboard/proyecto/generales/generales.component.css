@@ -1,5 +1,11 @@
 h2 {
     padding-top: 12pt;
+
+}
+
+.subtitulo {
+    font-size: 12pt;
+    color: dimgray;
     padding-bottom: 12pt;
 }
 

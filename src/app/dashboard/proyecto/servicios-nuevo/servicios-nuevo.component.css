@@ -1,7 +1,17 @@
+
 .example-form {
   width: 100%;
 }
 
 .example-full-width {
   width: 100%;
+}
+
+* {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+mat-dialog-title {
+  font-size: 14pt;
+  
 }

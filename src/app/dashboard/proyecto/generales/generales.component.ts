@@ -25,9 +25,13 @@ export class GeneralesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       param => {
+        console.log('proyecto');
+        console.log(param);
         this.id = +param.get('id')!;
         this.servicioP.getProyecto(this.id).subscribe(
           proyecto => {
+            console.log('proyecto');
+            console.log(proyecto);
             this.proyecto = proyecto;
           }
         )

@@ -1,10 +1,13 @@
 .roboto, .mat-card, .mat-tab {
-    font-family: 'Roboto Condensed', sans-serif  !important;
+    font-family: 'Poppins', sans-serif  !important;
 }
 
+mat-card-title {
+    font-family: 'Poppins', sans-serif  !important;
+}
 .mat-tab-label {
     text-align: left !important;
-    font-family: 'Roboto Condensed', sans-serif  !important;
+    font-family: 'Poppins', sans-serif  !important;
     font-size: small;
 }
 

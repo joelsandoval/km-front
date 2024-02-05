@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col col-md-11">
         <h3>
-            <mat-icon>menu_book</mat-icon> Trámites/Servicios
+            <mat-icon>menu_book</mat-icon> Servicios
         </h3>
     </div>
     <div class="col col-md-1">
@@ -13,21 +13,19 @@
 <table title="Servicios" matSort aria-label="Listado de servicios"
     id="tblServicios" name="tblServicios" style="width: 100%">
     <tr>
-        <th>No.</th>
+        <!-- <th>No.</th> -->
         <th style="width: 25%;">Servicio</th>
         <th>Referencia</th>
-        <th>Fecha</th>
-        <th>Estatus</th>
     </tr>
     <tr *ngFor="let servicio of servicios">
-        <td>{{ servicio.id }}</td>
+        <!-- <td>{{ servicio.id }}</td> -->
         <td><a routerLink="" (click)="abreServicio(servicio)" style="padding: 0%;">{{ servicio.servicioCorto }}</a></td>
         <td>{{ servicio.referencia }}</td>
-        <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
+        <!-- <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
         <td>
             <span class="{{ servicio.clase }}">
                 {{ servicio.estatus }}
             </span>
-        </td>
+        </td> -->
     </tr>
 </table>

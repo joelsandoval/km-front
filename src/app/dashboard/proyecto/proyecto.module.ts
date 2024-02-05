@@ -38,6 +38,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
     ProyectoRoutingModule,
     MatTabsModule,
@@ -50,7 +51,6 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     MatDialogModule,
     MatSelectModule,
     NgbModule,
-    FormsModule,
     MatInputModule,
     MatCardModule,
     NgHttpLoaderModule

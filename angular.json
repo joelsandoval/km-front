@@ -52,7 +52,7 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+            "dev": {
               "baseHref": "/km-front/",
               "buildOptimizer": false,
               "optimization": false,
@@ -83,7 +83,7 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "local"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -92,13 +92,13 @@
               "browserTarget": "km-front:build:production"
             },
             "dev": {
-              "browserTarget": "km-front:build:development"
+              "browserTarget": "km-front:build:dev"
             },
             "local": {
               "browserTarget": "km-front:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

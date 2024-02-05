@@ -1,41 +1,59 @@
 <div class="container-fluid blanco" *ngIf="proyecto">
+    <br />
     <div class="row">
-        <h2>
-            <mat-icon>article</mat-icon> {{ proyecto.proyecto }}
-        </h2>
-        <div class="row">
-            <div class="col col-md-4">
-                <mat-label class="etiqueta">Nombre del proyecto </mat-label><br />
-                <span class="texto">{{ proyecto.proyecto }}</span><br />
-            </div>
-            <div class="col col-md-4">
-                <mat-label class="etiqueta">Cliente </mat-label><br />
-                <span class="texto">{{ proyecto.cliente }}</span><br />
-            </div>
-            <div class="col col-md-4"></div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col col-md-4">
-                <mat-label class="etiqueta">Ubicacion </mat-label><br />
-                <span class="texto">{{ proyecto.ubicacion }}</span><br />
-            </div>
-            <div class="col col-md-4">
-                <mat-label class="etiqueta">Sector </mat-label><br />
-                <span class="texto">{{ proyecto.sector }}</span><br />
-            </div>
-            <div class="col col-md-4">
+        <div class="col col-md-12">
+            <div class="alert alert-primary">
+                <div class="row">
+                    <div class="col col-md-11">
 
+                        <div class="row">
+                            <h2>
+                                <mat-icon>article</mat-icon> {{ proyecto.proyecto }}
+                            </h2>
+                            <span class="subtitulo">
+                                {{ proyecto.observaciones }}
+                            </span>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col col-md-4">
+                                <mat-label class="etiqueta">Cliente </mat-label><br />
+                                <span class="texto">{{ proyecto.cliente }}</span><br />
+                            </div>
+                            <div class="col col-md-4">
+                                <mat-label class="etiqueta">Ubicacion </mat-label><br />
+                                <span class="texto">{{ proyecto.ubicacion }}</span><br />
+                            </div>
+                            <div class="col col-md-4">
+                                <mat-label class="etiqueta">Sector </mat-label><br />
+                                <span class="texto">{{ proyecto.sector }}</span><br />
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col col-md-1">
+                        <button mat-icon-button disabled class="float-end">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-icon-button disabled class="float-end">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <hr />
     <div class="row">
         <div class="col col-md-7">
-            <app-servicios [proyecto]="proyecto.id"></app-servicios>
+            <div class="alert alert-secondary">
+                <app-servicios [proyecto]="id"></app-servicios>
+            </div>
         </div>
         <div class="col col-md-5">
-            <app-equipo [proyecto]="proyecto.id"></app-equipo>
+            <div class="alert alert-secondary">
+                <app-equipo [proyecto]="id"></app-equipo>
+            </div>
         </div>
     </div>
 </div>
