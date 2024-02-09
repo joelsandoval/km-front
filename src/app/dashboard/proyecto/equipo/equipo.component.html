@@ -1,31 +1,27 @@
-<div class="container-fluid">
+<div class="container-fluid"  style="min-height: 250px;">
     <div class="row">
-        <div class="col col-md-11">
+        <div class="col col-md-10">
             <h3>
                 <mat-icon>people</mat-icon> Equipo de trabajo
             </h3>
         </div>
-        <div class="col col-md-1">
+        <div class="col col-md-2">
             <button mat-icon-button aria-label="Equipo de trabajo" matTooltip="Agrega personal al equipo de trabajo"
-                (click)="nuevoEquipo()">
+                (click)="nuevoEquipo()" class="float-end">
                 <mat-icon>add_circle_outline</mat-icon>
             </button>
         </div>
     </div>
     <table aria-label="equipo" style="width: 100%">
         <tr>
-            <th>No.</th>
-            <th>Persona</th>
-            <th>Rol</th>
+            <th></th>
             <th></th>
         </tr>
         <tr *ngFor="let personal of equipo">
-            <td>{{ personal.persona.id }}</td>
-            <td>{{ personal.persona.nombre }}</td>
-            <td>{{ personal.rol.descripcion }}</td>
+            <td>{{ personal.alias }}</td>
             <td>
                 <button mat-icon-button aria-label="Eliminar">
-                    <mat-icon color="warn">close</mat-icon>
+                    <mat-icon color="warn">delete</mat-icon>
                 </button>
             </td>
         </tr>

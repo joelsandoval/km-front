@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Archivo } from 'src/app/model/archivos';
+import { Archivo, ArchivosActividades } from 'src/app/model/archivos';
 import { ExpCatDocumentos, ExpCatDocumentosCatego, ExpedienteServicio, ExpServicioArchivos } from 'src/app/model/expediente';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
@@ -19,7 +19,7 @@ export class DocumentosAgregaComponent implements OnInit {
   archivos: Archivo[] = [];
   tipos: ExpCatDocumentos[] = [];
   catego: number = 1;
-  categs: ExpCatDocumentosCatego = new ExpCatDocumentosCatego(); 
+  categs: ExpCatDocumentosCatego = new ExpCatDocumentosCatego();
   categorias: ExpCatDocumentosCatego[] = [];
   expediente: ExpedienteServicio = new ExpedienteServicio();
   archivo!: string;
@@ -42,14 +42,14 @@ export class DocumentosAgregaComponent implements OnInit {
         /* this.serviceExp.getExpCatDocumentos(this.data.catego.id, this.data.persona, this.data.proyecto).subscribe(
           lista => {
             this.tipos = lista; */
-            if (this.data.origen == 1) {
-              this.expediente.servicio = this.data.servicio;
-              this.expediente.cumple = false;
-              this.expediente.presenta = true;
-            }
-    
-          /* }
-        ) */
+        if (this.data.origen == 1) {
+          this.expediente.servicio = this.data.servicio;
+          this.expediente.cumple = false;
+          this.expediente.presenta = true;
+        }
+
+        /* }
+      ) */
       }
     )
   }
@@ -72,17 +72,19 @@ export class DocumentosAgregaComponent implements OnInit {
             console.log(data);
             this.service.updateArchivo(data).subscribe(
               (result: Archivo) => {
-                let exparch: ExpServicioArchivos = new ExpServicioArchivos();
-                exparch.expediente = this.data.expediente.id;
-                exparch.archivo = result.id;
-                this.serviceExp.saveExpTramiteArchivo(exparch).subscribe(
-                  ne => {
-                    x++;
-                    if (x == this.fileArray.length) {
-                      this.dialogRef.close(`${x} archivos cargados`);
+                let relaciona: ArchivosActividades = new ArchivosActividades();
+                relaciona.archivo = result.id;
+                relaciona.actividad = this.data.servicio
+                relaciona.fechaRegistro = new Date();
+                this.service.saveActividades(relaciona).subscribe(
+                  (result: Archivo) => {
+                    console.log(result);
+                    if(result) {
+                      this.dialogRef.close(result);
                     }
                   }
                 )
+
               }
             );
           }
@@ -96,7 +98,7 @@ export class DocumentosAgregaComponent implements OnInit {
   handleFileInput(evento: any) {
     console.log(evento.target.files);
     let files: FileList = evento.target.files;
-    if(files){
+    if (files) {
       this.fileArray = files;
     }
   }

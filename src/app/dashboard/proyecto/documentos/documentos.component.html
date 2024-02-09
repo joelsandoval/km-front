@@ -1,7 +1,34 @@
-<div class="container-fluid">
-    <h2><mat-icon>attach_file</mat-icon> Documentos</h2>
-    <hr/>
-    <div class="row" style="min-height: 600px;">
-
+<div class="container-fluid" style="min-height: 250px;">
+    <div class="row">
+        <div class="col col-md-10">
+            <h3>
+                <mat-icon>folder_copy</mat-icon> Documentos
+            </h3>
+        </div>
+        <div class="col col-md-2">
+            <button mat-icon-button aria-label="Servicios" matTooltip="Servicios" class="float-end"
+                (click)="nuevoDocumento()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
     </div>
+    <table aria-label="equipo" style="width: 100%">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let archivo of archivos">
+            <td>
+                <div style="word-wrap: break-word; cursor: pointer;">
+                    <a (click)="descargaArchivo(archivo.ruta, archivo.archivo)" *ngIf="archivo.ruta && archivo.archivo">
+                        {{ archivo.archivo.substring(0,25) }}</a>
+                </div>
+            </td>
+            <td>
+                <button mat-icon-button aria-label="Eliminar">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>

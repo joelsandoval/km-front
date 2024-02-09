@@ -23,3 +23,10 @@ export class ArchivoTipos {
     id!: number;
     tipo!: string;
 }
+
+export class ArchivosActividades {
+    id!: number;
+    actividad!: number;
+    archivo!: number;
+    fechaRegistro!: Date;
+}

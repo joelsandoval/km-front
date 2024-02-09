@@ -81,3 +81,10 @@ export class AsignacionF {
         this.servicio = servicio;
     }
 }
+
+export class ProyectosEquipo {
+    id!: number;
+    proyecto!: number;
+    persona!: number;
+    fechaRegistro!: Date;
+}

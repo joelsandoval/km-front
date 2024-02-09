@@ -1,11 +1,12 @@
+<div class="container-fluid"  style="min-height: 250px;">
 <div class="row">
-    <div class="col col-md-11">
+    <div class="col col-md-10">
         <h3>
             <mat-icon>menu_book</mat-icon> Servicios
         </h3>
     </div>
-    <div class="col col-md-1">
-        <button mat-icon-button aria-label="Trámties/Servicios" matTooltip="Trámites/Servicios" (click)="openDialog()">
+    <div class="col col-md-2">
+        <button mat-icon-button aria-label="Servicios" matTooltip="Servicios" class="float-end" (click)="openDialog()">
             <mat-icon>add_circle_outline</mat-icon>
         </button>
     </div>
@@ -13,19 +14,12 @@
 <table title="Servicios" matSort aria-label="Listado de servicios"
     id="tblServicios" name="tblServicios" style="width: 100%">
     <tr>
-        <!-- <th>No.</th> -->
-        <th style="width: 25%;">Servicio</th>
-        <th>Referencia</th>
+        <th style="width: 45%;">Servicio</th>
+        <th class="centrar">Próximo compromiso</th>
     </tr>
     <tr *ngFor="let servicio of servicios">
-        <!-- <td>{{ servicio.id }}</td> -->
-        <td><a routerLink="" (click)="abreServicio(servicio)" style="padding: 0%;">{{ servicio.servicioCorto }}</a></td>
-        <td>{{ servicio.referencia }}</td>
-        <!-- <td>{{ servicio.registro | date: 'dd/MM/yyyy' }}</td>
-        <td>
-            <span class="{{ servicio.clase }}">
-                {{ servicio.estatus }}
-            </span>
-        </td> -->
+        <td><a routerLink="" (click)="abreServicio(servicio.servicio)" style="padding: 0%;">{{ servicio.servicio.servicioCorto }}</a></td>
+        <td class="centrar"><span *ngIf="servicio.compromiso" class="{{ servicio.compromiso.semaforoColor }}" >{{ servicio.compromiso.vencimiento | date: 'dd/MM/yyy' }}</span></td>
     </tr>
 </table>
+</div>

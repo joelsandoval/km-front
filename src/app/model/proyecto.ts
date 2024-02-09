@@ -69,6 +69,8 @@ export class Actividad {
     responsable!: number;
     observaciones!: string;
     documento!: number;
+    vencimiento!: Date;
+    terminado!: boolean;
 }
 
 
@@ -86,6 +88,12 @@ export class ActividadF {
     responsableId!: number;
     responsable!: string;
     clase!: string;
+    vencimiento!: Date;
+    estado!: number;
+    semaforo!: number;
+    semaforoColor!: string;
+    semaforoEtiqueta!: string;
+    terminado!: boolean;
 }
 
 
@@ -125,5 +133,14 @@ export class DataServicio {
     personas!: Fisica[];
   }
 
-
+export class ServiciosVencimiento {
+    servicio!: ServicioF;
+    compromiso!: ActividadF;
+}
   
+export class ProyectoEquipo {
+    id!: number;
+    proyecto!: number;
+    persona!: number;
+    fechaRegistro!: Date;
+}

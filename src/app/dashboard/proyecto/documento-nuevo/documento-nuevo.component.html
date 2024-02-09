@@ -3,9 +3,9 @@
 <hr/>
 <form id="singleUploadForm" name="singleUploadForm" action="/" method="POST" enctype="multipart/form-data">
     <mat-dialog-content class="mat-typography">
-        <div class="row"  *ngIf="data.origen == 1">
+        <div class="row">
             <div class="col col-sm-12">
-                <mat-form-field appearance="outline"  style="display: block;">
+                <mat-form-field appearance="outline"  style="display: block;" hidden>
                     <mat-label>Categoria</mat-label>
                     <mat-select [(ngModel)]="categs" name="doc-cat" id="doc-cat">
                         <mat-option *ngFor="let cat of categorias" [value]="cat">
@@ -15,9 +15,9 @@
                 </mat-form-field> 
             </div>
         </div>
-        <div class="row"  *ngIf="data.origen == 1">
+        <div class="row" >
             <div class="col col-sm-12">
-                <mat-form-field appearance="outline"  style="display: block;">
+                <mat-form-field appearance="outline"  style="display: block;" hidden>
                     <mat-label>Tipo de documento</mat-label>
                     <mat-select [(ngModel)]="catego" name="doc-tipo" id="doc-tipo" (selectionChange)="puedeGuardar($event.value)">
                         <mat-option *ngFor="let tipo of categs.documentos" [value]="tipo.id">
@@ -28,7 +28,19 @@
                 </mat-form-field> 
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col col-sm-8">
+                <mat-form-field appearance="outline"  style="display: block;" *ngIf="catego == 0" hidden>
+                    <mat-label>Especifique</mat-label>
+                    <input matInput name="otros" id="otros" [(ngModel)]="otros" (change)="puedeGuardar($event)">
+                </mat-form-field>
+            </div>
+            <div class="col col-sm-4">
+                <mat-slide-toggle *ngIf="catego == 0" [(ngModel)]="agregar" name="agregar">
+                    <div>Agregar al catálogo</div>
+                </mat-slide-toggle>
+            </div>
+        </div>
         <div class="row">
             <div class="col col-md-12">
                 <input id="files" type="file" name="files" (change)="handleFileInput($event)"

@@ -21,13 +21,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { PendientesComponent } from './pendientes/pendientes.component';
 
 @NgModule({
   declarations: [
     ProyectosComponent,
     ListadoComponent,
     NuevoComponent,
-    ProyectoComponent
+    ProyectoComponent,
+    PendientesComponent
   ],
   imports: [
     CommonModule,

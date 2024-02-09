@@ -5,7 +5,7 @@
             <mat-label>Personal</mat-label>
             <mat-select [(ngModel)]="persona" name="persona" (selectionChange)="asignaPersona(persona)">
                 <mat-option *ngFor="let pers of personas" [value]="pers">
-                    {{ pers.nombre }} {{ pers.primer }} {{ pers.segundo }}
+                    {{ pers.nombre }} {{ pers.apellido1 }} {{ pers.apellido2 }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

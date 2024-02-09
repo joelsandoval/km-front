@@ -8,6 +8,12 @@
                 </button>
             </mat-list-item>
             <mat-list-item>
+                <button mat-icon-button aria-label="Actividades pendientes" [routerLink]="['pendientes', 0, 0]"
+                    matTooltip="Actividades pendientes" [matTooltipPosition]="'left'">
+                    <mat-icon>warning_amber</mat-icon>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
                 <button mat-icon-button aria-label="Nuevo Proyecto" routerLink="nuevo" matTooltip="Nuevo proyecto"
                     [matTooltipPosition]="'left'">
                     <mat-icon>add_circle_outline</mat-icon>

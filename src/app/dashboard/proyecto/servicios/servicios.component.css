@@ -25,4 +25,10 @@ mat-card {
     font-family: 'Roboto', sans-serif !important;
 }
 
+.centrar {
+    text-align: center;
+}
 
+td {
+    padding-left: 10px;
+}

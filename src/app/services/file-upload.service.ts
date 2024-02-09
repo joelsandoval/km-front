@@ -58,6 +58,14 @@ export class FileUploadService {
     )
   }
 
+  public postArchivoProyecto(fileToUpload: File, cliente: number, proyecto: number): Observable<any> {
+    const endpoint1 = `${this.rutaBase}upload/proyecto/${cliente},${proyecto}`;
+    let formData1: FormData = new FormData();
+    formData1.append('file', fileToUpload);
+    console.log(formData1);
+    return this.http.post(endpoint1, formData1).pipe();
+  }
+
   private log(message: string) {
     this.messageService.add(`PrioritariosService: ${message}`);
   }

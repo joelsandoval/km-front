@@ -1,42 +1,26 @@
-<h2 mat-dialog-title>Registro de Actividades/Compromisos</h2>
+<h2 mat-dialog-title>Registro de Compromisos</h2>
 <mat-dialog-content class="mat-typography">
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Categoría</mat-label>
-            <mat-select name="categoria" [(ngModel)]="tipo">
-                <mat-option *ngFor="let categoria of tipos" [value]="categoria">{{ categoria.actividadTipo }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{ tipo.actividadTipo }}</mat-label>
-            <mat-select name="actividad" [(ngModel)]="activida">
-                <mat-option *ngFor="let actividad of tipo.actividades" [value]="actividad">{{ actividad.actividad }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill" *ngIf="activida.actividad == 'Otros'">
-            <mat-label>Otros</mat-label>
-            <input matInput name="nombre" placeholder="Especifique">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput name="observ" [(ngModel)]="actividad.descripcion" placeholder="Describa el compromiso o actividad"></textarea>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 48%;">
-            <mat-label>Fecha <span *ngIf="tipo.id == 2">límite</span></mat-label>
-            <input matInput [matDatepicker]="picker2" name="fecha" [(ngModel)]="fecha">
+            <mat-label>Fecha de vencimiento </mat-label>
+            <input matInput [matDatepicker]="picker2" name="fecha" [(ngModel)]="actividad.vencimiento">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         &nbsp;&nbsp;
         <mat-form-field appearance="fill" style="width: 48%;">
             <mat-label>Responsable</mat-label>
-            <mat-select name="responsable" [(ngModel)]="responsable" name="responsable">
-                <mat-option *ngFor="let fisica of fisicas" [value]="fisica">{{ fisica.alias }}</mat-option>
+            <mat-select name="responsable" [(ngModel)]="actividad.responsable" name="responsable">
+                <mat-option *ngFor="let fisica of fisicas" [value]="fisica.id">{{ fisica.alias }}</mat-option>
             </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Observaciones</mat-label>
-            <textarea matInput name="observ" [(ngModel)]="actividad.observaciones" placeholder="Escriba observaciones o comentarios relevantes al servicio..."></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button cdkFocusInitial (click)="guardaActividad()">Guardar</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="guardaActividad()">Guardar</button>
 </mat-dialog-actions>

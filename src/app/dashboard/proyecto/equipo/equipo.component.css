@@ -20,3 +20,7 @@ mat-card {
     margin: 0; 
     font-family: 'Roboto Condensed', sans-serif !important;
 }
+
+td {
+    padding-left: 10px;
+}

@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios, CatActividades, VwExpCatActividadesServicios, Par } from '../model/catalogos';
-import { FisicaF, PersonasMorales } from '../model/personas';
+import { Fisica, FisicaF, PersonasMorales } from '../model/personas';
 
 
 @Injectable({
@@ -44,6 +44,13 @@ export class CatalogosService {
     return this.http.get<FisicaF[]>(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<FisicaF[]>('No se pudieron recuperar los documentos', [])));
+  }
+
+  getTodos(): Observable<Fisica[]> {
+    const docsUrl = `${this.personasUrl}todos`;
+    return this.http.get<Fisica[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<Fisica[]>('No se pudieron recuperar los documentos', [])));
   }
 
   getListaClientes(tipo: number): Observable<PersonasMorales[]> {

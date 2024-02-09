@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ServiciosNuevoComponent } from '../servicios-nuevo/servicios-nuevo.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioF } from 'src/app/model/proyecto';
+import { ActividadF, ServicioF, ServiciosVencimiento } from 'src/app/model/proyecto';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -19,7 +20,7 @@ export interface ProySer {
 export class ServiciosComponent implements OnInit {
   @Input() proyecto!: number;
 
-  servicios: ServicioF[] = [];
+  servicios: ServiciosVencimiento[] = [];
   ruta: string = '../../servicio';
 
   constructor(
@@ -34,15 +35,16 @@ export class ServiciosComponent implements OnInit {
   ngOnInit(): void {
     let origen = this.router.url;
     let num = origen.split("/").length - 1;
-    
+
     if (num == 4) {
       this.ruta = '../../../../servicio';
     } else {
       this.ruta = '../../servicio';
     }
-    
-    this.servicioP.getProyectoServicios(this.proyecto).subscribe(
-      servs => {
+
+    this.servicioP.getServiciosVencimiento(this.proyecto).subscribe(
+      (servs: ServiciosVencimiento[]) => {
+        console.log(servs);
         this.servicios = servs;
       }
     )
@@ -63,7 +65,9 @@ export class ServiciosComponent implements OnInit {
         console.log('cerro el dialogo');
         console.log(result);
         if (result.id > 0) {
-          this.servicios.push(result);
+          let serviVen: ServiciosVencimiento = new ServiciosVencimiento();
+          serviVen.servicio = result
+          this.servicios.push(serviVen);
           console.log(`que paso con servicios?`);
           console.log(this.servicios);
         }
@@ -80,5 +84,5 @@ export class ServiciosComponent implements OnInit {
     });
   }
 
-
+  
 }

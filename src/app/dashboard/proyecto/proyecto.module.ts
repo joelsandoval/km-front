@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { EquipoNuevoComponent } from './equipo-nuevo/equipo-nuevo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { DocumentoNuevoComponent } from './documento-nuevo/documento-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     HistorialComponent,
     ServiciosNuevoComponent,
     DocumentosComponent,
-    EquipoNuevoComponent
+    EquipoNuevoComponent,
+    DocumentoNuevoComponent
   ],
   imports: [
     CommonModule,

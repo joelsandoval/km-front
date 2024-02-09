@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
-import { Actividad, ActividadF, Proyecto, ProyectoF, Servicio, ServicioF } from '../model/proyecto';
+import { Actividad, ActividadF, Proyecto, ProyectoEquipo, ProyectoF, Servicio, ServicioF, ServiciosVencimiento } from '../model/proyecto';
+import { Fisica } from '../model/personas';
 
 @Injectable({
   providedIn: 'root'
@@ -97,8 +98,34 @@ export class ProyectosService {
       catchError(this.handleError<any[]>('No se pudieron recuperar los actividades')));
   }
 
-  
+  getProximoVencimiento(servicio: number): Observable<ActividadF> {
+    const proyUrl = `${this.proyectosUrl}vencimiento/${servicio}`;
+    return this.http.get<ActividadF>(proyUrl)
+      .pipe(tap(_ => this.log('se recuperaron las actividades')),
+        catchError(this.handleError<ActividadF>('No se pudieron recuperar los actividades')));
+  }
 
+  getServiciosVencimiento(proyecto: number): Observable<ServiciosVencimiento[]> {
+    const proyUrl = `${this.proyectosUrl}servicios/vencimiento/${proyecto}`;
+    return this.http.get<ServiciosVencimiento[]>(proyUrl)
+      .pipe(tap(_ => this.log('se recuperaron las actividades')),
+        catchError(this.handleError<ServiciosVencimiento[]>('No se pudieron recuperar los actividades')));
+  }
+
+  public saveProyectoEquipo(equipo: ProyectoEquipo): Observable<Fisica> {
+    const ruta = `${this.proyectosUrl}equipo`;
+    return this.http.post<Fisica>(ruta, equipo, this.httpOptions).pipe(
+      tap(_ => this.log(`nuevo equipo`)),
+      catchError(this.handleError<any>('No se pudo agregar'))
+    );
+  }
+
+  getEquipo(proyecto: number): Observable<Fisica[]> {
+    const proyUrl = `${this.proyectosUrl}equipo/${proyecto}`;
+    return this.http.get<Fisica[]>(proyUrl)
+      .pipe(tap(_ => this.log('se recuperaron las actividades')),
+        catchError(this.handleError<Fisica[]>('No se pudieron recuperar los actividades')));
+  }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

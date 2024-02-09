@@ -12,7 +12,13 @@ mat-table {
     width: 100%;
 }
 
-td, th {
+th {
+    vertical-align: middle;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: bold;
+}
+
+td {
     vertical-align: middle;
     font-family: 'Poppins', sans-serif !important;
 }

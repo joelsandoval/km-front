@@ -33,6 +33,16 @@ html, body {
     font-size: 0.85em !important;
 }
 
+
+.badge-naranja {
+    background-color: orangered !important;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.85em !important;
+}
+
 .badge-azul {
     background-color: darkslateblue !important;
     color: white;

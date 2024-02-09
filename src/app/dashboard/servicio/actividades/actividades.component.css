@@ -1,6 +1,9 @@
+html {
+    font-family: 'Poppins', sans-serif !important;
+}
+
 table {
     margin: 0;
-    font-family: 'Roboto Condensed', sans-serif !important;
 }
 
 .rojo {
@@ -20,3 +23,7 @@ table {
     background-color: white;
     color: black;
 }
+
+.example-full-width {
+    width: 100%;
+  }

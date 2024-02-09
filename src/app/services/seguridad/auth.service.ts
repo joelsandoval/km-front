@@ -54,4 +54,12 @@ export class AuthService {
         return new Credenciales(nombre, user, roles);
     }
 
+    public getToken(): any {
+        const token = this.oauthService.getAccessToken();
+        const payload = token.split('.')[1];
+        const payloadDecodedJson = atob(payload);
+        const payloadDecoded = JSON.parse(payloadDecodedJson);
+        return payloadDecoded;
+    }
+
 }

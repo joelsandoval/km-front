@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
 import { environment } from '../../environments/environment';
-import { Archivo, ArchivoTipos } from '../model/archivos';
+import { Archivo, ArchivoTipos, ArchivosActividades } from '../model/archivos';
 
 @Injectable({
   providedIn: 'root'
@@ -76,8 +76,28 @@ export class ArchivosService {
         catchError(this.handleError<Archivo[]>('No se pudieron recuperar los documentos')));
   }
 
+  getDocumentosProyecto(proyecto: number | string): Observable<Archivo[]> {
+    const docsUrl = this.tramiteUrl + 'proyecto/' + proyecto;
+    return this.http.get<Archivo[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<Archivo[]>('No se pudieron recuperar los documentos', [])));
+  }
 
+  getDocumentosActividad(actividad: number | string): Observable<Archivo[]> {
+    const docsUrl = this.tramiteUrl + 'actividad/' + actividad;
+    return this.http.get<Archivo[]>(docsUrl)
+      .pipe(tap(_ => this.log('Se recuperaron los documentos')),
+        catchError(this.handleError<Archivo[]>('No se pudieron recuperar los documentos', [])));
+  }
   
+  public saveActividades(actividad: ArchivosActividades): Observable<Archivo> {
+    const ruta = `${this.tramiteUrl}/actividad`;
+    return this.http.post<Archivo>(ruta, actividad, this.httpOptions).pipe(
+      tap(_ => this.log(`actualizado documento ${actividad.actividad}`)),
+      catchError(this.handleError<any>('No se pudo actualizar el archivo'))
+    );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`PrioritariosService: ${message}`);

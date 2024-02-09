@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/seguridad/auth.service';
 export class ListadoComponent implements OnInit {
 
   proyectos: ProyectoF[] = [];
-  displayedColumns: string[] = ['nombre', 'cliente', 'sector', 'fecha'];
+  displayedColumns: string[] = ['proyecto', 'cliente', 'sector', 'registro'];
   dataSource!: MatTableDataSource<ProyectoF>;
   pageSize = 50;
 
