@@ -4,8 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
-import { Actividad, ActividadF, Proyecto, ProyectoEquipo, ProyectoF, Servicio, ServicioF, ServiciosVencimiento } from '../model/proyecto';
+import { Actividad, ActividadF, Proyecto, ProyectoEquipo, ProyectoF, Servicio, ServicioF, ServiciosVencimiento, VwActividades } from '../model/proyecto';
 import { Fisica } from '../model/personas';
+import { SegUsuarios } from '../model/seguridad/user';
 
 @Injectable({
   providedIn: 'root'
@@ -112,20 +113,35 @@ export class ProyectosService {
         catchError(this.handleError<ServiciosVencimiento[]>('No se pudieron recuperar los actividades')));
   }
 
-  public saveProyectoEquipo(equipo: ProyectoEquipo): Observable<Fisica> {
+  public saveProyectoEquipo(equipo: ProyectoEquipo): Observable<SegUsuarios> {
     const ruta = `${this.proyectosUrl}equipo`;
-    return this.http.post<Fisica>(ruta, equipo, this.httpOptions).pipe(
+    return this.http.post<SegUsuarios>(ruta, equipo, this.httpOptions).pipe(
       tap(_ => this.log(`nuevo equipo`)),
       catchError(this.handleError<any>('No se pudo agregar'))
     );
   }
 
-  getEquipo(proyecto: number): Observable<Fisica[]> {
+  getEquipo(proyecto: number): Observable<SegUsuarios[]> {
     const proyUrl = `${this.proyectosUrl}equipo/${proyecto}`;
-    return this.http.get<Fisica[]>(proyUrl)
+    return this.http.get<SegUsuarios[]>(proyUrl)
       .pipe(tap(_ => this.log('se recuperaron las actividades')),
-        catchError(this.handleError<Fisica[]>('No se pudieron recuperar los actividades')));
+        catchError(this.handleError<SegUsuarios[]>('No se pudieron recuperar los actividades')));
   }
+
+  public delEquipo(proyecto: number, usuario: number): Observable<any> {
+    const ruta = `${this.proyectosUrl}equipo/borra/${proyecto},${usuario}`;
+    return this.http.get<any[]>(ruta)
+    .pipe(tap(_ => this.log('se recuperaron las actividades')),
+      catchError(this.handleError<any[]>('No se pudieron recuperar los actividades')));
+  }
+
+  getActividadesPendientes(usuario: number): Observable<VwActividades[]> {
+    const proyUrl = `${this.proyectosUrl}actividades/pendientes/${usuario}`;
+    return this.http.get<VwActividades[]>(proyUrl)
+      .pipe(tap(_ => this.log('se recuperaron las actividades')),
+        catchError(this.handleError<VwActividades[]>('No se pudieron recuperar los actividades')));
+  }
+
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

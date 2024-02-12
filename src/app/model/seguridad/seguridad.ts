@@ -1,3 +1,5 @@
+import { SegUsuarios } from "./user";
+
 export class Credenciales {
     userName: string;
     nombre: string;
@@ -5,7 +7,7 @@ export class Credenciales {
     constructor(
         userName: string,
         nombre: string,
-        roles: string[]
+        roles: string[],
     ) {
         this.userName = userName;
         this.nombre = nombre;

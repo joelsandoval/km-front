@@ -4,6 +4,7 @@ import { DocumentoNuevoComponent } from '../documento-nuevo/documento-nuevo.comp
 import { Archivo } from 'src/app/model/archivos';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { BorraConfirmaComponent } from '../borra-confirma/borra-confirma.component';
 
 @Component({
   selector: 'app-documentos',
@@ -22,7 +23,7 @@ export class DocumentosComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceArch.getDocumentosProyecto(this.proyecto).subscribe(
-      archivos => this.archivos =  archivos
+      archivos => this.archivos = archivos
     );
   }
 
@@ -41,7 +42,7 @@ export class DocumentosComponent implements OnInit {
     dialogNuevo.afterClosed().subscribe(
       (result: Archivo) => {
         if (result) {
-          
+
           this.archivos.push(result);
 
         }
@@ -53,5 +54,26 @@ export class DocumentosComponent implements OnInit {
   descargaArchivo(ruta: string, tipo: string): void {
     this.serviceFile.downloadFile(ruta, tipo);
   }
-  
+
+  borraDocumento(archivo: Archivo) {
+    const dialogNuevo = this.dialog.open(BorraConfirmaComponent,
+      {
+        width: '500px',
+        height: '200px',
+        data: {
+          tipo: 1,
+          mensaje: `¿Está seguro de borrar el archivo ${archivo.archivo}?`,
+          archivo: archivo
+        }
+      }
+    );
+
+    dialogNuevo.afterClosed().subscribe(
+      (result: Archivo) => {
+          let index = this.archivos.findIndex(x => x.id === archivo.id);
+          this.archivos.splice(index, 1);
+      }
+    );
+  }
+
 }

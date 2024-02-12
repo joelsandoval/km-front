@@ -55,7 +55,7 @@ export class ArchivosService {
 
 
   public borraArchivo(documento: Archivo): Observable<any> {
-    const ruta = `${environment.ApiConfig.rutaBase}archivo/borra`;
+    const ruta = `${this.tramiteUrl}borra`;
     return this.http.post(ruta, documento, this.httpOptions).pipe(
       tap(_ => this.log(`actualizado documento ${documento.descripcion}`)),
       catchError(this.handleError<any>('No se pudo actualizar el archivo'))
@@ -91,7 +91,7 @@ export class ArchivosService {
   }
   
   public saveActividades(actividad: ArchivosActividades): Observable<Archivo> {
-    const ruta = `${this.tramiteUrl}/actividad`;
+    const ruta = `${this.tramiteUrl}actividad`;
     return this.http.post<Archivo>(ruta, actividad, this.httpOptions).pipe(
       tap(_ => this.log(`actualizado documento ${actividad.actividad}`)),
       catchError(this.handleError<any>('No se pudo actualizar el archivo'))

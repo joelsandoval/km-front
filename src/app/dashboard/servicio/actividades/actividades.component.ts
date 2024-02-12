@@ -11,6 +11,10 @@ import { DocumentosAgregaComponent } from '../documentos/documentos-agrega/docum
 import { Archivo } from 'src/app/model/archivos';
 import { ArchivosService } from 'src/app/services/archivos.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { SegUsuarios } from 'src/app/model/seguridad/user';
+import { BorraConfirmaComponent } from '../../proyecto/borra-confirma/borra-confirma.component';
+import { AuthService } from 'src/app/services/seguridad/auth.service';
+import { Credenciales } from 'src/app/model/seguridad/seguridad';
 
 @Component({
   selector: 'app-actividades',
@@ -24,8 +28,9 @@ export class ActividadesComponent implements OnInit {
   calendario: Calendario[] = [];
   actividades: ActividadF[] = [];
   seleccionado: ActividadF = new ActividadF();
-  personas: Fisica[] = [];
-  persona: Fisica = new Fisica();
+  personas: SegUsuarios[] = [];
+  persona: SegUsuarios = new SegUsuarios();
+  me: SegUsuarios = new SegUsuarios();
   folders = global.folders;
   notes = global.notes;
   servi: ServicioF = new ServicioF();
@@ -38,25 +43,40 @@ export class ActividadesComponent implements OnInit {
     private route: ActivatedRoute,
     private catService: CatalogosService,
     private serviceA: ArchivosService,
-    private serviceFile: FileUploadService
+    private serviceFile: FileUploadService,
+    private auth: AuthService
   ) { }
 
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(
+
+    this.route.params.subscribe(
       (params) => {
-        this.servi = JSON.parse(atob(params['servicio']));
-        this.service.getProyectoActividades(this.servi.id).subscribe(
-          actis => {
-            this.actividades = actis;
-            this.catService.getTodos().subscribe(
-              perss => {
-                this.personas = perss;
+        console.log('params');
+        console.log(params);
+        let service: number = params['servi'];
+        this.service.getProyectoServicio(service).subscribe(
+          (resulta: ServicioF) => {
+            this.servi = resulta;
+            this.service.getProyectoActividades(service).subscribe(
+              actis => {
+                this.actividades = actis;
+                console.log('actividades')
+                console.log(this.actividades)
+                this.catService.getTodos().subscribe(
+                  perss => {
+                    this.personas = perss;
+                    let cred: Credenciales = this.auth.getCredenciales();
+                    this.auth.getUsuario(cred.nombre).subscribe(
+                      (user: SegUsuarios) => {
+                        this.me = user
+                      })
+                  }
+                )
               }
             )
           }
         )
-        this.calendario = global.calendario;
       }
     )
 
@@ -65,6 +85,8 @@ export class ActividadesComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ActividadesNuevoComponent, {
+      width: '550px',
+      height: '410px',
       data: {
         origen: 1,
         servicio: this.servi,
@@ -72,10 +94,10 @@ export class ActividadesComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.actividades.unshift(result);
-      console.log(`Dialog result:`);
-      console.log(result);
+    dialogRef.afterClosed().subscribe((result: ActividadF) => {
+      if (result) {
+        this.actividades.unshift(result);
+      }
     });
   }
 
@@ -118,7 +140,7 @@ export class ActividadesComponent implements OnInit {
     this.serviceA.getDocumentosActividad(this.seleccionado.id).subscribe(
       (docs: Archivo[]) => {
         this.documentos = docs;
-      } 
+      }
     )
 
   }
@@ -138,7 +160,7 @@ export class ActividadesComponent implements OnInit {
     modificado.documento = 0;
     modificado.estatus = this.seleccionado.estatusId;
     modificado.fecha = this.seleccionado.fecha;
-    modificado.observaciones = '';
+    modificado.observaciones = this.seleccionado.observaciones;
     modificado.responsable = this.seleccionado.responsableId;
     modificado.servicio = this.seleccionado.servicio;
     modificado.terminado = this.seleccionado.terminado;
@@ -155,7 +177,7 @@ export class ActividadesComponent implements OnInit {
 
 
   nuevoDocumento(): void {
-    const me = 0; 
+    const me = 0;
     const dialogNew = this.dialog.open(DocumentosAgregaComponent, {
       width: '700px',
       height: '400px',
@@ -171,12 +193,36 @@ export class ActividadesComponent implements OnInit {
       }
     })
 
-    dialogNew.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogNew.afterClosed().subscribe((archi: Archivo) => {
+      if (archi) {
+        this.documentos.push(archi);
+      }
     });
   }
 
   descargaArchivo(ruta: string, tipo: string): void {
     this.serviceFile.downloadFile(ruta, tipo);
+  }
+
+  borraDocumento(archivo: Archivo) {
+    const dialogNuevo = this.dialog.open(BorraConfirmaComponent,
+      {
+        width: '500px',
+        height: '200px',
+        data: {
+          tipo: 1,
+          mensaje: `¿Está seguro de borrar el archivo ${archivo.archivo}?`,
+          archivo: archivo
+        }
+      }
+    );
+
+    dialogNuevo.afterClosed().subscribe(
+      (result: Archivo) => {
+        let index = this.documentos.findIndex(x => x.id === archivo.id);
+        this.documentos.splice(index, 1);
+      }
+    );
+
   }
 }

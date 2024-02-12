@@ -11,11 +11,10 @@
                 <table title="Servicios" matSort aria-label="Listado de servicios" id="tblServicios" name="tblServicios"
                     style="width: 100%" class="table table-hover">
                     <tr>
-                        <th style="width: 25%;">Compromiso</th>
-                        <th>Responsable</th>
+                        <th style="width: 35%;">Compromiso</th>
+                        <th style="width: 25%;">Responsable</th>
                         <th style="width: 15%;">Vencimiento </th>
-                        <th>Estatus</th>
-                        <th>
+                        <th style="width: 5%;">
                             <button mat-icon-button color="primary" aria-label="Tramites/Servicios"
                                 matTooltip="Trámites/Servicios" (click)="openDialog()">
                                 <mat-icon>add_circle_outline</mat-icon>
@@ -28,23 +27,15 @@
                                 [ngClass]="{seleccionado: seleccionado == actividad}" style="cursor: pointer;">
                                 <td>{{ actividad.descripcion }}</td>
                                 <td>{{ actividad.responsable }}</td>
-                                <td>{{ actividad.vencimiento | date: 'dd/MM/yyyy' }}</td>
-                                <td>
-                                    <span class="{{ actividad.semaforoColor }}">
-                                        {{ actividad.semaforoEtiqueta }}
+                                <td style="text-align: center;"><span class="{{ actividad.semaforoColor }}"
+                                        matTooltip="{{ actividad.semaforoEtiqueta }}">
+                                        {{ actividad.vencimiento | date: 'dd/MM/yyyy' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
-                                        <mat-icon>more_vert</mat-icon>
+                                    <button mat-icon-button (click)="delete(actividad, $event)" hidden>
+                                        <mat-icon color="warn">delete</mat-icon>
                                     </button>
-                                    <mat-menu #menu="matMenu">
-                                        <button mat-menu-item (click)="delete(actividad, $event)">
-                                            <mat-icon color="warn">delete</mat-icon>
-                                            <span>Borrar</span>
-                                        </button>
-                                    </mat-menu>
                                 </td>
                             </tr>
                         </ng-container>
@@ -63,12 +54,19 @@
                         <br />
                         <div class="contenedor">
                             <h4> {{ seleccionado.descripcion }} </h4>
-                            <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-form-field class="example-full-width" appearance="fill"
+                                *ngIf="seleccionado.vencimiento">
                                 <mat-label>Compromiso</mat-label>
-                                <input matInput [(ngModel)]="seleccionado.descripcion" name="compromiso">
+                                <input matInput [(ngModel)]="seleccionado.descripcion" name="compromiso" required>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width" appearance="fill"
+                                *ngIf="seleccionado.vencimiento">
+                                <mat-label>Descripción</mat-label>
+                                <textarea matInput name="observ" [(ngModel)]="seleccionado.observaciones"
+                                    placeholder="Describa el compromiso o actividad"></textarea>
                             </mat-form-field>
                             <mat-form-field appearance="fill" style="width: 45%;" *ngIf="seleccionado.vencimiento">
-                                <mat-label>Fecha vencimiento</mat-label>
+                                <mat-label>Vencimiento</mat-label>
                                 <input matInput [matDatepicker]="picker" [(ngModel)]="seleccionado.vencimiento">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -76,13 +74,15 @@
                             <mat-form-field appearance="fill" style="width: 52%;" *ngIf="seleccionado.vencimiento">
                                 <mat-label>Responsable</mat-label>
                                 <mat-select name="categoria" [(ngModel)]="seleccionado.responsableId">
-                                    <mat-option *ngFor="let person of personas" [value]="person.id">{{ person.alias
-                                        }}</mat-option>
+                                    <mat-option *ngFor="let person of personas" [value]="person.id">
+                                        {{ person.nombre }} {{ person.apellidos }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <mat-slide-toggle [(ngModel)]="seleccionado.terminado">Terminado</mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="seleccionado.terminado"
+                                *ngIf="seleccionado.vencimiento">Terminado</mat-slide-toggle>
                             <button mat-raised-button color="primary" class="float-end" cdkFocusInitial
-                                (click)="guardaActividad();">Guardar</button>&nbsp;&nbsp;
+                                (click)="guardaActividad();" [disabled]="me.id != seleccionado.responsableId"
+                                *ngIf="seleccionado.vencimiento">Guardar</button>&nbsp;&nbsp;
                         </div>
                     </mat-tab>
                     <mat-tab>
@@ -91,30 +91,42 @@
                             Archivos relacionados
                         </ng-template>
                         <br />
-                        <div class="contenedor">
+                        <div class="contenedor" *ngIf="seleccionado.vencimiento">
                             <h4> {{ seleccionado.descripcion }} </h4>
                             <button mat-icon-button color="primary" aria-label="Tramites/Servicios"
                                 matTooltip="Trámites/Servicios" (click)="nuevoDocumento()" class="float-end">
                                 <mat-icon>add_circle_outline</mat-icon>
-                            </button>   
-                            <table aria-label="equipo" style="width: 100%">
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr *ngFor="let archivo of documentos">
-                                    <td>
-                                        <div style="word-wrap: break-word; cursor: pointer;">
-                                            <a (click)="descargaArchivo(archivo.ruta, archivo.archivo)" *ngIf="archivo.ruta && archivo.archivo">
-                                                {{ archivo.archivo.substring(0,25) }}</a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button mat-icon-button aria-label="Eliminar">
-                                            <mat-icon color="warn">delete</mat-icon>
-                                        </button>
-                                    </td>
-                                </tr>
+                            </button>
+                            <table aria-label="equipo" style="width: 100%" class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let archivo of documentos">
+                                        <td>
+                                            <div style="word-wrap: break-word; cursor: pointer;">
+                                                <a (click)="descargaArchivo(archivo.ruta, archivo.archivo)"
+                                                    *ngIf="archivo.ruta && archivo.archivo"
+                                                    matTooltip="{{archivo.archivo}} ({{archivo.descripcion}})">
+                                                    {{ archivo.archivo.length < 50 ? archivo.archivo :
+                                                        archivo.archivo.substring(0,50) + '...' }}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>{{ archivo.size | fileSize }} </span>
+                                        </td>
+                                        <td>
+                                            <button mat-icon-button aria-label="Eliminar"
+                                                (click)="borraDocumento(archivo)">
+                                                <mat-icon color="warn">delete</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </mat-tab>

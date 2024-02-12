@@ -25,6 +25,8 @@ import { EquipoNuevoComponent } from './equipo-nuevo/equipo-nuevo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { DocumentoNuevoComponent } from './documento-nuevo/documento-nuevo.component';
+import { DocumentosAllComponent } from './documentos-all/documentos-all.component';
+import { BorraConfirmaComponent } from './borra-confirma/borra-confirma.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DocumentoNuevoComponent } from './documento-nuevo/documento-nuevo.compo
     ServiciosNuevoComponent,
     DocumentosComponent,
     EquipoNuevoComponent,
-    DocumentoNuevoComponent
+    DocumentoNuevoComponent,
+    DocumentosAllComponent,
+    BorraConfirmaComponent
   ],
   imports: [
     CommonModule,

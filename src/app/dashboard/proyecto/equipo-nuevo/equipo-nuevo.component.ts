@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AsignacionF, Fisica, FisicaF, ProyectosEquipo, Roles } from 'src/app/model/personas';
 import { ProyectoEquipo } from 'src/app/model/proyecto';
+import { SegUsuarios } from 'src/app/model/seguridad/user';
 import { CatalogosService } from 'src/app/services/catalogos.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
@@ -14,8 +15,8 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 })
 export class EquipoNuevoComponent implements OnInit {
 
-  personas: Fisica[] = [];
-  persona: Fisica = new Fisica();
+  personas: SegUsuarios[] = [];
+  persona: SegUsuarios = new SegUsuarios();
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +37,7 @@ export class EquipoNuevoComponent implements OnInit {
 
   }
 
-  asignaPersona(per: Fisica) {
+  asignaPersona(per: SegUsuarios) {
     this.persona = per;
   }
 

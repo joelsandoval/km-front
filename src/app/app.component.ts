@@ -65,7 +65,6 @@ export class AppComponent {
         this.nombre = this.oauthService.getIdentityClaims()[`name`];
         this.isAdmin = this.roles.includes("app-admin");
         this.userName = this.oauthService.getIdentityClaims()[`preferred_username`];
-        this.nombre = this.oauthService.getIdentityClaims()[`name`];
         if (this.roles.includes("app-admin")) {
           this.rol = "app-admin";
         } else {

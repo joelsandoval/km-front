@@ -28,7 +28,7 @@
             <tbody>
               <tr *ngFor="let res of usuarios" (click)="selectUser(res)" [ngClass]="{seleccionado: seleccionado == res}"
                 style="cursor: pointer;">
-                <td>{{ res.firstName+ " " + res.lastName| uppercase }}</td>
+                <td>{{ res.firstName+ " " + res.lastName }}</td>
                 <td>{{ res.email }}</td>
                 <td>{{ res.username }}</td>
 

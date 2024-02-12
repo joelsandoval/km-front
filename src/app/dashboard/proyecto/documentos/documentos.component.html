@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col col-md-10">
             <h3>
-                <mat-icon>folder_copy</mat-icon> Documentos
+                <mat-icon [routerLink]="['documentos', proyecto]">folder_copy</mat-icon> Documentos
             </h3>
         </div>
         <div class="col col-md-2">
@@ -12,23 +12,30 @@
             </button>
         </div>
     </div>
-    <table aria-label="equipo" style="width: 100%">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr *ngFor="let archivo of archivos">
-            <td>
-                <div style="word-wrap: break-word; cursor: pointer;">
-                    <a (click)="descargaArchivo(archivo.ruta, archivo.archivo)" *ngIf="archivo.ruta && archivo.archivo">
-                        {{ archivo.archivo.substring(0,25) }}</a>
-                </div>
-            </td>
-            <td>
-                <button mat-icon-button aria-label="Eliminar">
-                    <mat-icon color="warn">delete</mat-icon>
-                </button>
-            </td>
-        </tr>
+    <table aria-label="equipo" style="width: 100%" class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let archivo of archivos">
+                <td>
+                    <div style="word-wrap: break-word; cursor: pointer;">
+                        <a (click)="descargaArchivo(archivo.ruta, archivo.archivo)"
+                            *ngIf="archivo.ruta && archivo.archivo"
+                            matTooltip="{{archivo.archivo}} ({{archivo.descripcion}})">
+                            {{ archivo.archivo.length < 30 ? archivo.archivo : archivo.archivo.substring(0,30) + '...'
+                                }}</a>
+                    </div>
+                </td>
+                <td>
+                    <button mat-icon-button aria-label="Eliminar" (click)="borraDocumento(archivo)">
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>

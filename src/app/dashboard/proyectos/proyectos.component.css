@@ -1,3 +1,7 @@
+html {
+  font-family: 'Poppins', sans-serif !important;
+}
+
 .report-container {
   width: 98%;
   height: 100%;

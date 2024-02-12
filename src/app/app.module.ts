@@ -23,6 +23,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponent } from './test/test.component';
 import { SignupComponent } from './signup/signup.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatLocale } from './services/mat-locale';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { SignupComponent } from './signup/signup.component';
     BrowserAnimationsModule
   ],
 
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MatPaginatorIntl, useClass: MatLocale }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

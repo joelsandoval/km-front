@@ -1,4 +1,4 @@
-import { User } from '../../model/seguridad/user';
+import { SegUsuarios, User } from '../../model/seguridad/user';
 import { Roles } from '../../model/seguridad/roles';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -35,11 +35,11 @@ export class UserService {
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
         catchError(this.handleError<Roles[]>('No se pudieron recuperar los documentos', [])));
   }
-//Crea Usuario
+  //Crea Usuario
   public create(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}create-user`, user, this.httpOptions);
   }
-//Actualiza Usuario
+  //Actualiza Usuario
   public updateUser(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user`, user, this.httpOptions);
   }
@@ -47,10 +47,17 @@ export class UserService {
   public updateUserCreds(user: UserRepresentation): Observable<UserRepresentation> {
     return this.httpClient.post<UserRepresentation>(`${this.seguridadURL}edit-user-creds`, user, this.httpOptions);
   }
-//Borra Usuario
+  //Borra Usuario
   public delUser(user: UserRepresentation): Observable<UserRepresentation> {
-     return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
+    return this.httpClient.get<UserRepresentation>(`${this.seguridadURL}delete-user/${user.id}`);
   }
+
+
+  //Crea Usuario en bd local
+  public createUsuario(user: SegUsuarios): Observable<SegUsuarios> {
+    return this.httpClient.post<SegUsuarios>(`${this.seguridadURL}usuario`, user, this.httpOptions);
+  }
+
 
   private log(message: string) {
     this.messageService.add(`PrioritariosService: ${message}`);

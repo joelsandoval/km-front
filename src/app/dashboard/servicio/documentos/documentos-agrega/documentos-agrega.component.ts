@@ -6,6 +6,8 @@ import { ArchivosService } from 'src/app/services/archivos.service';
 import { ExpedienteService } from 'src/app/services/expediente.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { NuevoDocumento } from '../documentos.component';
+import { AuthService } from 'src/app/services/seguridad/auth.service';
+import { SegUsuarios } from 'src/app/model/seguridad/user';
 
 @Component({
   selector: 'app-documentos-agrega',
@@ -22,35 +24,25 @@ export class DocumentosAgregaComponent implements OnInit {
   categs: ExpCatDocumentosCatego = new ExpCatDocumentosCatego();
   categorias: ExpCatDocumentosCatego[] = [];
   expediente: ExpedienteServicio = new ExpedienteServicio();
+  descripcion: string = '';
   archivo!: string;
   otros!: string;
   agregar: boolean = true;
   puedeG: boolean = true;
+  me: SegUsuarios = new SegUsuarios();
 
   constructor(
     public dialogRef: MatDialogRef<DocumentosAgregaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: NuevoDocumento,
     private fileService: FileUploadService,
     private service: ArchivosService,
-    private serviceExp: ExpedienteService
+    private serviceExp: ExpedienteService,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.serviceExp.getExpedienteCatDocsCatego().subscribe(
-      cat => {
-        this.categorias = cat;
-        /* this.serviceExp.getExpCatDocumentos(this.data.catego.id, this.data.persona, this.data.proyecto).subscribe(
-          lista => {
-            this.tipos = lista; */
-        if (this.data.origen == 1) {
-          this.expediente.servicio = this.data.servicio;
-          this.expediente.cumple = false;
-          this.expediente.presenta = true;
-        }
-
-        /* }
-      ) */
-      }
+    this.auth.getUsuario(this.auth.getUsername()).subscribe(
+      usua => this.me = usua
     )
   }
 
@@ -61,14 +53,11 @@ export class DocumentosAgregaComponent implements OnInit {
   uploadFiles() {
     let x = 0;
     Array.from(this.fileArray).forEach(
-      element => {
+      (element: File) => {
         this.fileService.postArchivoServicio(element, this.data.cliente, this.data.proyecto, this.data.servicio).subscribe(
           (data: Archivo) => {
-            data.descripcion = this.expediente.comentarios;
-            data.tipo = 100;
-            data.estatus = 1;
-            data.fecha = new Date();
-            data.autor = this.data.user;
+            data.descripcion = this.descripcion;
+            data.autor = this.me.id
             console.log(data);
             this.service.updateArchivo(data).subscribe(
               (result: Archivo) => {
@@ -77,10 +66,9 @@ export class DocumentosAgregaComponent implements OnInit {
                 relaciona.actividad = this.data.servicio
                 relaciona.fechaRegistro = new Date();
                 this.service.saveActividades(relaciona).subscribe(
-                  (result: Archivo) => {
-                    console.log(result);
-                    if(result) {
-                      this.dialogRef.close(result);
+                  (archi: Archivo) => {
+                    if(archi) {
+                      this.dialogRef.close(archi);
                     }
                   }
                 )
@@ -101,45 +89,6 @@ export class DocumentosAgregaComponent implements OnInit {
     if (files) {
       this.fileArray = files;
     }
-  }
-
-  guardarDocumento(): void {
-    if (this.catego == 0) {
-      if (this.agregar) {
-        let nuevoEx: ExpCatDocumentos = new ExpCatDocumentos();
-        nuevoEx.documento = this.otros;
-        nuevoEx.descripcion = this.otros;
-        nuevoEx.orden = 0;
-        nuevoEx.persona = 3;
-        nuevoEx.tipo = this.data.catego.id;
-        this.serviceExp.saveExpCatDocumento(nuevoEx).subscribe(
-          resulta => {
-            let nuevoEt: ExpedienteServicio = new ExpedienteServicio();
-            this.expediente.documento = resulta.id
-            this.serviceExp.saveExpediente(this.expediente).subscribe(
-              result => {
-                this.dialogRef.close(result);
-              }
-            )
-          }
-        )
-      } else {
-        this.expediente.documento = 7
-        this.serviceExp.saveExpediente(this.expediente).subscribe(
-          result => {
-            this.dialogRef.close(result);
-          }
-        )
-      }
-    } else {
-      this.expediente.documento = this.catego;
-      this.serviceExp.saveExpediente(this.expediente).subscribe(
-        result => {
-          this.dialogRef.close(result);
-        }
-      )
-    }
-
   }
 
 

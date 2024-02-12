@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServicio, ServicioF } from 'src/app/model/proyecto';
+import { ProyectosService } from 'src/app/services/proyectos.service';
 
 @Component({
   selector: 'app-servicio',
@@ -15,14 +16,18 @@ export class ServicioComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private service: ProyectosService
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(
+    this.route.params.subscribe(
       (params) => {
-        this.servicio = JSON.parse(atob(params['servicio']));
-        //console.log(this.servicio);
+        this.service.getProyectoServicio(params['servi']).subscribe(
+          (resulta: ServicioF) => {
+            this.servicio = resulta
+          }
+        )
       }
     )
 

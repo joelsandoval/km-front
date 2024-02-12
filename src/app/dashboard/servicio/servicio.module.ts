@@ -29,6 +29,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatBottomSheetModule,
     MatExpansionModule,
     PipesModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTooltipModule
   ]
 })
 export class ServicioModule { }

@@ -2,6 +2,10 @@
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Injectable } from '@angular/core';
 import { Credenciales } from 'src/app/model/seguridad/seguridad';
+import { SegUsuarios } from 'src/app/model/seguridad/user';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,9 +16,11 @@ export class AuthService {
     public username!: string;
     public isLogged!: boolean;
     public isAdmin!: boolean;
+    private seguridadURL = environment.ApiConfig.rutaBase + 'seguridad/';
 
     constructor(
         private oauthService: OAuthService,
+        private httpClient: HttpClient
     ) { }
 
 
@@ -51,6 +57,7 @@ export class AuthService {
         let nombre = this.oauthService.getIdentityClaims()[`name`];
         let user = this.oauthService.getIdentityClaims()[`preferred_username`];
         let roles = this.getRoles();
+
         return new Credenciales(nombre, user, roles);
     }
 
@@ -61,5 +68,10 @@ export class AuthService {
         const payloadDecoded = JSON.parse(payloadDecodedJson);
         return payloadDecoded;
     }
+
+    public getUsuario(user: string): Observable<SegUsuarios> {
+        return this.httpClient.get<SegUsuarios>(`${this.seguridadURL}usuario/por-usuario/${user}`);
+    }
+
 
 }

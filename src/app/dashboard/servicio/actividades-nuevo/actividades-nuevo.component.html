@@ -2,25 +2,30 @@
 <mat-dialog-content class="mat-typography">
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Compromiso</mat-label>
+            <input matInput name="observ" [(ngModel)]="actividad.descripcion" (change)="puedeGuardar()"
+            placeholder="Escriba un título para el compromiso" required/>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Descripción</mat-label>
-            <textarea matInput name="observ" [(ngModel)]="actividad.descripcion" placeholder="Describa el compromiso o actividad"></textarea>
+            <textarea matInput name="observ" [(ngModel)]="actividad.observaciones" placeholder="Describa el compromiso o actividad"></textarea>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 48%;">
-            <mat-label>Fecha de vencimiento </mat-label>
-            <input matInput [matDatepicker]="picker2" name="fecha" [(ngModel)]="actividad.vencimiento">
+            <mat-label>Vencimiento </mat-label>
+            <input matInput [matDatepicker]="picker2" name="fecha" [(ngModel)]="actividad.vencimiento" required (change)="puedeGuardar()">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         &nbsp;&nbsp;
         <mat-form-field appearance="fill" style="width: 48%;">
             <mat-label>Responsable</mat-label>
-            <mat-select name="responsable" [(ngModel)]="actividad.responsable" name="responsable">
-                <mat-option *ngFor="let fisica of fisicas" [value]="fisica.id">{{ fisica.alias }}</mat-option>
+            <mat-select name="responsable" [(ngModel)]="actividad.responsable" name="responsable" required (selectionChange)="puedeGuardar()">
+                <mat-option *ngFor="let fisica of fisicas" [value]="fisica.id">{{ fisica.nombre }} {{ fisica.apellidos }}</mat-option>
             </mat-select>
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" cdkFocusInitial (click)="guardaActividad()">Guardar</button>
+    <button mat-raised-button color="primary" [disabled]="!valGuarda" cdkFocusInitial (click)="guardaActividad()">Guardar</button>
 </mat-dialog-actions>

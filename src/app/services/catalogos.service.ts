@@ -6,6 +6,7 @@ import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { CatActividadesTipo, Categoria, VwExpCatDocumentosServicios, Servicios, CatActividades, VwExpCatActividadesServicios, Par } from '../model/catalogos';
 import { Fisica, FisicaF, PersonasMorales } from '../model/personas';
+import { SegUsuarios } from '../model/seguridad/user';
 
 
 @Injectable({
@@ -46,11 +47,11 @@ export class CatalogosService {
         catchError(this.handleError<FisicaF[]>('No se pudieron recuperar los documentos', [])));
   }
 
-  getTodos(): Observable<Fisica[]> {
+  getTodos(): Observable<SegUsuarios[]> {
     const docsUrl = `${this.personasUrl}todos`;
-    return this.http.get<Fisica[]>(docsUrl)
+    return this.http.get<SegUsuarios[]>(docsUrl)
       .pipe(tap(_ => this.log('Se recuperaron los documentos')),
-        catchError(this.handleError<Fisica[]>('No se pudieron recuperar los documentos', [])));
+        catchError(this.handleError<SegUsuarios[]>('No se pudieron recuperar los documentos', [])));
   }
 
   getListaClientes(tipo: number): Observable<PersonasMorales[]> {

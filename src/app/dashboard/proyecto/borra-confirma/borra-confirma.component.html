@@ -1,0 +1,9 @@
+<h2 mat-dialog-title class="rojo-bold">Confirmar eliminación</h2>
+<mat-dialog-content>
+  <p class="rojo">{{ data.mensaje }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="borraArchivo()" cdkFocusInitial *ngIf="data.tipo == 1">Eliminar</button>
+  <button mat-raised-button color="primary" (click)="borraEquipo()" cdkFocusInitial *ngIf="data.tipo == 2">Eliminar</button>
+</mat-dialog-actions>

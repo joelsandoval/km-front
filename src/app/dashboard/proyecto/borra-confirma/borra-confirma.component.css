@@ -1,12 +1,17 @@
-th {
+html {
     font-family: 'Poppins', sans-serif !important;
+    
+}
+
+h2, p {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.rojo {
+    color: darkred;
+}
+
+.rojo-bold {
+    color: darkred;
     font-weight: bold;
-}
-
-td {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-a {
-    color: darkslateblue;
 }

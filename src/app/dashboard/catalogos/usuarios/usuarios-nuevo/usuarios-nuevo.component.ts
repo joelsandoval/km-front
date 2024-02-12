@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from 'src/app/model/seguridad/user';
+import { SegUsuarios, User } from 'src/app/model/seguridad/user';
 import { Roles } from 'src/app/model/seguridad/roles';
 import { UserService } from 'src/app/services/seguridad/user.service';
 import { Router } from '@angular/router';
@@ -53,8 +53,20 @@ export class UsuariosNuevoComponent implements OnInit {
     console.log(this.usuario);  
     this.serviceUser.create(this.usuario).subscribe(
       (res: UserRepresentation) => {
-        this.openSnackBar('El usuario se ha guardado con éxito', 'ok');
-        this.dialogRef.close(res);
+        let nuevo: SegUsuarios = new SegUsuarios();
+        nuevo.usuario = this.usuario.username;
+        nuevo.nombre = this.usuario.firstName;
+        nuevo.apellidos = this.usuario.lastName;
+        nuevo.email = this.usuario.email;
+        nuevo.estatus = 1;
+        nuevo.fechaAlta = new Date();
+        this.serviceUser.createUsuario(nuevo).subscribe(
+          (user: SegUsuarios) => {
+            this.openSnackBar(`El usuario ${user.usuario} se ha guardado con éxito`, 'Ok');
+            this.dialogRef.close(res);
+          }
+        )
+        
       }
     )
   }

@@ -23,8 +23,6 @@ export class UsuariosComponent implements OnInit {
   password: string = '';
   rol!: string;
 
-
-
   seleccionado: UserRepresentation = new UserRepresentation('', '', '', '', [], []);
   dataSource!: MatTableDataSource<User>;
   pageSize = 50;
@@ -98,8 +96,6 @@ export class UsuariosComponent implements OnInit {
         ds: this.dataSource
       },
     });
-
-
 
     dialogRef.afterClosed().subscribe((result: UserRepresentation) => {
       console.log('The dialog was closed');

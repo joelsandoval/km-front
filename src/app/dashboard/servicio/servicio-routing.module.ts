@@ -31,6 +31,11 @@ const routes: Routes = [
       {
         path: '',
         component: ActividadesComponent,
+      }
+      ,
+      {
+        path: ':servi',
+        component: ActividadesComponent,
       }        
     ]
   },

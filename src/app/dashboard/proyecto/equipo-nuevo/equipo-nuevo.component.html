@@ -5,7 +5,7 @@
             <mat-label>Personal</mat-label>
             <mat-select [(ngModel)]="persona" name="persona" (selectionChange)="asignaPersona(persona)">
                 <mat-option *ngFor="let pers of personas" [value]="pers">
-                    {{ pers.nombre }} {{ pers.apellido1 }} {{ pers.apellido2 }}
+                    {{ pers.nombre }} {{ pers.apellidos }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -20,6 +20,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close (click)="cierra()">Cancel</button>
-    <button mat-button cdkFocusInitial (click)="guardaNuevo()">Agregar</button>
+    <button mat-raised-button color="warn" mat-dialog-close (click)="cierra()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="guardaNuevo()">Agregar</button>
 </mat-dialog-actions>

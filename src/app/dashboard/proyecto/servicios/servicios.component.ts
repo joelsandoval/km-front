@@ -62,21 +62,16 @@ export class ServiciosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       (result: ServicioF) => {
-        console.log('cerro el dialogo');
-        console.log(result);
         if (result.id > 0) {
           let serviVen: ServiciosVencimiento = new ServiciosVencimiento();
           serviVen.servicio = result
           this.servicios.push(serviVen);
-          console.log(`que paso con servicios?`);
-          console.log(this.servicios);
         }
       }
     );
   }
 
   abreServicio(seleccionado: ServicioF) {
-    console.log(seleccionado);
     this.router.navigate([this.ruta, seleccionado.id], {
       queryParams: {
         servicio: btoa(JSON.stringify(seleccionado)),

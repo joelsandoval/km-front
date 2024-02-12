@@ -6,6 +6,7 @@ import { GeneralesComponent } from './generales/generales.component';
 import { HistorialComponent } from './historial/historial.component';
 import { ProyectoComponent } from './proyecto.component';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { DocumentosAllComponent } from './documentos-all/documentos-all.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'documentos/:proyecto',
-        component: DocumentosComponent,
+        component: DocumentosAllComponent,
       },
       {
         path: '',

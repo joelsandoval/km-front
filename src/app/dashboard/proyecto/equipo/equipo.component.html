@@ -18,9 +18,9 @@
             <th></th>
         </tr>
         <tr *ngFor="let personal of equipo">
-            <td>{{ personal.alias }}</td>
+            <td>{{ personal.nombre }} {{ personal.apellidos }}</td>
             <td>
-                <button mat-icon-button aria-label="Eliminar">
+                <button mat-icon-button aria-label="Eliminar" (click)="borraEquipo(personal)">
                     <mat-icon color="warn">delete</mat-icon>
                 </button>
             </td>

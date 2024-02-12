@@ -20,12 +20,17 @@ const routes: Routes = [
         component: NuevoComponent,
       },
       {
-        path: 'pendientes/:nivel/:usuario',
+        path: 'pendientes',
         component: PendientesComponent,
       },
       {
         path: '',
         component: ListadoComponent,
+      },
+      {
+        path: 'servicio/:servi',
+        loadChildren: () => import('../servicio/servicio.module').then(mod => mod.ServicioModule),
+        data: { preload: true },
       },        
     ]
   },

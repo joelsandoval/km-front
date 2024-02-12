@@ -1,19 +1,19 @@
 <mat-drawer-container class="report-container" class="fondo" style="min-height: 600px;margin-top: -30px;">
   <mat-drawer #drawer mode="side" [opened]="true" class="fondo">
     <mat-list *ngIf="servicio">
-      <mat-list-item>
+      <mat-list-item  hidden>
         <button mat-icon-button aria-label="Compromisos/Obligaciones" routerLink="" (click)="actividades();"
           matTooltip="Compromisos">
           <mat-icon>fact_check</mat-icon>
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item  hidden>
         <button mat-icon-button aria-label="Documentos" routerLink="" (click)="documentos()" 
           matTooltip="Documentos">
           <mat-icon>folder_copy</mat-icon>
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item  hidden>
         <button mat-icon-button aria-label="Equipo de trabajo" [routerLink]="['equipo', 1]"
           matTooltip="Equipo de trabajo">
           <mat-icon>people_alt</mat-icon>

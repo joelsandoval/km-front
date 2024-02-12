@@ -94,6 +94,32 @@ export class ActividadF {
     semaforoColor!: string;
     semaforoEtiqueta!: string;
     terminado!: boolean;
+    observaciones!: string;
+}
+
+export class VwActividades {
+    id!: number;  
+    actividadId!: number;
+    descripcion!: string;
+    tipoId!: number;
+    fecha!: Date;
+    estatusId!: number;
+    estatus!: string;
+    responsableId!: number;
+    responsable!: string;
+    clase!: string;
+    vencimiento!: Date;
+    dias!: number;
+    estado!: number;
+    semaforo!: number;
+    semaforoColor!: string;
+    semaforoEtiqueta!: string;
+    terminado!: boolean;
+    observaciones!: string;
+    proyecto!: string;
+    proyectoId!: number;
+    servicio!: string;
+    servicioId!: number;
 }
 
 
